@@ -132,9 +132,14 @@ export default function Reviews() {
 
       if (!firstCard) return;
 
-      const cardWidth = firstCard.getBoundingClientRect().width;
-      const styles = window.getComputedStyle(track);
-      const gap = parseFloat(styles.gap || "0");
+      const cardWidth =
+        firstCard.getBoundingClientRect().width;
+
+      const styles =
+        window.getComputedStyle(track);
+
+      const gap =
+        parseFloat(styles.gap || "0");
 
       setStep(cardWidth + gap);
     };
@@ -158,8 +163,9 @@ export default function Reviews() {
   }, []);
 
   /*
-    Once the duplicated set reaches the same visual position,
-    silently reset to the original set.
+    Once the duplicated set reaches the same
+    visual position, silently reset to the
+    original set.
   */
   useEffect(() => {
     if (currentIndex !== reviews.length) return;
@@ -180,6 +186,7 @@ export default function Reviews() {
 
   const trackStyle = {
     transform: `translate3d(-${currentIndex * step}px, 0, 0)`,
+
     transition: animate
       ? "transform 0.85s cubic-bezier(0.65, 0, 0.35, 1)"
       : "none",
@@ -200,18 +207,18 @@ export default function Reviews() {
         </h2>
 
         <p>
-          Rated 4.2 out of 5 based on 15 customer reviews.
+          Rated 4.4 out of 5 by 99+ customers.
         </p>
       </div>
 
       <div className="review-rating-box">
-        <strong>4.2</strong>
+        <strong>4.4</strong>
 
         <div className="rating-stars">
           ★★★★★
         </div>
 
-        <span>15 Reviews</span>
+        <span>99+ Customers</span>
       </div>
 
       <div className="reviews-carousel">
@@ -227,6 +234,7 @@ export default function Reviews() {
             >
               <div className="review-stars">
                 {"★".repeat(review.rating)}
+
                 <span className="empty-stars">
                   {"★".repeat(5 - review.rating)}
                 </span>
@@ -245,7 +253,10 @@ export default function Reviews() {
 
                 <div className="review-author-info">
                   <strong>{review.name}</strong>
-                  <span>Customer Review</span>
+
+                  <span>
+                    Customer Review
+                  </span>
                 </div>
               </div>
             </article>
