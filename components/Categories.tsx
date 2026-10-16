@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Category = {
   id: string;
@@ -38,18 +38,11 @@ const categories: Category[] = [
     description: "Comfortable sofa sets for your living space.",
   },
   {
-    id: "almira",
-    name: "Almira",
+    id: "almira-wardrobes",
+    name: "Almira & Wardrobes",
     icon: "🚪",
-    image: "/images/categories/03-almira.png",
-    description: "Storage solutions for your bedroom.",
-  },
-  {
-    id: "wardrobe",
-    name: "Wardrobe",
-    icon: "🪞",
-    image: "/images/categories/04-wardrobe.png",
-    description: "Stylish dressing options for your room.",
+    image: "/images/categories/almira-wardrobes.png",
+    description: "Smart storage and stylish wardrobes for your home.",
   },
   {
     id: "tables",
@@ -80,18 +73,11 @@ const categories: Category[] = [
     description: "Washing machines for everyday convenience.",
   },
   {
-    id: "coolers",
-    name: "Coolers",
+    id: "coolers-ac",
+    name: "Coolers & AC",
     icon: "❄️",
-    image: "/images/categories/09-coolers.png",
-    description: "Cooling solutions for your home.",
-  },
-  {
-    id: "ac",
-    name: "AC",
-    icon: "❄️",
-    image: "/images/categories/10-ac.png",
-    description: "Air conditioning solutions for your home.",
+    image: "/images/categories/coolers-ac.png",
+    description: "Cooling solutions for every season.",
   },
   {
     id: "kitchen-appliances",
@@ -106,6 +92,20 @@ const categories: Category[] = [
     icon: "🛏️",
     image: "/images/categories/12-mattresses.png",
     description: "Comfortable mattresses for better sleep.",
+  },
+  {
+    id: "home-appliances",
+    name: "Home Appliances",
+    icon: "🏠",
+    image: "/images/categories/home-appliances.png",
+    description: "Everyday appliances to make home life easier.",
+  },
+  {
+    id: "heaters-geysers",
+    name: "Heaters & Geysers",
+    icon: "♨️",
+    image: "/images/categories/heaters-geysers.png",
+    description: "Warmth and hot water for cooler days.",
   },
 ];
 
@@ -303,7 +303,7 @@ const products: Product[] = [
   {
     id: "almira-1",
     name: "Almira 01",
-    category: "almira",
+    category: "almira-wardrobes",
     price: 11499,
     images: [
       "/images/products/almiras/almira-01-1.jpeg",
@@ -314,7 +314,7 @@ const products: Product[] = [
   {
     id: "almira-2",
     name: "Almira 02",
-    category: "almira",
+    category: "almira-wardrobes",
     price: 14999,
     images: [
       "/images/products/almiras/almira-02-1.jpeg",
@@ -325,7 +325,7 @@ const products: Product[] = [
   {
     id: "almira-3",
     name: "Almira 03",
-    category: "almira",
+    category: "almira-wardrobes",
     price: 17999,
     images: [
       "/images/products/almiras/almira-03-1.jpeg",
@@ -336,7 +336,7 @@ const products: Product[] = [
   {
     id: "almira-4",
     name: "Almira 04",
-    category: "almira",
+    category: "almira-wardrobes",
     price: 11499,
     images: [
       "/images/products/almiras/almira-04-1.jpeg",
@@ -347,7 +347,7 @@ const products: Product[] = [
   {
     id: "almira-5",
     name: "Almira 05",
-    category: "almira",
+    category: "almira-wardrobes",
     price: 7999,
     images: [
       "/images/products/almiras/almira-05-1.jpeg",
@@ -358,7 +358,7 @@ const products: Product[] = [
   {
     id: "almira-6",
     name: "Almira 06",
-    category: "almira",
+    category: "almira-wardrobes",
     price: 12499,
     images: [
       "/images/products/almiras/almira-06-1.jpeg",
@@ -372,7 +372,7 @@ const products: Product[] = [
   {
     id: "wardrobe-1",
     name: "Wardrobe 01",
-    category: "wardrobe",
+    category: "almira-wardrobes",
     price: 2999,
     images: [
       "/images/products/wardrobes/wardrobe-01-1.jpeg",
@@ -383,7 +383,7 @@ const products: Product[] = [
   {
     id: "wardrobe-2",
     name: "Wardrobe 02",
-    category: "wardrobe",
+    category: "almira-wardrobes",
     price: 2999,
     images: [
       "/images/products/wardrobes/wardrobe-02-1.jpeg",
@@ -394,7 +394,7 @@ const products: Product[] = [
   {
     id: "wardrobe-3",
     name: "Wardrobe 03",
-    category: "wardrobe",
+    category: "almira-wardrobes",
     price: 4999,
     images: [
       "/images/products/wardrobes/wardrobe-03-1.jpeg",
@@ -430,60 +430,47 @@ const products: Product[] = [
   // Each TV has one main image.
   {
     id: "tv-1",
-    name: "Smart TV 01",
+    name: "Panasonic 32 inch",
     category: "smart-tv",
-    price: 0,
+    price: 16499,
     images: ["/images/products/tvs/tv-01-1.jpeg"],
   },
   {
     id: "tv-2",
-    name: "Smart TV 02",
+    name: "Samsung 43 inch",
     category: "smart-tv",
-    price: 0,
+    price: 26499,
     images: ["/images/products/tvs/tv-02-1.jpeg"],
   },
   {
     id: "tv-3",
-    name: "Smart TV 03",
+    name: "T-Series 50 inch",
     category: "smart-tv",
-    price: 0,
+    price: 34499,
     images: ["/images/products/tvs/tv-03-1.jpeg"],
   },
   {
     id: "tv-4",
-    name: "Smart TV 04",
+    name: "Samsung 32 inch",
     category: "smart-tv",
-    price: 0,
+    price: 16499,
     images: ["/images/products/tvs/tv-04-1.jpeg"],
   },
   {
     id: "tv-5",
-    name: "Smart TV 05",
+    name: "Panasonic 42 inch",
     category: "smart-tv",
-    price: 0,
+    price: 29499,
     images: ["/images/products/tvs/tv-05-1.jpeg"],
   },
   {
     id: "tv-6",
-    name: "Smart TV 06",
+    name: "Samsung 50 inch",
     category: "smart-tv",
-    price: 0,
+    price: 41999,
     images: ["/images/products/tvs/tv-06-1.jpeg"],
   },
-  {
-    id: "tv-7",
-    name: "Smart TV 07",
-    category: "smart-tv",
-    price: 0,
-    images: ["/images/products/tvs/tv-07-1.jpeg"],
-  },
-  {
-    id: "tv-8",
-    name: "Smart TV 08",
-    category: "smart-tv",
-    price: 0,
-    images: ["/images/products/tvs/tv-08-1.jpeg"],
-  },
+
 
   // REFRIGERATORS — place all 28 JPEG images in public/images/products/refrigerators/.
   // Each refrigerator has one main image and three additional views.
@@ -578,7 +565,7 @@ const products: Product[] = [
     id: "washing-1",
     name: "Washing Machine 01",
     category: "washing-machines",
-    price: 0,
+    price: 11999,
     images: [
       "/images/products/washing-machines/washing-machine-01-1.jpeg",
       "/images/products/washing-machines/washing-machine-01-2.jpeg",
@@ -589,7 +576,7 @@ const products: Product[] = [
     id: "washing-2",
     name: "Washing Machine 02",
     category: "washing-machines",
-    price: 0,
+    price: 15799,
     images: [
       "/images/products/washing-machines/washing-machine-02-1.jpeg",
       "/images/products/washing-machines/washing-machine-02-2.jpeg",
@@ -600,7 +587,7 @@ const products: Product[] = [
     id: "washing-3",
     name: "Washing Machine 03",
     category: "washing-machines",
-    price: 0,
+    price: 14799,
     images: [
       "/images/products/washing-machines/washing-machine-03-1.jpeg",
       "/images/products/washing-machines/washing-machine-03-2.jpeg",
@@ -611,7 +598,7 @@ const products: Product[] = [
     id: "washing-4",
     name: "Washing Machine 04",
     category: "washing-machines",
-    price: 0,
+    price: 14499,
     images: [
       "/images/products/washing-machines/washing-machine-04-1.jpeg",
       "/images/products/washing-machines/washing-machine-04-2.jpeg",
@@ -622,7 +609,7 @@ const products: Product[] = [
     id: "washing-5",
     name: "Washing Machine 05",
     category: "washing-machines",
-    price: 0,
+    price: 15499,
     images: [
       "/images/products/washing-machines/washing-machine-05-1.jpeg",
       "/images/products/washing-machines/washing-machine-05-2.jpeg",
@@ -633,7 +620,7 @@ const products: Product[] = [
     id: "washing-6",
     name: "Washing Machine 06",
     category: "washing-machines",
-    price: 0,
+    price: 14999,
     images: [
       "/images/products/washing-machines/washing-machine-06-1.jpeg",
       "/images/products/washing-machines/washing-machine-06-2.jpeg",
@@ -644,7 +631,7 @@ const products: Product[] = [
     id: "washing-7",
     name: "Washing Machine 07",
     category: "washing-machines",
-    price: 0,
+    price: 11999,
     images: [
       "/images/products/washing-machines/washing-machine-07-1.jpeg",
       "/images/products/washing-machines/washing-machine-07-2.jpeg",
@@ -655,7 +642,7 @@ const products: Product[] = [
     id: "washing-8",
     name: "Washing Machine 08",
     category: "washing-machines",
-    price: 0,
+    price: 15499,
     images: [
       "/images/products/washing-machines/washing-machine-08-1.jpeg",
       "/images/products/washing-machines/washing-machine-08-2.jpeg",
@@ -666,7 +653,7 @@ const products: Product[] = [
     id: "washing-9",
     name: "Washing Machine 09",
     category: "washing-machines",
-    price: 0,
+    price: 17799,
     images: [
       "/images/products/washing-machines/washing-machine-09-1.jpeg",
       "/images/products/washing-machines/washing-machine-09-2.jpeg",
@@ -677,7 +664,7 @@ const products: Product[] = [
     id: "washing-10",
     name: "Washing Machine 10",
     category: "washing-machines",
-    price: 0,
+    price: 20999,
     images: [
       "/images/products/washing-machines/washing-machine-10-1.jpeg",
       "/images/products/washing-machines/washing-machine-10-2.jpeg",
@@ -690,8 +677,8 @@ const products: Product[] = [
   {
     id: "cooler-1",
     name: "Cooler 01",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 4499,
     images: [
       "/images/products/coolers/cooler-01-1.jpeg",
       "/images/products/coolers/cooler-01-2.jpeg",
@@ -701,8 +688,8 @@ const products: Product[] = [
   {
     id: "cooler-2",
     name: "Cooler 02",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 5499,
     images: [
       "/images/products/coolers/cooler-02-1.jpeg",
       "/images/products/coolers/cooler-02-2.jpeg",
@@ -712,8 +699,8 @@ const products: Product[] = [
   {
     id: "cooler-3",
     name: "Cooler 03",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 5499,
     images: [
       "/images/products/coolers/cooler-03-1.jpeg",
       "/images/products/coolers/cooler-03-2.jpeg",
@@ -723,8 +710,8 @@ const products: Product[] = [
   {
     id: "cooler-4",
     name: "Cooler 04",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 4499,
     images: [
       "/images/products/coolers/cooler-04-1.jpeg",
       "/images/products/coolers/cooler-04-2.jpeg",
@@ -734,8 +721,8 @@ const products: Product[] = [
   {
     id: "cooler-5",
     name: "Cooler 05",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 6999,
     images: [
       "/images/products/coolers/cooler-05-1.jpeg",
       "/images/products/coolers/cooler-05-2.jpeg",
@@ -745,8 +732,8 @@ const products: Product[] = [
   {
     id: "cooler-6",
     name: "Cooler 06",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 6499,
     images: [
       "/images/products/coolers/cooler-06-1.jpeg",
       "/images/products/coolers/cooler-06-2.jpeg",
@@ -756,8 +743,8 @@ const products: Product[] = [
   {
     id: "cooler-7",
     name: "Cooler 07",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 6999,
     images: [
       "/images/products/coolers/cooler-07-1.jpeg",
       "/images/products/coolers/cooler-07-2.jpeg",
@@ -767,8 +754,8 @@ const products: Product[] = [
   {
     id: "cooler-8",
     name: "Cooler 08",
-    category: "coolers",
-    price: 0,
+    category: "coolers-ac",
+    price: 8999,
     images: [
       "/images/products/coolers/cooler-08-1.jpeg",
       "/images/products/coolers/cooler-08-2.jpeg",
@@ -781,8 +768,8 @@ const products: Product[] = [
   {
     id: "ac-1",
     name: "AC 01",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 37499,
     images: [
       "/images/products/acs/ac-01-1.jpeg",
       "/images/products/acs/ac-01-2.jpeg",
@@ -791,8 +778,8 @@ const products: Product[] = [
   {
     id: "ac-2",
     name: "AC 02",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 30499,
     images: [
       "/images/products/acs/ac-02-1.jpeg",
       "/images/products/acs/ac-02-2.jpeg",
@@ -801,8 +788,8 @@ const products: Product[] = [
   {
     id: "ac-3",
     name: "AC 03",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 45499,
     images: [
       "/images/products/acs/ac-03-1.jpeg",
       "/images/products/acs/ac-03-2.jpeg",
@@ -811,8 +798,8 @@ const products: Product[] = [
   {
     id: "ac-4",
     name: "AC 04",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 37999,
     images: [
       "/images/products/acs/ac-04-1.jpeg",
       "/images/products/acs/ac-04-2.jpeg",
@@ -821,8 +808,8 @@ const products: Product[] = [
   {
     id: "ac-5",
     name: "AC 05",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 28499,
     images: [
       "/images/products/acs/ac-05-1.jpeg",
       "/images/products/acs/ac-05-2.jpeg",
@@ -831,8 +818,8 @@ const products: Product[] = [
   {
     id: "ac-6",
     name: "AC 06",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 28499,
     images: [
       "/images/products/acs/ac-06-1.jpeg",
       "/images/products/acs/ac-06-2.jpeg",
@@ -841,8 +828,8 @@ const products: Product[] = [
   {
     id: "ac-7",
     name: "AC 07",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 37999,
     images: [
       "/images/products/acs/ac-07-1.jpeg",
       "/images/products/acs/ac-07-2.jpeg",
@@ -851,8 +838,8 @@ const products: Product[] = [
   {
     id: "ac-8",
     name: "AC 08",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 33499,
     images: [
       "/images/products/acs/ac-08-1.jpeg",
       "/images/products/acs/ac-08-2.jpeg",
@@ -861,8 +848,8 @@ const products: Product[] = [
   {
     id: "ac-9",
     name: "AC 09",
-    category: "ac",
-    price: 0,
+    category: "coolers-ac",
+    price: 45999,
     images: [
       "/images/products/acs/ac-09-1.jpeg",
       "/images/products/acs/ac-09-2.jpeg",
@@ -875,7 +862,7 @@ const products: Product[] = [
     id: "oven-1",
     name: "Oven 01",
     category: "kitchen-appliances",
-    price: 0,
+    price: 12499,
     images: [
       "/images/products/ovens/oven-01-1.jpeg",
       "/images/products/ovens/oven-01-2.jpeg",
@@ -886,7 +873,7 @@ const products: Product[] = [
     id: "oven-2",
     name: "Oven 02",
     category: "kitchen-appliances",
-    price: 0,
+    price: 12499,
     images: [
       "/images/products/ovens/oven-02-1.jpeg",
       "/images/products/ovens/oven-02-2.jpeg",
@@ -897,7 +884,7 @@ const products: Product[] = [
     id: "oven-3",
     name: "Oven 03",
     category: "kitchen-appliances",
-    price: 0,
+    price: 12499,
     images: [
       "/images/products/ovens/oven-03-1.jpeg",
       "/images/products/ovens/oven-03-2.jpeg",
@@ -908,7 +895,7 @@ const products: Product[] = [
     id: "oven-4",
     name: "Oven 04",
     category: "kitchen-appliances",
-    price: 0,
+    price: 10299,
     images: [
       "/images/products/ovens/oven-04-1.jpeg",
       "/images/products/ovens/oven-04-2.jpeg",
@@ -919,7 +906,7 @@ const products: Product[] = [
     id: "oven-5",
     name: "Oven 05",
     category: "kitchen-appliances",
-    price: 0,
+    price: 10499,
     images: [
       "/images/products/ovens/oven-05-1.jpeg",
       "/images/products/ovens/oven-05-2.jpeg",
@@ -928,17 +915,246 @@ const products: Product[] = [
   },
 
   // KITCHEN APPLIANCES
+
+
+  // NEW COOLERS — 3 products, 1 main image + 1 additional image each.
   {
-    id: "kitchen-1",
-    name: "Kitchen Appliances",
-    category: "kitchen-appliances",
-    price: 0,
+    id: "cooler-9",
+    name: "Cooler 09",
+    category: "coolers-ac",
+    price: 11999,
+    images: [
+      "/images/products/coolers/cooler-09-1.jpeg",
+      "/images/products/coolers/cooler-09-2.jpeg",
+    ],
   },
   {
-    id: "kitchen-2",
-    name: "Kitchen Essentials",
+    id: "cooler-10",
+    name: "Cooler 10",
+    category: "coolers-ac",
+    price: 13499,
+    images: [
+      "/images/products/coolers/cooler-10-1.jpeg",
+      "/images/products/coolers/cooler-10-2.jpeg",
+    ],
+  },
+  {
+    id: "cooler-11",
+    name: "Cooler 11",
+    category: "coolers-ac",
+    price: 12499,
+    images: [
+      "/images/products/coolers/cooler-11-1.jpeg",
+      "/images/products/coolers/cooler-11-2.jpeg",
+    ],
+  },
+
+  // NEW HEATERS — added to Heaters & Geysers.
+  {
+    id: "heater-1",
+    name: "Heater 01",
+    category: "heaters-geysers",
+    price: 1499,
+    images: [
+      "/images/products/heaters/heater-01-1.jpeg",
+      "/images/products/heaters/heater-01-2.jpeg",
+      "/images/products/heaters/heater-01-3.jpeg",
+    ],
+  },
+  {
+    id: "heater-2",
+    name: "Heater 02",
+    category: "heaters-geysers",
+    price: 1349,
+    images: [
+      "/images/products/heaters/heater-02-1.jpeg",
+      "/images/products/heaters/heater-02-2.jpeg",
+      "/images/products/heaters/heater-02-3.jpeg",
+    ],
+  },
+    // GEYSERS — 5 products in Heaters & Geysers.
+  {
+    id: "geyser-1",
+    name: "Geyser 01",
+    category: "heaters-geysers",
+    price: 0,
+    images: [
+      "/images/products/heaters/geyser-01.jpeg",
+    ],
+  },
+  {
+    id: "geyser-2",
+    name: "Geyser 02",
+    category: "heaters-geysers",
+    price: 0,
+    images: [
+      "/images/products/heaters/geyser-02.jpeg",
+    ],
+  },
+  {
+    id: "geyser-3",
+    name: "Geyser 03",
+    category: "heaters-geysers",
+    price: 0,
+    images: [
+      "/images/products/heaters/geyser-03.jpeg",
+    ],
+  },
+  {
+    id: "geyser-4",
+    name: "Geyser 04",
+    category: "heaters-geysers",
+    price: 0,
+    images: [
+      "/images/products/heaters/geyser-04.jpeg",
+    ],
+  },
+  {
+    id: "geyser-5",
+    name: "Geyser 05",
+    category: "heaters-geysers",
+    price: 0,
+    images: [
+      "/images/products/heaters/geyser-05.jpeg",
+    ],
+  },
+
+  // NEW GAS STOVES — added to Kitchen Appliances.
+  {
+    id: "gas-stove-1",
+    name: "Gas Stove 01",
     category: "kitchen-appliances",
     price: 0,
+    images: [
+      "/images/products/kitchen-appliances/gas-stove-01-1.jpeg",
+      "/images/products/kitchen-appliances/gas-stove-01-2.jpeg",
+      "/images/products/kitchen-appliances/gas-stove-01-3.jpeg",
+    ],
+  },
+  {
+    id: "gas-stove-2",
+    name: "Gas Stove 02",
+    category: "kitchen-appliances",
+    price: 0,
+    images: [
+      "/images/products/kitchen-appliances/gas-stove-02-1.jpeg",
+      "/images/products/kitchen-appliances/gas-stove-02-2.jpeg",
+      "/images/products/kitchen-appliances/gas-stove-02-3.jpeg",
+    ],
+  },
+  {
+    id: "gas-stove-3",
+    name: "Gas Stove 03",
+    category: "kitchen-appliances",
+    price: 0,
+    images: [
+      "/images/products/kitchen-appliances/gas-stove-03-1.jpeg",
+      "/images/products/kitchen-appliances/gas-stove-03-2.jpeg",
+      "/images/products/kitchen-appliances/gas-stove-03-3.jpeg",
+    ],
+  },
+
+  // NEW REFRIGERATORS — filenames follow the files you showed (08–11).
+  {
+    id: "fridge-8",
+    name: "Refrigerator 08",
+    category: "refrigerators",
+    price: 14499,
+    images: [
+      "/images/products/refrigerators/fridge-08-1.jpeg",
+      "/images/products/refrigerators/fridge-08-2.jpeg",
+      "/images/products/refrigerators/fridge-08-3.jpeg",
+    ],
+  },
+  {
+    id: "fridge-9",
+    name: "Refrigerator 09",
+    category: "refrigerators",
+    price: 16499,
+    images: [
+      "/images/products/refrigerators/fridge-09-1.jpeg",
+      "/images/products/refrigerators/fridge-09-2.jpeg",
+      "/images/products/refrigerators/fridge-09-3.jpeg",
+    ],
+  },
+  {
+    id: "fridge-10",
+    name: "Refrigerator 10",
+    category: "refrigerators",
+    price: 12499,
+    images: [
+      "/images/products/refrigerators/fridge-10-1.jpeg",
+      "/images/products/refrigerators/fridge-10-2.jpeg",
+      "/images/products/refrigerators/fridge-10-3.jpeg",
+    ],
+  },
+  {
+    id: "fridge-11",
+    name: "Refrigerator 11",
+    category: "refrigerators",
+    price: 15499,
+    images: [
+      "/images/products/refrigerators/fridge-11-1.jpeg",
+      "/images/products/refrigerators/fridge-11-2.jpeg",
+      "/images/products/refrigerators/fridge-11-3.jpeg",
+    ],
+  },
+
+  // NEW KITCHEN APPLIANCES — 5 products, 3 images each.
+  {
+    id: "kitchen-appliance-1",
+    name: "Kitchen Appliance 01",
+    category: "kitchen-appliances",
+    price: 0,
+    images: [
+      "/images/products/kitchen-appliances/kitchen-appliance-01-1.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-01-2.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-01-3.jpeg",
+    ],
+  },
+  {
+    id: "kitchen-appliance-2",
+    name: "Kitchen Appliance 02",
+    category: "kitchen-appliances",
+    price: 0,
+    images: [
+      "/images/products/kitchen-appliances/kitchen-appliance-02-1.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-02-2.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-02-3.jpeg",
+    ],
+  },
+  {
+    id: "kitchen-appliance-3",
+    name: "Kitchen Appliance 03",
+    category: "kitchen-appliances",
+    price: 0,
+    images: [
+      "/images/products/kitchen-appliances/kitchen-appliance-03-1.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-03-2.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-03-3.jpeg",
+    ],
+  },
+  {
+    id: "kitchen-appliance-4",
+    name: "Kitchen Appliance 04",
+    category: "kitchen-appliances",
+    price: 0,
+    images: [
+      "/images/products/kitchen-appliances/kitchen-appliance-04-1.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-04-2.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-04-3.jpeg",
+    ],
+  },
+  {
+    id: "kitchen-appliance-5",
+    name: "Kitchen Appliance 05",
+    category: "kitchen-appliances",
+    price: 0,
+    images: [
+      "/images/products/kitchen-appliances/kitchen-appliance-05-1.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-05-2.jpeg",
+      "/images/products/kitchen-appliances/kitchen-appliance-05-3.jpeg",
+    ],
   },
 
   // MATTRESSES
@@ -994,6 +1210,7 @@ export default function Categories() {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   const [showCart, setShowCart] = useState(false);
+  const [addedProductName, setAddedProductName] = useState<string | null>(null);
 
   const [showCombo, setShowCombo] = useState(false);
 
@@ -1022,7 +1239,23 @@ export default function Categories() {
     0
   );
 
+  // Keep the navbar cart badge synchronized and allow its button to open this cart.
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("arrow-city-cart-count", { detail: { count: cartCount } })
+    );
+  }, [cartCount]);
+
+  useEffect(() => {
+    const openCart = () => setShowCart(true);
+    window.addEventListener("arrow-city-open-cart", openCart);
+    return () => window.removeEventListener("arrow-city-open-cart", openCart);
+  }, []);
+
   const addToCart = (product: Product) => {
+    setAddedProductName(product.name);
+    window.setTimeout(() => setAddedProductName(null), 2200);
+
     setCart((currentCart) => {
       const existing = currentCart.find((item) => item.id === product.id);
 
@@ -1116,6 +1349,13 @@ export default function Categories() {
   return (
     <>
       <section id="categories" className="categories-section">
+        {addedProductName && (
+          <div className="cart-add-toast" role="status" aria-live="polite" key={addedProductName}>
+            <span className="cart-add-toast-check">✓</span>
+            <span><strong>{addedProductName}</strong> added to cart</span>
+            <button type="button" onClick={() => setShowCart(true)}>View cart</button>
+          </div>
+        )}
         <div className="categories-container">
           {/* =========================
               SHOP WITH US HEADER
@@ -1184,12 +1424,12 @@ export default function Categories() {
               </p>
 
               <div className="combo-price">
-                <span className="combo-old-price">₹99,000</span>
+                <span className="combo-old-price">₹1,20,000</span>
                 <span className="combo-new-price">₹81,000</span>
               </div>
 
               <div className="combo-saving">
-                Save ₹18,000
+                Save ₹39,000
               </div>
 
               <button
@@ -1208,11 +1448,12 @@ export default function Categories() {
                 <span>Items</span>
               </div>
 
-              <div className="combo-mini-grid">
-                <div>🛏️</div>
-                <div>🧊</div>
-                <div>📺</div>
-                <div>🛋️</div>
+              <div className="combo-mini-grid" aria-label="A preview of products included in the combo">
+                {comboItems.slice(0, 4).map((item) => (
+                  <div className="combo-mini-product" key={item.name} title={item.name}>
+                    <img src={item.image} alt={item.name} />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -1377,7 +1618,7 @@ export default function Categories() {
                         className="add-to-cart-button"
                         onClick={() => addToCart(selectedProduct)}
                       >
-                        <span>Add to Cart</span><span>+</span>
+                        <span>Add to Cart</span><span className="add-cart-plus">+</span>
                       </button>
                     </div>
                   </div>
@@ -1415,7 +1656,7 @@ export default function Categories() {
                           View Details & Photos →
                         </button>
                         <button type="button" className="add-to-cart-button" onClick={() => addToCart(product)}>
-                          <span>Add to Cart</span><span>+</span>
+                          <span>Add to Cart</span><span className="add-cart-plus">+</span>
                         </button>
                       </div>
                     </article>
@@ -1458,12 +1699,12 @@ export default function Categories() {
             </h3>
 
             <div className="modal-price">
-              <span>₹99,000</span>
+              <span>₹1,20,000</span>
               <strong>₹81,000</strong>
             </div>
 
             <p className="modal-saving">
-              Save ₹18,000
+              Save ₹39,000
             </p>
 
             <div className="combo-items-grid">
@@ -1551,7 +1792,11 @@ export default function Categories() {
                       className="cart-item"
                     >
                       <div className="cart-item-image">
-                        +
+                        {item.images?.[0] ? (
+                          <img src={item.images[0]} alt={item.name} />
+                        ) : (
+                          <span>🛍️</span>
+                        )}
                       </div>
 
                       <div className="cart-item-info">
@@ -2328,6 +2573,70 @@ export default function Categories() {
           border-color: #172e63;
         }
 
+        .cart-add-toast {
+          position: fixed;
+          top: 96px;
+          right: 24px;
+          z-index: 12000;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          max-width: min(420px, calc(100vw - 32px));
+          padding: 13px 15px;
+          border: 1px solid rgba(34, 197, 94, 0.22);
+          border-radius: 14px;
+          background: #ffffff;
+          color: #172e63;
+          box-shadow: 0 16px 45px rgba(16, 35, 70, 0.20);
+          animation: cartToastIn 0.32s cubic-bezier(.2,.8,.2,1) both;
+          font-size: 12px;
+        }
+
+        .cart-add-toast-check {
+          width: 27px;
+          height: 27px;
+          flex-shrink: 0;
+          display: grid;
+          place-items: center;
+          border-radius: 50%;
+          background: #dcfce7;
+          color: #15803d;
+          font-weight: 900;
+          animation: cartCheckPop 0.38s 0.08s ease both;
+        }
+
+        .cart-add-toast strong { color: #172e63; }
+        .cart-add-toast button {
+          margin-left: auto;
+          border: 0;
+          border-radius: 999px;
+          padding: 8px 11px;
+          background: #172e63;
+          color: #ffffff;
+          white-space: nowrap;
+          font-size: 11px;
+          font-weight: 800;
+          cursor: pointer;
+        }
+
+        .add-to-cart-button:active { transform: scale(0.97); }
+        .add-to-cart-button:hover .add-cart-plus { transform: rotate(90deg); }
+        .add-cart-plus {
+          display: inline-block;
+          font-size: 18px;
+          transition: transform 0.25s ease;
+        }
+
+        @keyframes cartToastIn {
+          from { opacity: 0; transform: translateY(-12px) scale(0.97); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes cartCheckPop {
+          0% { transform: scale(0.4); }
+          70% { transform: scale(1.18); }
+          100% { transform: scale(1); }
+        }
+
         /* MODALS */
 
         .categories-modal-backdrop,
@@ -2557,6 +2866,14 @@ export default function Categories() {
           display: grid;
           place-items: center;
           font-size: 20px;
+        }
+
+        .cart-item-image img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+          border-radius: inherit;
         }
 
         .cart-item-info {
@@ -2905,6 +3222,13 @@ export default function Categories() {
           .cart-drawer {
             width: 100%;
           }
+
+          .cart-add-toast {
+            top: 82px;
+            right: 10px;
+            left: 10px;
+            max-width: none;
+          }
         }
 
         /* TABLET:
@@ -2952,6 +3276,103 @@ export default function Categories() {
             display: none;
           }
         }
+
+        /* =========================
+           POLISHED COMBO, PRODUCT CARDS & BACK NAVIGATION
+        ========================== */
+        .combo-package-card {
+          background: linear-gradient(120deg, #ffab19 0%, #ffb72f 58%, #ffc54f 100%);
+          border: 1px solid rgba(255,255,255,.55);
+          box-shadow: 0 22px 55px rgba(224, 145, 0, .22);
+        }
+        .combo-package-card::before {
+          content: "";
+          position: absolute;
+          inset: 12px;
+          border: 1px solid rgba(255,255,255,.22);
+          border-radius: 22px;
+          pointer-events: none;
+        }
+        .combo-visual { gap: 20px; margin-right: 14px; }
+        .combo-mini-grid { grid-template-columns: repeat(2, 104px); gap: 10px; }
+        .combo-mini-grid .combo-mini-product {
+          height: 82px;
+          padding: 7px;
+          border: 2px solid rgba(255,255,255,.85);
+          border-radius: 17px;
+          background: rgba(255,255,255,.68);
+          box-shadow: 0 8px 20px rgba(23,46,99,.09);
+          overflow: hidden;
+        }
+        .combo-mini-product img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .combo-old-price { font-size: 18px; }
+        .combo-new-price { font-size: clamp(30px, 3vw, 36px); }
+        .combo-saving { display: inline-block; margin-top: 7px; padding: 5px 9px; border-radius: 7px; background: rgba(255,255,255,.45); }
+
+        .category-products-header { margin-bottom: 28px; }
+        .back-to-categories {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          min-height: 42px;
+          margin: 0 0 22px;
+          padding: 10px 16px;
+          border: 1px solid #d6e2fa;
+          border-radius: 12px;
+          background: #eef4ff;
+          color: #1748b5;
+          box-shadow: 0 4px 12px rgba(23, 70, 170, .08);
+          font-size: 13px;
+          font-weight: 850;
+          line-height: 1.2;
+          cursor: pointer;
+          transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+        }
+        .back-to-categories:hover { background: #1748b5; color: #fff; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(23,70,170,.18); }
+        .back-to-categories:focus-visible { outline: 3px solid #ffb21e; outline-offset: 3px; }
+        .product-detail-view { padding-top: 4px; }
+        .product-detail-back { margin-bottom: 20px; }
+
+        .products-grid { gap: 18px; }
+        .category-product-card {
+          border: 1px solid #dce5f4;
+          border-radius: 20px;
+          background: linear-gradient(180deg, #fff 0%, #fbfcff 100%);
+          box-shadow: 0 10px 28px rgba(23,46,99,.075);
+          transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+        }
+        .category-product-card:hover { transform: translateY(-4px); border-color: #b8ccf4; box-shadow: 0 18px 34px rgba(23,46,99,.13); }
+        .product-image-button { background: linear-gradient(145deg, #f2f6ff, #fff7e8); height: 218px; }
+        .product-card-image { padding: 10px; }
+        .product-card-body { padding: 16px 15px 15px; }
+        .product-category-label { padding: 5px 9px; border-radius: 7px; background: #eaf0ff; color: #24458e; font-size: 10px; letter-spacing: .01em; }
+        .product-card-body h4 { margin: 12px 0 10px; color: #122b5b; font-size: 18px; line-height: 1.25; font-weight: 750; letter-spacing: -.02em; }
+        .product-price { align-items: baseline; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+        .product-price span { color: #7786a1; font-size: 11px; }
+        .product-price strong { color: #123a88; font-size: 21px; line-height: 1.15; font-weight: 900; letter-spacing: -.035em; }
+        .product-price strong.price-coming-soon { font-size: 13px; letter-spacing: 0; }
+        .view-product-button { min-height: 42px; margin-bottom: 9px; border: 1px solid #e1e9fb; background: #edf3ff; color: #173a82; border-radius: 11px; font-size: 11px; transition: background .2s ease, transform .2s ease; }
+        .view-product-button:hover { background: #dfeaff; transform: translateY(-1px); }
+        .add-to-cart-button { min-height: 44px; border: 1px solid #cfdbf2; border-radius: 11px; background: #fff; color: #17346e; font-size: 12px; }
+        .add-to-cart-button:hover { border-color: #17346e; background: #f4f7ff; }
+        .product-detail-layout { border-color: #dce5f4; box-shadow: 0 16px 40px rgba(26,50,95,.09); }
+        .product-detail-price { color: #123a88; }
+        .product-detail-price strong { font-size: 24px; font-weight: 900; }
+
+        @media (max-width: 700px) {
+          .combo-package-card { padding: 25px 22px; margin-bottom: 48px; }
+          .combo-visual { margin: 24px auto 0; gap: 14px; }
+          .combo-mini-grid { grid-template-columns: repeat(2, 82px); gap: 7px; }
+          .combo-mini-grid .combo-mini-product { height: 68px; border-radius: 13px; }
+          .combo-number strong { font-size: 46px; }
+          .product-image-button { height: 175px; }
+          .product-card-body { padding: 12px; }
+          .product-card-body h4 { font-size: 16px; }
+          .product-price strong { font-size: 18px; }
+          .back-to-categories { min-height: 44px; padding: 11px 14px; font-size: 12px; }
+        }
+
       `}</style>
     </>
   );

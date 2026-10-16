@@ -185,7 +185,12 @@ select {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 22px;
+}
+
+@media (min-width: 851px) {
+  .navbar-mobile-actions { display: none; }
+  .navbar-cart-button-mobile { display: none; }
 }
 
 .desktop-nav a {
@@ -230,6 +235,53 @@ select {
   width: 100%;
 }
 
+
+/* NAVBAR CART BUTTON */
+.navbar-cart-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.navbar-cart-button:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.22);
+}
+.navbar-cart-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 21px;
+  height: 21px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: #172e63;
+  font-size: 11px;
+  font-weight: 900;
+}
+.navbar-mobile-actions { display: none; }
+.navbar-mobile-cart-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
 
 /* =========================================================
    WHATSAPP BUTTON
@@ -328,6 +380,18 @@ select {
 
   .desktop-nav {
     display: none;
+  }
+
+  .navbar-mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .navbar-cart-button-mobile {
+    display: inline-flex;
+    padding: 8px 10px;
+    gap: 5px;
   }
 
   .mobile-menu-button {
