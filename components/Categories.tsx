@@ -406,21 +406,21 @@ const products: Product[] = [
   // TABLES — place 3 JPEG images in public/images/products/tables/.
   {
     id: "table-1",
-    name: "Dining Table",
+    name: "Table 01",
     category: "tables",
     price: 4999,
     images: ["/images/products/tables/table-01-1.jpeg"],
   },
   {
     id: "table-2",
-    name: "Center Table",
+    name: "Table 02",
     category: "tables",
     price: 2999,
     images: ["/images/products/tables/table-02-1.jpeg"],
   },
   {
     id: "table-3",
-    name: "Home Table",
+    name: "Table 03",
     category: "tables",
     price: 4999,
     images: ["/images/products/tables/table-03-1.jpeg"],
@@ -972,50 +972,60 @@ const products: Product[] = [
       "/images/products/heaters/heater-02-3.jpeg",
     ],
   },
-    // GEYSERS — 5 products in Heaters & Geysers.
+  // GEYSERS — files are in public/images/products/heaters/.
   {
     id: "geyser-1",
     name: "Geyser 01",
     category: "heaters-geysers",
-    price: 0,
+    price: 8199,
     images: [
-      "/images/products/heaters/geyser-01.jpeg",
+      "/images/products/heaters/geyser-01-1.jpeg",
+      "/images/products/heaters/geyser-01-2.jpeg",
+      "/images/products/heaters/geyser-01-3.jpeg",
     ],
   },
   {
     id: "geyser-2",
     name: "Geyser 02",
     category: "heaters-geysers",
-    price: 0,
+    price: 4499,
     images: [
-      "/images/products/heaters/geyser-02.jpeg",
+      "/images/products/heaters/geyser-02-1.jpeg",
+      "/images/products/heaters/geyser-02-2.jpeg",
+      "/images/products/heaters/geyser-02-3.jpeg",
     ],
   },
   {
     id: "geyser-3",
     name: "Geyser 03",
     category: "heaters-geysers",
-    price: 0,
+    price: 4499,
     images: [
-      "/images/products/heaters/geyser-03.jpeg",
+      "/images/products/heaters/geyser-03-1.jpeg",
+      "/images/products/heaters/geyser-03-2.jpeg",
+      "/images/products/heaters/geyser-03-3.jpeg",
     ],
   },
   {
     id: "geyser-4",
     name: "Geyser 04",
     category: "heaters-geysers",
-    price: 0,
+    price: 8199,
     images: [
-      "/images/products/heaters/geyser-04.jpeg",
+      "/images/products/heaters/geyser-04-1.jpeg",
+      "/images/products/heaters/geyser-04-2.jpeg",
+      "/images/products/heaters/geyser-04-3.jpeg",
     ],
   },
   {
     id: "geyser-5",
     name: "Geyser 05",
     category: "heaters-geysers",
-    price: 0,
+    price: 3199,
     images: [
-      "/images/products/heaters/geyser-05.jpeg",
+      "/images/products/heaters/geyser-05-1.jpeg",
+      "/images/products/heaters/geyser-05-2.jpeg",
+      "/images/products/heaters/geyser-05-3.jpeg",
     ],
   },
 
@@ -1145,17 +1155,7 @@ const products: Product[] = [
       "/images/products/kitchen-appliances/kitchen-appliance-04-3.jpeg",
     ],
   },
-  {
-    id: "kitchen-appliance-5",
-    name: "Kitchen Appliance 05",
-    category: "kitchen-appliances",
-    price: 0,
-    images: [
-      "/images/products/kitchen-appliances/kitchen-appliance-05-1.jpeg",
-      "/images/products/kitchen-appliances/kitchen-appliance-05-2.jpeg",
-      "/images/products/kitchen-appliances/kitchen-appliance-05-3.jpeg",
-    ],
-  },
+  
 
   // MATTRESSES
   {
@@ -1170,6 +1170,75 @@ const products: Product[] = [
     category: "mattresses",
     price: 0,
   },
+  
+  // HOME APPLIANCES — 6 products, 3 images each.
+  {
+    id: "home-appliance-1",
+    name: "Iron 01",
+    category: "home-appliances",
+    price: 949,
+    images: [
+      "/images/products/home-appliances/home-appliance-01-1.jpeg",
+      "/images/products/home-appliances/home-appliance-01-2.jpeg",
+      "/images/products/home-appliances/home-appliance-01-3.jpeg",
+    ],
+  },
+  {
+    id: "home-appliance-2",
+    name: "Iron 02",
+    category: "home-appliances",
+    price: 949,
+    images: [
+      "/images/products/home-appliances/home-appliance-02-1.jpeg",
+      "/images/products/home-appliances/home-appliance-02-2.jpeg",
+      "/images/products/home-appliances/home-appliance-02-3.jpeg",
+    ],
+  },
+  {
+    id: "home-appliance-3",
+    name: "Iron 03",
+    category: "home-appliances",
+    price: 949,
+    images: [
+      "/images/products/home-appliances/home-appliance-03-1.jpeg",
+      "/images/products/home-appliances/home-appliance-03-2.jpeg",
+      "/images/products/home-appliances/home-appliance-03-3.jpeg",
+    ],
+  },
+  {
+    id: "home-appliance-4",
+    name: "Iron 04",
+    category: "home-appliances",
+    price: 949,
+    images: [
+      "/images/products/home-appliances/home-appliance-04-1.jpeg",
+      "/images/products/home-appliances/home-appliance-04-2.jpeg",
+      "/images/products/home-appliances/home-appliance-04-3.jpeg",
+    ],
+  },
+  {
+    id: "home-appliance-5",
+    name: "Iron 05",
+    category: "home-appliances",
+    price: 949,
+    images: [
+      "/images/products/home-appliances/home-appliance-05-1.jpeg",
+      "/images/products/home-appliances/home-appliance-05-2.jpeg",
+      "/images/products/home-appliances/home-appliance-05-3.jpeg",
+    ],
+  },
+  {
+    id: "home-appliance-6",
+    name: "Iron 06",
+    category: "home-appliances",
+    price: 849,
+    images: [
+      "/images/products/home-appliances/home-appliance-06-1.jpeg",
+      "/images/products/home-appliances/home-appliance-06-2.jpeg",
+      "/images/products/home-appliances/home-appliance-06-3.jpeg",
+    ],
+  },
+
 ];
 
 const comboItems = [
@@ -3360,6 +3429,57 @@ export default function Categories() {
         .product-detail-price { color: #123a88; }
         .product-detail-price strong { font-size: 24px; font-weight: 900; }
 
+        @media (max-width: 700px) {
+          /* Mobile-only combo thumbnail layout; desktop remains unchanged. */
+          .combo-package-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 18px;
+            padding: 22px 18px;
+            overflow: hidden;
+          }
+          .combo-content { min-width: 0; }
+          .combo-content h3 { font-size: clamp(27px, 8vw, 34px); line-height: 1.06; }
+          .combo-description { max-width: 30ch; font-size: 12px; line-height: 1.5; }
+          .combo-visual {
+            width: 100%;
+            margin: 3px 0 0;
+            display: grid;
+            grid-template-columns: 62px minmax(0, 1fr);
+            align-items: center;
+            gap: 10px;
+          }
+          .combo-number { min-width: 0; }
+          .combo-number strong { font-size: 40px; line-height: 1; }
+          .combo-mini-grid {
+            width: 100%;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 6px;
+          }
+          .combo-mini-grid .combo-mini-product {
+            width: 100%;
+            height: clamp(48px, 14vw, 66px);
+            min-width: 0;
+            padding: 4px;
+            border-width: 1px;
+            border-radius: 10px;
+          }
+          .combo-mini-product img { object-fit: contain; }
+          .product-image-button { height: 175px; }
+          .product-card-body { padding: 12px; }
+          .product-card-body h4 { font-size: 16px; }
+          .product-price strong { font-size: 18px; }
+          .back-to-categories { min-height: 44px; padding: 11px 14px; font-size: 12px; }
+        }
+        @media (max-width: 380px) {
+          .combo-package-card { padding: 18px 14px; }
+          .combo-visual { grid-template-columns: 52px minmax(0, 1fr); gap: 8px; }
+          .combo-number strong { font-size: 34px; }
+          .combo-mini-grid { gap: 4px; }
+          .combo-mini-grid .combo-mini-product { height: 46px; padding: 3px; }
+        }
+
+        /* Original product-card sizing retained for desktop. */
         @media (max-width: 700px) {
           .combo-package-card { padding: 25px 22px; margin-bottom: 48px; }
           .combo-visual { margin: 24px auto 0; gap: 14px; }

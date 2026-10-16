@@ -2586,3 +2586,100 @@ select {
     transition: none;
   }
 }
+
+
+/* FINAL MOBILE REVIEW POLISH — desktop review styling remains unchanged */
+@media (max-width: 700px) {
+  .reviews-section { overflow: hidden; padding-left: 0; padding-right: 0; }
+  .reviews-section .reviews-heading,
+  .reviews-section .review-rating-box {
+    width: min(100% - 32px, 520px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .reviews-section .reviews-carousel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 8px 0 18px;
+  }
+  .reviews-section .reviews-track {
+    align-items: stretch;
+    gap: 14px;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  .reviews-section .review-card {
+    box-sizing: border-box;
+    flex: 0 0 min(84vw, 340px);
+    width: min(84vw, 340px);
+    min-width: 0;
+    max-width: min(84vw, 340px);
+    height: auto;
+    min-height: 228px;
+    padding: 20px 18px;
+    border-radius: 18px;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .reviews-section .review-comment {
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .reviews-section .review-author { min-width: 0; gap: 10px; }
+  .reviews-section .review-avatar-image {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+  }
+  .reviews-section .review-author-info { min-width: 0; }
+  .reviews-section .review-author-info * { overflow-wrap: anywhere; }
+}
+@media (max-width: 380px) {
+  .reviews-section .review-card {
+    flex-basis: calc(100vw - 36px);
+    width: calc(100vw - 36px);
+    max-width: calc(100vw - 36px);
+    padding: 17px 15px;
+  }
+}
+
+/* MOBILE: prevent unwanted horizontal page scrolling */
+@media (max-width: 700px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+
+  main,
+  section,
+  header,
+  footer {
+    max-width: 100%;
+  }
+
+  /* Keep long headings and text inside the viewport */
+  h1,
+  h2,
+  h3,
+  p {
+    overflow-wrap: break-word;
+  }
+}
