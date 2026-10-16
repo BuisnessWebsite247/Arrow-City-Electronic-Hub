@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const galleryItems = [
   {
@@ -36,7 +37,27 @@ const galleryItems = [
 ];
 
 export default function Gallery() {
-  const [showMore, setShowMore] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 700px)");
+
+    const updateScreen = () => {
+      setIsMobile(mediaQuery.matches);
+    };
+
+    updateScreen();
+    mediaQuery.addEventListener("change", updateScreen);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateScreen);
+    };
+  }, []);
+
+  const visibleItems = isMobile
+    ? galleryItems.slice(0, visibleCount)
+    : galleryItems;
 
   return (
     <section
@@ -57,12 +78,8 @@ export default function Gallery() {
         </p>
       </div>
 
-      <div
-        className={`gallery-grid ${
-          showMore ? "gallery-expanded" : ""
-        }`}
-      >
-        {galleryItems.map((item) => (
+      <div className="gallery-grid">
+        {visibleItems.map((item) => (
           <div
             className="gallery-card"
             key={item.id}
@@ -78,16 +95,32 @@ export default function Gallery() {
         ))}
       </div>
 
-      <div className="gallery-actions">
-        <button
-          type="button"
-          className="more-photos-button"
-          onClick={() => setShowMore((previous) => !previous)}
-          aria-expanded={showMore}
-        >
-          {showMore ? "Show Less ↑" : "More Photos ↓"}
-        </button>
-      </div>
+      {isMobile && (
+        <div className="gallery-actions">
+          {visibleCount < galleryItems.length ? (
+            <button
+              type="button"
+              className="more-photos-button"
+              onClick={() =>
+                setVisibleCount((count) =>
+                  Math.min(count + 3, galleryItems.length)
+                )
+              }
+              aria-expanded={visibleCount > 3}
+            >
+              More Photos ↓
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="more-photos-button"
+              onClick={() => setVisibleCount(3)}
+            >
+              Show Less ↑
+            </button>
+          )}
+        </div>
+      )}
     </section>
   );
 }

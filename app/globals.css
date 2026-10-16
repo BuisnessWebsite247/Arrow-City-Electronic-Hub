@@ -2683,3 +2683,27 @@ select {
     overflow-wrap: break-word;
   }
 }
+
+/* FIX: center review cards on mobile only */
+@media (max-width: 700px) {
+  .reviews-section .reviews-carousel {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .reviews-section .reviews-track {
+    gap: 14px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .reviews-section .review-card {
+    flex: 0 0 calc(100vw - 90px);
+    width: calc(100vw - 90px);
+    max-width: calc(100vw - 90px);
+    margin: 0;
+  }
+}
