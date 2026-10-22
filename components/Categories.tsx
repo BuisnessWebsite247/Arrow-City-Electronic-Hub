@@ -1242,7 +1242,7 @@ const products: Product[] = [
 ];
 
 const comboItems = [
-  { name: "Double Bed", image: "/images/combo/combo-01.jpeg" },
+  { name: "Double Bed", image: "/images/products/beds/bed-09-3.jpeg" },
   { name: "Fridge", image: "/images/combo/combo-02.jpeg" },
   { name: "Smart TV", image: "/images/combo/combo-03.jpeg" },
   { name: "Sofa Set", image: "/images/combo/combo-04.jpeg" },
@@ -1283,7 +1283,7 @@ export default function Categories() {
 
   const [showCombo, setShowCombo] = useState(false);
   const [comboView, setComboView] = useState<"gallery" | "customize">("gallery");
-  const [selectedComboBedId, setSelectedComboBedId] = useState("bed-1");
+  const [selectedComboBedId, setSelectedComboBedId] = useState("bed-9");
   const [activeComboItemIndex, setActiveComboItemIndex] = useState<number | null>(null);
   const [selectedComboProducts, setSelectedComboProducts] = useState<Record<number, string>>({});
   const [removedComboItems, setRemovedComboItems] = useState<number[]>([]);
@@ -1452,39 +1452,39 @@ export default function Categories() {
               COMBO PACKAGE
           ========================== */}
 
-          <div className="combo-package-card combo-image-hero" aria-label="Complete Home Combo Package">
-            <picture className="combo-image-hero-picture">
-              <source
-                media="(max-width: 640px)"
-                srcSet="/images/combo/combo-thumbnail-mobile.png"
-              />
-              <img
-                className="combo-image-hero-art"
-                src="/images/combo/combo-thumbnail.png"
-                alt="Complete Home Combo Package — 21 furniture and electronic essentials, ₹81,000, with View Products and Customize Your Combo options"
-                draggable={false}
-              />
-            </picture>
-            {/* Transparent interactive hotspots sit directly over the buttons baked into the artwork. */}
-            <button
-              type="button"
-              className="combo-image-hotspot combo-image-hotspot-view"
-              aria-label="View products included in the combo"
-              title="View Products"
-              onClick={() => { setComboView("gallery"); setShowCombo(true); }}
-            >
-              <span className="combo-hotspot-accessible-label">View Products</span>
-            </button>
-            <button
-              type="button"
-              className="combo-image-hotspot combo-image-hotspot-customize"
-              aria-label="Customize your combo"
-              title="Customize Your Combo"
-              onClick={() => { setComboView("customize"); setShowCombo(true); setActiveComboItemIndex(null); }}
-            >
-              <span className="combo-hotspot-accessible-label">Customize Your Combo</span>
-            </button>
-          </div>
+          <section className="combo-package-card combo-blue-yellow-hero" aria-labelledby="combo-hero-title">
+            <div className="combo-blueprint-pattern" aria-hidden="true" />
+            <div className="combo-blue-yellow-copy">
+              <span className="combo-blue-yellow-kicker"><span className="combo-kicker-dot" /> COMPLETE HOME COMBO · 21 ITEMS</span>
+              <h3 id="combo-hero-title">Your home.<br /><em>All set.</em></h3>
+              <p className="combo-blue-yellow-description">Furniture and everyday electronics bundled into one complete home package.</p>
+              <div className="combo-blue-yellow-benefits">
+                <span><b>21</b> essentials</span><i aria-hidden="true" /><span><b>1</b> easy combo</span>
+              </div>
+              <div className="combo-blue-yellow-price-row">
+                <span className="combo-blue-yellow-price-label">Combo reference price</span>
+                <strong>₹81,000</strong>
+              </div>
+              <div className="combo-blue-yellow-actions">
+                <button type="button" className="combo-blue-yellow-button combo-blue-yellow-primary" onClick={() => { setComboView("gallery"); setShowCombo(true); }}>
+                  View Products <span aria-hidden="true">→</span>
+                </button>
+              </div>
+              <small className="combo-blue-yellow-note">*Final availability and pricing confirmed by the showroom.</small>
+            </div>
+
+            <div className="combo-blue-yellow-art" aria-label="Patterned illustrations of home essentials">
+              <div className="combo-art-orbit combo-art-orbit-one" aria-hidden="true" />
+              <div className="combo-art-orbit combo-art-orbit-two" aria-hidden="true" />
+              <div className="combo-art-grid" aria-hidden="true" />
+              <div className="combo-art-stamp"><strong>21</strong><span>HOME<br />ESSENTIALS</span></div>
+              <div className="combo-art-tile combo-art-tile-bed"><span className="combo-art-icon" aria-hidden="true">▰</span><b>Furniture</b><small>Rest & relax</small></div>
+              <div className="combo-art-tile combo-art-tile-tv"><span className="combo-art-icon" aria-hidden="true">▣</span><b>Smart TV</b><small>Entertainment</small></div>
+              <div className="combo-art-tile combo-art-tile-fridge"><span className="combo-art-icon" aria-hidden="true">▤</span><b>Refrigerator</b><small>Everyday ease</small></div>
+              <div className="combo-art-tile combo-art-tile-sofa"><span className="combo-art-icon" aria-hidden="true">▰</span><b>Sofa set</b><small>Gather together</small></div>
+              <div className="combo-art-yellow-disc" aria-hidden="true">HOME<br />STARTS<br />HERE</div>
+            </div>
+          </section>
 
           {/* =========================
               CATEGORY VIEW
@@ -1701,12 +1701,39 @@ export default function Categories() {
       ========================== */}
 
       {showCombo && (() => {
-        const originalBed = products.find((product) => product.id === "bed-1");
+        const originalBed = products.find((product) => product.id === "bed-9");
         const selectedBed = products.find((product) => product.id === selectedComboBedId) ?? originalBed;
         const baseComboPrice = 81000;
         const originalBedPrice = originalBed?.price ?? 0;
         const selectedBedPrice = selectedBed?.price ?? originalBedPrice;
-        const priceDifference = selectedBedPrice - originalBedPrice;
+        // Base allowance for each item in the combo. These values are used
+        // only by the combo customiser; the Shop With Us catalogue is unchanged.
+        const baseItemPrices: Record<number, number> = {
+          0: 11000, // Bed
+          1: 11000, // Fridge
+          2: 9000,  // LED / Smart TV
+          3: 6000,  // Sofa
+          4: 9000,  // Washing machine
+          5: 3500,  // Cooler
+          6: 4500,  // Almari
+          7: 2000,  // Table
+          8: 3000,  // Dressing
+          9: 1000,  // Gas stove
+          10: 2300, // Kitchen bartan set
+          11: 2700, // Serving machine
+          12: 3500, // Mattress
+          13: 400,  // Pillow
+          14: 1700, // Mixer grinder
+          15: 500,  // Iron
+          16: 900,  // Blanket
+          17: 400,  // Bedsheet
+          18: 900,  // Hand mixer
+          19: 800,  // Watch / clock
+          20: 300,  // Stool
+        };
+        // Upgrades are charged only when a customer actively selects an alternative.
+        const isBedCustomized = selectedComboBedId !== (originalBed?.id ?? "bed-1");
+        const bedExtraCharge = isBedCustomized ? Math.max(0, selectedBedPrice - baseItemPrices[0]) : 0;
         const categoryMap: Record<number, string> = {
           0: "beds", 1: "refrigerators", 2: "smart-tv", 3: "sofas", 4: "washing-machines",
           5: "coolers-ac", 6: "almira-wardrobes", 7: "tables", 8: "almira-wardrobes",
@@ -1716,33 +1743,59 @@ export default function Categories() {
         };
         // These package items currently have no selectable alternatives in the catalogue.
         const nonCustomizableItems = new Set([10, 13, 16, 17, 19, 20]);
-        // Only deduct item prices that are known from the selected catalogue product or confirmed base item price.
-        // The included-package allocations for most default items have not yet been supplied.
-        const confirmedBaseItemPrices: Record<number, number> = { 0: originalBedPrice, 1: 24499, 2: 26499 };
-        const itemPriceForRemoval = (index: number) => {
-          if (index === 0) return selectedBedPrice;
-          const selectedProduct = products.find((product) => product.id === selectedComboProducts[index]);
-          if (selectedProduct && selectedProduct.price > 0) return selectedProduct.price;
-          return confirmedBaseItemPrices[index] ?? null;
-        };
-        const removedDeduction = removedComboItems.reduce((total, index) => total + (itemPriceForRemoval(index) ?? 0), 0);
-        const customizedComboPrice = Math.max(0, baseComboPrice + priceDifference - removedDeduction);
+        // Removing an item deducts its supplied base allowance, not its retail price.
+        const itemPriceForRemoval = (index: number) => baseItemPrices[index] ?? 0;
+        const removedDeduction = removedComboItems.reduce((total, index) => total + itemPriceForRemoval(index), 0);
+        const selectedUpgradeCharges = Object.entries(selectedComboProducts).reduce((total, [rawIndex, productId]) => {
+          const index = Number(rawIndex);
+          if (removedComboItems.includes(index)) return total;
+          const selectedProduct = products.find((product) => product.id === productId);
+          if (!selectedProduct || selectedProduct.price <= 0) return total;
+          return total + Math.max(0, selectedProduct.price - (baseItemPrices[index] ?? 0));
+        }, 0);
+        const customizationExtraTotal = (removedComboItems.includes(0) ? 0 : bedExtraCharge) + selectedUpgradeCharges;
+        const customizedComboPrice = Math.max(0, baseComboPrice + customizationExtraTotal - removedDeduction);
         const comboSavings = 120000 - customizedComboPrice;
+        const extraChargeForOption = (index: number, option: Product) =>
+          index === 0 && option.id === (originalBed?.id ?? "bed-9")
+            ? 0
+            : Math.max(0, option.price - (baseItemPrices[index] ?? 0));
         const selectedNameFor = (index: number) => {
-          if (index === 0) return selectedBed?.name ?? comboItems[0].name;
+          if (index === 0) return isBedCustomized ? (selectedBed?.name ?? comboItems[0].name) : "Double Bed";
           const chosen = products.find((product) => product.id === selectedComboProducts[index]);
           return chosen?.name ?? comboItems[index].name;
         };
         const selectedImageFor = (index: number) => {
-          if (index === 0) return selectedBed?.images?.[0] ?? comboItems[0].image;
+          // Use the exact Bed 09 image requested as the default combo bed.
+          if (index === 0) {
+            if (selectedBed?.id === "bed-9") return "/images/products/beds/bed-09-3.jpeg";
+            return selectedBed?.images?.[2] ?? selectedBed?.images?.[0] ?? comboItems[0].image;
+          }
           const chosen = products.find((product) => product.id === selectedComboProducts[index]);
           return chosen?.images?.[0] ?? comboItems[index].image;
         };
-        const optionsFor = (index: number) => products.filter((product) => product.category === categoryMap[index]);
+        // Keep combo alternatives specific to the item being customised.
+        // This filter is used only by the combo customiser; the Shop With Us catalogue is unchanged.
+        const optionsFor = (index: number) => products.filter((product) => {
+          if (product.category !== categoryMap[index]) return false;
+          const id = product.id.toLowerCase();
+          const name = product.name.toLowerCase();
+          switch (index) {
+            case 5: return id.startsWith("cooler-") || name.startsWith("cooler");
+            case 6: return id.startsWith("almira-") || name.startsWith("almira");
+            case 8: return id.includes("dressing") || name.includes("dressing") || id.includes("wardrobe") || name.includes("wardrobe");
+            case 11: return id.includes("sewing") || name.includes("sewing") || id.includes("serving") || name.includes("serving");
+            case 9: return id.startsWith("gas-stove-") || name.includes("gas stove");
+            case 14: return id.includes("mixer-grinder") || id.includes("mixer") || name.includes("mixer grinder");
+            case 15: return id.startsWith("home-appliance-") && name.startsWith("iron");
+            case 18: return id.includes("hand-mixer") || name.includes("hand mixer");
+            default: return true;
+          }
+        });
         const comboMessage = [
           "Hello Arrow City Electronic Hub, I am interested in the Complete Home Combo Package.",
           `Current combo reference price: Rs. ${customizedComboPrice.toLocaleString("en-IN")} (subject to showroom confirmation).`,
-          `Selected bed: ${selectedBed?.name ?? "Double Bed"} (${selectedBedPrice > 0 ? `Rs. ${selectedBedPrice.toLocaleString("en-IN")}` : "price to confirm"}).`,
+          `Selected bed: ${selectedBed?.name ?? "Double Bed"}.`,
           ...comboItems.map((item, index) => removedComboItems.includes(index) ? `${item.name}: REMOVED from combo` : `${item.name}: ${selectedNameFor(index)}${index === 0 || selectedComboProducts[index] ? "" : " (default item)"}`),
           "Please confirm availability and the final prices for all selected items."
         ].join(" ");
@@ -1755,28 +1808,31 @@ export default function Categories() {
                 <div className="combo-gallery-view">
                   <div className="combo-redesign-heading combo-gallery-heading">
                     
-                    <h3>Your Complete <span>Home Combo</span></h3>
-                    <p>Twenty-one essentials, thoughtfully bundled. Make it yours with products that fit your home.</p>
+                    <h3>Home <span>Collection</span></h3>
+                    <p>21 essentials, one considered package.</p>
                     <div className="combo-gallery-actions">
-                      <button type="button" className="combo-top-customize" onClick={() => { setComboView("customize"); setActiveComboItemIndex(null); }}><span className="combo-top-customize-icon" aria-hidden="true">✦</span> Customize your combo <span className="combo-top-customize-arrow" aria-hidden="true">↗</span></button>
+                      <button type="button" className="combo-top-customize" onClick={() => { setComboView("customize"); setActiveComboItemIndex(null); }}><span className="combo-top-customize-icon" aria-hidden="true">✦</span> Customize <span className="combo-top-customize-arrow" aria-hidden="true">↗</span></button>
                     </div>
                   </div>
                   <div className="combo-total-panel combo-gallery-total">
-                    <div><span className="combo-total-label">YOUR PACKAGE PRICE</span><div className="modal-price"><span>₹1,20,000</span><strong>{formatPrice(customizedComboPrice)}</strong></div><p className="modal-saving">{comboSavings >= 0 ? `Save ${formatPrice(comboSavings)}*` : `${formatPrice(Math.abs(comboSavings))} above reference price`}</p></div>
+                    <div><span className="combo-total-label">PACKAGE PRICE</span><div className="modal-price"><span>₹1,20,000</span><strong>{formatPrice(customizedComboPrice)}</strong></div><p className="modal-saving">{comboSavings >= 0 ? `Save ${formatPrice(comboSavings)}*` : `${formatPrice(Math.abs(comboSavings))} above reference price`}</p></div>
                     <span className="combo-gallery-count">{21 - removedComboItems.length} ITEMS INCLUDED</span>
                   </div>
-                  <p className="combo-price-disclaimer">*Customized price currently reflects the bed price difference. Final pricing for other substitutions is confirmed by the showroom.</p>
+                  <p className="combo-price-disclaimer">*Final price and availability confirmed by showroom.</p>
                   <div className="combo-gallery-grid">
                     {comboItems.map((item, index) => {
                       if (removedComboItems.includes(index)) return null;
                       const isBed = index === 0;
                       const selected = isBed ? selectedBed : products.find((product) => product.id === selectedComboProducts[index]);
-                      const image = selected?.images?.[0] ?? item.image;
-                      const name = selected?.name ?? item.name;
-                      const price = selected?.price;
+                      const image = isBed
+                        ? (selected?.id === "bed-9"
+                            ? "/images/products/beds/bed-09-3.jpeg"
+                            : (selected?.images?.[2] ?? selected?.images?.[0] ?? item.image))
+                        : (selected?.images?.[0] ?? item.image);
+                      const name = isBed && !isBedCustomized ? "Double Bed" : (selected?.name ?? item.name);
                       return <article className="combo-gallery-card" key={item.name} style={{ animationDelay: `${Math.min(index, 10) * 25}ms` }}>
                         <div className="combo-gallery-image"><img src={image} alt={name} loading="lazy"/><span>{String(index + 1).padStart(2, "0")}</span></div>
-                        <div className="combo-gallery-card-copy"><strong>{name}</strong><span>{item.name}</span><b>{price && price > 0 ? formatPrice(price) : "Price to confirm"}</b></div>
+                        <div className="combo-gallery-card-copy"><strong>{name}</strong><span>{item.name}</span></div>
                       </article>;
                     })}
                   </div>
@@ -1807,7 +1863,7 @@ export default function Categories() {
                   <div className="modal-price"><span>₹1,20,000</span><strong>{formatPrice(customizedComboPrice)}</strong></div>
                   <p className="modal-saving">{comboSavings >= 0 ? `Save ${formatPrice(comboSavings)}*` : `${formatPrice(Math.abs(comboSavings))} above reference price`}</p>
                 </div>
-                <span className="combo-price-change">{priceDifference === 0 ? "Base package" : `${priceDifference > 0 ? "+" : "−"}${formatPrice(Math.abs(priceDifference))} bed adjustment`}</span>
+                <span className="combo-price-change">{customizationExtraTotal === 0 ? "Base package" : `+${formatPrice(customizationExtraTotal)} customisation`}</span>
               </div>
               <p className="combo-price-disclaimer">*The total reflects the bed adjustment and confirmed item deductions. Any item without a confirmed included price must be verified by the showroom.</p>
 
@@ -1816,17 +1872,27 @@ export default function Categories() {
                   if (removedComboItems.includes(index)) return null;
                   const isOpen = activeComboItemIndex === index;
                   const options = optionsFor(index);
-                  const selected = products.find((product) => product.id === selectedComboProducts[index]);
                   const isBed = index === 0;
-                  const currentPrice = isBed ? selectedBedPrice : selected?.price;
                   return (
                     <article className={`combo-line ${isOpen ? "is-expanded" : ""}`} key={item.name}>
-                      <div className="combo-line-main">
+                      <div
+                        className="combo-line-main"
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={isOpen}
+                        aria-label={`${isOpen ? "Close" : "Customise"} ${item.name} options`}
+                        onClick={() => setActiveComboItemIndex(isOpen ? null : index)}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            setActiveComboItemIndex(isOpen ? null : index);
+                          }
+                        }}
+                      >
                         <div className="combo-line-image"><img src={selectedImageFor(index)} alt={selectedNameFor(index)} /><span>{String(index + 1).padStart(2, "0")}</span></div>
-                        <div className="combo-line-copy"><strong>{selectedNameFor(index)}</strong><span>{item.name}</span><b>{currentPrice && currentPrice > 0 ? formatPrice(currentPrice) : "Price to confirm"}</b></div>
+                        <div className="combo-line-copy"><strong>{selectedNameFor(index)}</strong><span>{item.name}</span></div>
                         <div className="combo-line-actions">
-                          <button type="button" className={`combo-change-btn ${isOpen ? "active" : ""}`} onClick={() => setActiveComboItemIndex(isOpen ? null : index)} aria-expanded={isOpen}>{isOpen ? "Done ✓" : "Change"}</button>
-                          <button type="button" className="combo-remove-item-btn" onClick={() => { setRemovedComboItems((prev) => [...prev, index]); setActiveComboItemIndex(null); }} aria-label={`Remove ${item.name} from combo`}>Remove</button>
+                          <button type="button" className="combo-remove-item-btn" onClick={(event) => { event.stopPropagation(); setRemovedComboItems((prev) => [...prev, index]); setActiveComboItemIndex(null); }} aria-label={`Remove ${item.name} from combo`}>Remove</button>
                         </div>
                       </div>
                       {isOpen && (
@@ -1839,9 +1905,11 @@ export default function Categories() {
                             {options.map((option) => {
                               const isSelected = isBed ? selectedComboBedId === option.id : selectedComboProducts[index] === option.id;
                               return <button type="button" key={option.id} className={`combo-option-card ${isSelected ? "selected" : ""}`} onClick={() => { if (isBed) setSelectedComboBedId(option.id); else setSelectedComboProducts((prev) => ({ ...prev, [index]: option.id })); }}>
-                                <img src={option.images?.[0] ?? item.image} alt={option.name} loading="lazy" />
+                                <img src={isBed && option.id === "bed-9" ? "/images/products/beds/bed-09-3.jpeg" : (option.images?.[0] ?? item.image)} alt={option.name} loading="lazy" />
                                 <span className="combo-option-name">{option.name}</span>
-                                <b>{option.price > 0 ? formatPrice(option.price) : "Price to confirm"}</b>
+                                {option.price > 0 && (
+                                  <b className="combo-option-extra">+{formatPrice(extraChargeForOption(index, option))}</b>
+                                )}
                                 <small>{isSelected ? "Selected ✓" : "Select option"}</small>
                               </button>;
                             })}
@@ -4135,6 +4203,7 @@ export default function Categories() {
         .combo-option-card img { width:100%;height:90px;object-fit:cover;border-radius:8px;background:#f3f4f6;display:block;margin-bottom:8px; }
         .combo-option-name { display:block;font-size:11px;font-weight:750;color:#162b50;line-height:1.35;min-height:29px; }
         .combo-option-card b { display:block;margin-top:5px;font-size:11px;color:#d88700; }
+        .combo-option-card .combo-option-extra { margin-top:7px;font-size:12px;font-weight:800;color:#a8792e; }
         .combo-option-card small { display:block;margin-top:6px;font-size:10px;color:#6f7b8f; }
         .combo-no-options { padding:12px;border-radius:10px;background:#f8fafc;color:#667085;font-size:12px; }
         .combo-redesign-footer { display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding-top:15px;border-top:1px solid #e9edf3; }
@@ -4317,80 +4386,838 @@ export default function Categories() {
         .combo-hero-note{position:absolute;right:7%;top:5%;z-index:3;color:#102d58;font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.08;text-align:center;transform:rotate(-7deg);text-shadow:0 1px 0 rgba(255,255,255,.6)}.combo-hero-note span{color:#ffb91f;font-size:24px}.combo-reference-hero .combo-number{position:absolute;z-index:4;left:51%;bottom:2%;width:130px;height:98px;border-radius:55% 45% 50% 48%;display:flex;justify-content:center;align-items:center;background:#ffbd27;color:#fff;transform:rotate(-10deg);box-shadow:0 12px 24px rgba(165,103,8,.22)}.combo-reference-hero .combo-number strong{font-size:39px;line-height:.9}.combo-reference-hero .combo-number span{font-size:16px}.combo-hero-sparkles{position:absolute;z-index:3;left:4%;top:7%;color:#ffbf28;font-size:22px;line-height:1.3;text-shadow:0 2px 7px rgba(255,255,255,.8)}
         @media(max-width:900px){.combo-package-card.combo-reference-hero{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}.combo-reference-copy{padding:24px 18px 24px 24px}.combo-reference-hero .combo-content h3{font-size:clamp(29px,4vw,38px)}.combo-benefits{gap:9px;margin:18px 0}.combo-benefit{gap:6px;font-size:10px}.combo-benefit span{width:35px;height:35px;flex-basis:35px;font-size:20px}.combo-benefits i{height:22px}.combo-reference-hero .combo-button{min-width:0;padding:13px 16px;min-height:50px;font-size:12px}.combo-reference-hero .combo-customize-button,.combo-reference-hero .combo-view-button{min-width:0}.combo-reference-visual{min-height:410px}}
         @media(max-width:640px){.combo-package-card.combo-reference-hero{display:flex;flex-direction:column;margin:18px 0 42px;border-radius:18px}.combo-reference-copy{padding:24px 20px 22px}.combo-reference-hero .combo-content h3{font-size:clamp(32px,9vw,42px)}.combo-reference-hero .combo-description{font-size:13px}.combo-benefits{width:100%;justify-content:space-between;gap:7px;margin:18px 0}.combo-benefit{gap:6px;font-size:10px}.combo-benefit span{width:32px;height:32px;flex-basis:32px;font-size:18px}.combo-reference-hero .combo-price-row{gap:9px}.combo-reference-hero .combo-new-price{font-size:29px}.combo-saving-pill{font-size:12px;padding:8px 10px}.combo-hero-actions{width:100%;display:grid;grid-template-columns:1fr;gap:10px;margin-top:20px}.combo-reference-hero .combo-button{width:100%;min-height:54px;font-size:14px;padding:14px 18px}.combo-reference-visual{width:100%;min-height:300px;height:300px}.combo-hero-photo-bed{width:34%;height:31%}.combo-hero-photo-tv{width:32%;height:28%}.combo-hero-photo-fridge{width:24%;height:30%}.combo-hero-note{font-size:19px}.combo-reference-hero .combo-number{width:105px;height:76px;left:43%}.combo-reference-hero .combo-number strong{font-size:32px}.combo-reference-hero .combo-number span{font-size:13px}}
-        /* Exact supplied combo artwork with stable, functional button hit areas */
-        .combo-package-card.combo-image-hero {
-          position: relative;
-          display: block;
-          width: 100%;
-          height: auto;
-          min-height: 0;
-          aspect-ratio: 2048 / 616;
-          margin: 18px 0 30px;
-          padding: 0;
-          overflow: hidden;
-          border: 0;
-          border-radius: 14px;
-          background: #fff8ec;
-          box-shadow: 0 18px 42px rgba(24, 43, 73, .09);
-          isolation: isolate;
-          cursor: default;
+        /* Complete home combo: layered blue/yellow patterns and patterned product cards */
+        .combo-package-card.combo-blue-yellow-hero {
+          --combo-navy:#092653; --combo-blue:#124b96; --combo-sky:#4c9de8; --combo-yellow:#ffd12e;
+          position:relative; isolation:isolate; display:grid; grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);
+          width:100%; min-height:440px; margin:20px 0 34px; padding:0; overflow:hidden; border:1px solid rgba(255,209,46,.7);
+          border-radius:24px; background:linear-gradient(125deg,#f8fbff 0%,#edf5ff 52%,#fff7d8 100%);
+          box-shadow:0 22px 52px rgba(9,38,83,.14); cursor:default;
         }
-        .combo-image-hero-picture {
-          display: block;
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-        }
-        .combo-image-hero-picture source { display: none; }
-        .combo-image-hero-art {
-          display: block;
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: fill;
-          user-select: none;
-          -webkit-user-drag: none;
-          pointer-events: none;
-        }
-        .combo-image-hotspot {
-          position: absolute;
-          z-index: 5;
-          display: block;
-          padding: 0;
-          border: 0;
-          border-radius: 999px;
-          background: transparent;
-          color: transparent;
-          cursor: pointer;
-          touch-action: manipulation;
-          -webkit-tap-highlight-color: transparent;
-        }
-        .combo-image-hotspot-view { left: 4.7%; top: 77.7%; width: 18.1%; height: 15.2%; }
-        .combo-image-hotspot-customize { left: 23.8%; top: 77.7%; width: 21%; height: 15.2%; }
-        .combo-image-hotspot:hover { background: rgba(255, 201, 40, .08); }
-        .combo-image-hotspot:focus-visible { outline: 3px solid #ffc928; outline-offset: -4px; background: rgba(255, 201, 40, .12); }
-        .combo-hotspot-accessible-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-        @media (max-width: 640px) {
-          /* Use the portrait/mobile artwork only on phones. Match its 759 x 1378 ratio. */
-          .combo-package-card.combo-image-hero {
-            aspect-ratio: 759 / 1378;
-            height: auto;
-            min-height: 0;
-            border-radius: 12px;
-            margin: 14px 0 24px;
-          }
-          .combo-image-hero-picture,
-          .combo-image-hero-art { width: 100%; height: 100%; }
-          .combo-image-hero-art { object-fit: fill; }
-          /* Full-width button hotspots over the two buttons at the bottom of the mobile artwork. */
-          .combo-image-hotspot-view { left: 5%; top: 78%; width: 90%; height: 6.5%; }
-          .combo-image-hotspot-customize { left: 5%; top: 85%; width: 90%; height: 6.5%; }
-        }
-`} 
+        .combo-blueprint-pattern { position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.65;
+          background-image:radial-gradient(circle at 1px 1px,rgba(18,75,150,.13) 1.2px,transparent 1.4px),linear-gradient(115deg,transparent 0 58%,rgba(255,209,46,.15) 58% 59%,transparent 59%);
+          background-size:18px 18px,100% 100%; }
+        .combo-blue-yellow-copy { position:relative; z-index:2; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-width:0; padding:38px 22px 34px 42px; }
+        .combo-blue-yellow-kicker { display:inline-flex; align-items:center; gap:9px; padding:9px 13px; border:1px solid rgba(18,75,150,.16); border-radius:999px; background:repeating-linear-gradient(135deg,#fff 0 7px,#eaf3ff 7px 14px); color:#12427f; font-size:10px; font-weight:900; letter-spacing:.12em; }
+        .combo-kicker-dot { width:8px; height:8px; border-radius:50%; background:#ffc928; box-shadow:0 0 0 4px rgba(255,201,40,.2); }
+        .combo-blue-yellow-copy h3 { margin:22px 0 13px; color:#092653; font-size:clamp(42px,5vw,68px); line-height:.94; letter-spacing:-.065em; font-weight:900; }
+        .combo-blue-yellow-copy h3 em { color:#1455a0; font-style:normal; text-shadow:3px 3px 0 rgba(255,209,46,.7); }
+        .combo-blue-yellow-description { max-width:400px; margin:0; color:#536985; font-size:15px; line-height:1.65; }
+        .combo-blue-yellow-benefits { display:flex; align-items:center; gap:17px; margin:23px 0 20px; color:#183d6d; font-size:12px; }
+        .combo-blue-yellow-benefits span { display:flex; align-items:center; gap:6px; } .combo-blue-yellow-benefits b { color:#0b2e62; font-size:17px; }
+        .combo-blue-yellow-benefits i { width:1px; height:24px; background:#c6d6e9; }
+        .combo-blue-yellow-price-row { display:flex; flex-direction:column; gap:3px; }
+        .combo-blue-yellow-price-label { color:#61758e; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; }
+        .combo-blue-yellow-price-row strong { color:#0b2e62; font-size:clamp(30px,3.3vw,42px); line-height:1.1; letter-spacing:-.04em; }
+        .combo-blue-yellow-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+        .combo-blue-yellow-button { display:inline-flex; align-items:center; justify-content:space-between; gap:16px; min-height:51px; padding:14px 17px; border-radius:12px; font-family:inherit; font-size:12px; font-weight:800; line-height:1.2; cursor:pointer; transition:transform .2s ease,box-shadow .2s ease,background .2s ease; }
+        .combo-blue-yellow-button:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(9,38,83,.16); }
+        .combo-blue-yellow-primary { border:1px solid #ffd12e; color:#092653; background:repeating-linear-gradient(135deg,#ffd12e 0 10px,#ffdf67 10px 20px); }
+        .combo-blue-yellow-secondary { border:1px solid #174c8d; color:#fff; background:repeating-linear-gradient(135deg,#124b96 0 11px,#1a5ca9 11px 22px); }
+        .combo-blue-yellow-button span { font-size:18px; }
+        .combo-blue-yellow-note { max-width:390px; margin-top:15px; color:#71829a; font-size:10px; line-height:1.5; }
+        .combo-blue-yellow-art { position:relative; isolation:isolate; min-height:440px; overflow:hidden; background:repeating-linear-gradient(135deg,#0b2b5c 0 16px,#0d326b 16px 32px); }
+        .combo-blue-yellow-art::before { content:""; position:absolute; z-index:-1; inset:0; background:radial-gradient(circle at 50% 50%,rgba(54,135,220,.4),transparent 58%),linear-gradient(145deg,rgba(255,209,46,.08),transparent 48%); }
+        .combo-art-grid { position:absolute; inset:0; opacity:.22; background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px); background-size:28px 28px; mask-image:linear-gradient(135deg,#000,transparent 85%); }
+        .combo-art-orbit { position:absolute; border:1px solid rgba(255,209,46,.45); border-radius:50%; pointer-events:none; }
+        .combo-art-orbit-one { width:380px; height:380px; top:35px; left:50%; transform:translateX(-50%); box-shadow:0 0 0 25px rgba(255,209,46,.035),0 0 0 52px rgba(255,209,46,.03); }
+        .combo-art-orbit-two { width:250px; height:250px; top:100px; left:50%; transform:translateX(-50%); border-style:dashed; }
+        .combo-art-tile { position:absolute; z-index:2; display:flex; flex-direction:column; justify-content:center; gap:5px; width:39%; min-height:115px; padding:15px; overflow:hidden; border:1px solid rgba(255,255,255,.68); border-radius:17px; color:#092653; box-shadow:0 16px 28px rgba(0,0,0,.22); }
+        .combo-art-tile::before { content:""; position:absolute; inset:0; z-index:-1; opacity:.85; background-image:radial-gradient(circle at 1px 1px,rgba(9,38,83,.15) 1px,transparent 1.4px),linear-gradient(135deg,rgba(255,255,255,.9),rgba(255,255,255,.15)); background-size:12px 12px,100% 100%; }
+        .combo-art-icon { display:grid; place-items:center; width:38px; height:35px; margin-bottom:3px; border-radius:10px; background:repeating-linear-gradient(135deg,#ffd12e 0 6px,#ffe681 6px 12px); color:#092653; font-size:25px; font-weight:900; }
+        .combo-art-tile b { font-size:14px; line-height:1.1; } .combo-art-tile small { color:#526a87; font-size:10px; }
+        .combo-art-tile-bed { left:7%; top:17%; transform:rotate(-7deg); background:#dcecff; }
+        .combo-art-tile-tv { right:7%; top:26%; transform:rotate(6deg); background:#fff0a9; }
+        .combo-art-tile-fridge { left:8%; bottom:15%; transform:rotate(5deg); background:#fff9e8; }
+        .combo-art-tile-sofa { right:7%; bottom:13%; transform:rotate(-5deg); background:#b8dcff; }
+        .combo-art-stamp { position:absolute; z-index:4; top:7%; right:8%; display:flex; align-items:center; gap:7px; padding:9px 12px; border:2px solid #092653; border-radius:8px; background:repeating-linear-gradient(135deg,#ffd12e 0 7px,#ffe16a 7px 14px); color:#092653; transform:rotate(5deg); box-shadow:4px 5px 0 rgba(0,0,0,.15); }
+        .combo-art-stamp strong { font-size:29px; line-height:1; } .combo-art-stamp span { font-size:8px; font-weight:950; line-height:1.1; letter-spacing:.06em; }
+        .combo-art-yellow-disc { position:absolute; z-index:3; left:50%; top:50%; display:grid; place-content:center; width:94px; height:94px; border:5px solid #0b2b5c; border-radius:50%; background:repeating-linear-gradient(135deg,#ffd12e 0 8px,#ffe16a 8px 16px); color:#092653; text-align:center; font-size:9px; font-weight:950; line-height:1.2; transform:translate(-50%,-50%) rotate(-9deg); box-shadow:0 8px 0 rgba(0,0,0,.12); }
+        @media(max-width:850px) { .combo-package-card.combo-blue-yellow-hero { grid-template-columns:minmax(0,1fr) minmax(0,.85fr); } .combo-blue-yellow-copy { padding:30px 18px 28px 25px; } .combo-blue-yellow-copy h3 { font-size:clamp(38px,5vw,52px); } .combo-blue-yellow-art { min-height:420px; } .combo-art-tile { width:43%; min-height:100px; padding:11px; } .combo-art-tile b { font-size:12px; } .combo-art-tile small { font-size:9px; } .combo-art-stamp { right:5%; } }
+        @media(max-width:640px) { .combo-package-card.combo-blue-yellow-hero { display:flex; flex-direction:column; margin:16px 0 28px; border-radius:20px; } .combo-blue-yellow-copy { padding:27px 22px 25px; } .combo-blue-yellow-kicker { font-size:9px; letter-spacing:.08em; } .combo-blue-yellow-copy h3 { margin-top:19px; font-size:clamp(43px,12vw,58px); } .combo-blue-yellow-description { font-size:13px; } .combo-blue-yellow-benefits { margin:18px 0; } .combo-blue-yellow-actions { display:grid; grid-template-columns:1fr; width:100%; } .combo-blue-yellow-button { width:100%; min-height:52px; font-size:13px; } .combo-blue-yellow-art { min-height:360px; height:360px; } .combo-art-orbit-one { width:310px; height:310px; top:28px; } .combo-art-orbit-two { width:210px; height:210px; top:78px; } .combo-art-tile { width:39%; min-height:100px; padding:10px; } .combo-art-tile-bed { left:5%; top:17%; } .combo-art-tile-tv { right:5%; top:25%; } .combo-art-tile-fridge { left:5%; bottom:12%; } .combo-art-tile-sofa { right:5%; bottom:11%; } .combo-art-stamp { top:5%; right:5%; } .combo-art-yellow-disc { width:78px; height:78px; font-size:8px; } }
 
-</style>
+
+
+
+        /* Smooth scroll behavior; leaves combo artwork and thumbnails unchanged. */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* =====================================================
+           COMBO SECTION + VIEW PRODUCTS — BLUE/YELLOW REDESIGN
+           Remove decorative background patterns from the homepage
+           combo banner; keep the item cards patterned but readable.
+        ===================================================== */
+        .combo-package-card.combo-blue-yellow-hero {
+          background: #f7faff !important;
+          border: 1px solid rgba(18, 54, 111, .16) !important;
+          box-shadow: 0 18px 42px rgba(18, 54, 111, .10) !important;
+        }
+        .combo-package-card.combo-blue-yellow-hero::before,
+        .combo-package-card.combo-blue-yellow-hero::after,
+        .combo-package-card.combo-blue-yellow-hero .combo-blueprint-pattern,
+        .combo-package-card.combo-blue-yellow-hero .combo-art-grid,
+        .combo-package-card.combo-blue-yellow-hero .combo-art-orbit {
+          display: none !important;
+          background-image: none !important;
+          box-shadow: none !important;
+        }
+        .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-art {
+          background: #12366f !important;
+        }
+        .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-art::before {
+          background: linear-gradient(135deg, rgba(255, 209, 46, .12), transparent 60%) !important;
+        }
+        .combo-package-card.combo-blue-yellow-hero .combo-art-tile::before {
+          background-image: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,255,255,.18)) !important;
+          background-size: 100% 100% !important;
+        }
+        .combo-package-card.combo-blue-yellow-hero .combo-art-icon,
+        .combo-package-card.combo-blue-yellow-hero .combo-art-stamp,
+        .combo-package-card.combo-blue-yellow-hero .combo-art-yellow-disc {
+          background: #ffd12e !important;
+        }
+        .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-primary {
+          background: #ffd12e !important;
+          border-color: #e8b900 !important;
+        }
+        .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-secondary {
+          background: #12366f !important;
+          border-color: #12366f !important;
+        }
+
+
+        /* Mobile combo card: simpler hierarchy, one premium action.
+           The combo artwork/thumbnail is intentionally untouched. */
+        @media (max-width: 640px) {
+          .combo-package-card.combo-blue-yellow-hero {
+            display: block !important;
+            min-height: 0 !important;
+            height: auto !important;
+            margin-bottom: 18px !important;
+            padding: 0 !important;
+            border-radius: 18px !important;
+            overflow: hidden;
+            background: linear-gradient(145deg, #ffffff 0%, #f3f7ff 72%, #fff8d8 100%) !important;
+          }
+          /* On mobile keep the compact text thumbnail; prevent an empty art column
+             from creating a large blank block below the button. Desktop art is unchanged. */
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-art {
+            display: none !important;
+          }
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-copy {
+            display: flex !important;
+            min-height: 0 !important;
+            height: auto !important;
+            padding: 24px 20px 22px !important;
+            background: transparent !important;
+          }
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-kicker {
+            background: repeating-linear-gradient(135deg, #fff1a8 0 7px, #ffdf67 7px 14px) !important;
+            border: 1px solid #f0c22d !important;
+            color: #12366f !important;
+          }
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-copy h3 em {
+            color: #12366f !important;
+            text-decoration: underline;
+            text-decoration-color: #ffd12e;
+            text-decoration-thickness: 5px;
+            text-underline-offset: -2px;
+          }
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-price-row {
+            padding: 12px 14px;
+            border-left: 4px solid #ffd12e;
+            border-radius: 0 10px 10px 0;
+            background: #edf4ff;
+          }
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-actions {
+            display: block !important;
+            margin-top: 20px !important;
+          }
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-primary {
+            width: 100% !important;
+            min-height: 54px !important;
+            border-radius: 14px !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: linear-gradient(135deg, #ffd12e 0%, #ffb914 100%) !important;
+            border: 1px solid rgba(18, 54, 111, .12) !important;
+            box-shadow: 0 8px 18px rgba(18, 54, 111, .14) !important;
+            color: #12366f !important;
+            font-weight: 800 !important;
+            letter-spacing: .01em;
+          }
+          .combo-package-card.combo-blue-yellow-hero .combo-blue-yellow-secondary {
+            display: none !important;
+          }
+        }
+
+        /* View Products modal: clean blue frame, yellow highlights, patterned cards */
+        .combo-redesign.combo-customizer-modal {
+          background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%) !important;
+          border: 1px solid #d5e2f7 !important;
+          color: #102f63 !important;
+          box-shadow: 0 30px 90px rgba(5, 27, 65, .34) !important;
+        }
+        .combo-redesign .modal-close {
+          color: #12366f !important;
+          border-color: #d5e2f7 !important;
+          background: #fff !important;
+        }
+        .combo-redesign .modal-close:hover { background: #fff1a8 !important; }
+        .combo-redesign .combo-gallery-heading .section-badge {
+          display: inline-flex;
+          padding: 7px 10px;
+          border: 1px solid #f0d15b;
+          border-radius: 999px;
+          background: #fff7ce;
+          color: #12366f !important;
+          letter-spacing: .12em;
+        }
+        .combo-redesign .combo-redesign-heading h3,
+        .combo-redesign .combo-gallery-heading h3 {
+          color: #12366f !important;
+          font-family: inherit !important;
+          font-weight: 850 !important;
+        }
+        .combo-redesign .combo-redesign-heading h3 span,
+        .combo-redesign .combo-gallery-heading h3 span { color: #d99b00 !important; }
+        .combo-redesign .combo-redesign-heading p { color: #5f7190 !important; }
+        .combo-redesign .combo-gallery-total,
+        .combo-redesign .combo-sticky-total {
+          border-color: #e5d276 !important;
+          background-color: #fff9db !important;
+          background-image: radial-gradient(rgba(18,54,111,.10) .8px, transparent .8px), linear-gradient(110deg, #fffdf2, #fff6c9) !important;
+          background-size: 12px 12px, 100% 100% !important;
+        }
+        .combo-redesign .combo-gallery-count {
+          border: 1px solid #cbdaf3 !important;
+          background: #eaf1ff !important;
+          color: #12366f !important;
+        }
+        .combo-redesign .combo-gallery-grid { gap: 15px !important; }
+        .combo-redesign .combo-gallery-card {
+          position: relative;
+          isolation: isolate;
+          border: 1px solid #d6e2f5 !important;
+          border-radius: 17px !important;
+          background-color: #f8fbff !important;
+          background-image: radial-gradient(rgba(18,54,111,.10) .8px, transparent .8px), linear-gradient(145deg, #ffffff 0%, #eef4ff 100%) !important;
+          background-size: 13px 13px, 100% 100% !important;
+          box-shadow: 0 8px 22px rgba(18,54,111,.08) !important;
+        }
+        .combo-redesign .combo-gallery-card:hover {
+          border-color: #efc62c !important;
+          box-shadow: 0 15px 30px rgba(18,54,111,.15) !important;
+        }
+        .combo-redesign .combo-gallery-image {
+          background: linear-gradient(135deg, #e7efff, #fff4bf) !important;
+          border-bottom: 1px solid rgba(18,54,111,.10);
+        }
+        .combo-redesign .combo-gallery-image span,
+        .combo-redesign .combo-gallery-number {
+          background: #12366f !important;
+          color: #ffd12e !important;
+          border: 1px solid rgba(255,209,46,.55) !important;
+        }
+        .combo-redesign .combo-gallery-card-copy {
+          background-image: repeating-linear-gradient(135deg, rgba(18,54,111,.035) 0 1px, transparent 1px 9px) !important;
+        }
+        .combo-redesign .combo-gallery-card-copy strong { color: #12366f !important; }
+        .combo-redesign .combo-gallery-card-copy span { color: #647794 !important; }
+        .combo-redesign .combo-gallery-card-copy b { color: #a87300 !important; }
+        .combo-redesign .combo-gallery-footer {
+          border-top-color: #d8e3f5 !important;
+          background: linear-gradient(180deg, rgba(255,255,255,.96), #f4f8ff) !important;
+        }
+        .combo-redesign .combo-gallery-footer > span { color: #60728e !important; }
+        .combo-redesign .combo-back-btn {
+          border-color: #cbdaf3 !important;
+          background: #edf3ff !important;
+          color: #12366f !important;
+        }
+        .combo-redesign .combo-back-btn:hover { background: #fff2ad !important; }
+        .combo-redesign .combo-modal-button,
+        .combo-redesign .combo-top-customize,
+        .combo-redesign .combo-whatsapp-enquiry {
+          background: #12366f !important;
+          border-color: #12366f !important;
+          color: #fff !important;
+          box-shadow: 0 10px 24px rgba(18,54,111,.20) !important;
+        }
+        .combo-redesign .combo-modal-button:hover,
+        .combo-redesign .combo-top-customize:hover,
+        .combo-redesign .combo-whatsapp-enquiry:hover { background: #0b2855 !important; }
+        .combo-redesign .combo-top-customize-icon,
+        .combo-redesign .combo-top-customize-arrow,
+        .combo-redesign .combo-whatsapp-arrow { color: #ffd12e !important; }
+        .combo-redesign .combo-whatsapp-mark { background: #ffd12e !important; color: #12366f !important; }
+        .combo-redesign .combo-line {
+          border-color: #d7e3f5 !important;
+          background-image: radial-gradient(rgba(18,54,111,.07) .7px, transparent .7px), linear-gradient(135deg, #fff 0%, #f1f6ff 100%) !important;
+          background-size: 12px 12px, 100% 100% !important;
+        }
+        .combo-redesign .combo-line:hover,
+        .combo-redesign .combo-line.is-expanded { border-color: #efc62c !important; }
+        .combo-redesign .combo-line-copy strong { color: #12366f !important; }
+        .combo-redesign .combo-line-copy b { color: #a87300 !important; }
+        .combo-redesign .combo-change-btn { border-color: #e3b91d !important; background: #fff6c7 !important; color: #12366f !important; }
+        .combo-redesign .combo-change-btn:hover,
+        .combo-redesign .combo-change-btn.active { background: #ffd12e !important; color: #12366f !important; }
+        .combo-redesign .combo-option-card {
+          background-image: radial-gradient(rgba(18,54,111,.08) .7px, transparent .7px), linear-gradient(145deg, #fff, #f2f6ff) !important;
+          background-size: 12px 12px, 100% 100% !important;
+          border-color: #d6e2f5 !important;
+        }
+        .combo-redesign .combo-option-card.selected { border-color: #e5b800 !important; background-color: #fff8d7 !important; }
+        @media(max-width:700px) {
+          .combo-redesign .combo-gallery-grid { gap: 10px !important; }
+          .combo-redesign .combo-gallery-card { border-radius: 14px !important; }
+          .combo-redesign .combo-gallery-card-copy strong { white-space: normal !important; line-height: 1.25; }
+        }
+
+        /* Premium light redesign for the View Products modal */
+        .combo-redesign.combo-customizer-modal {
+          --lux-ink: #24251f;
+          --lux-muted: #77786f;
+          --lux-line: #e9e6de;
+          --lux-gold: #b18a4a;
+          background: #fbfaf7 !important;
+          background-image: none !important;
+          color: var(--lux-ink) !important;
+          font-family: Inter, "Helvetica Neue", Arial, sans-serif !important;
+          border: 1px solid rgba(255,255,255,.8) !important;
+          border-radius: 24px !important;
+          box-shadow: 0 28px 90px rgba(15,18,20,.22) !important;
+          scrollbar-color: #c8c2b6 transparent;
+        }
+        .combo-redesign .combo-gallery-heading {
+          position: relative;
+          padding: 7px 175px 0 0 !important;
+          margin-bottom: 18px !important;
+        }
+        .combo-redesign .combo-gallery-heading h3 {
+          margin: 0 0 7px !important;
+          color: var(--lux-ink) !important;
+          font-size: clamp(27px, 3vw, 42px) !important;
+          line-height: 1.08 !important;
+          letter-spacing: -.055em !important;
+          font-weight: 680 !important;
+        }
+        .combo-redesign .combo-gallery-heading h3 span {
+          color: var(--lux-gold) !important;
+          font-weight: 680 !important;
+        }
+        .combo-redesign .combo-gallery-heading p {
+          margin: 0 !important;
+          color: var(--lux-muted) !important;
+          font-size: 13px !important;
+          line-height: 1.5 !important;
+          font-weight: 400 !important;
+        }
+        .combo-redesign .combo-gallery-actions {
+          position: absolute !important;
+          top: 8px !important;
+          right: 0 !important;
+          margin: 0 !important;
+          display: flex !important;
+          align-items: flex-start !important;
+        }
+        .combo-redesign .combo-top-customize {
+          min-width: 0 !important;
+          min-height: 42px !important;
+          padding: 0 17px !important;
+          gap: 9px !important;
+          border: 1px solid #262720 !important;
+          border-radius: 999px !important;
+          background: #262720 !important;
+          color: #fff !important;
+          font-size: 12px !important;
+          font-weight: 600 !important;
+          letter-spacing: .01em !important;
+          box-shadow: none !important;
+          transition: transform .2s ease, background .2s ease !important;
+        }
+        .combo-redesign .combo-top-customize::before { display: none !important; }
+        .combo-redesign .combo-top-customize:hover {
+          transform: translateY(-1px) !important;
+          background: #45463d !important;
+          box-shadow: none !important;
+        }
+        .combo-redesign .combo-top-customize-icon,
+        .combo-redesign .combo-top-customize-arrow { color: #e2c28d !important; }
+        .combo-redesign .combo-gallery-total {
+          margin: 0 0 8px !important;
+          padding: 15px 18px !important;
+          min-height: 82px !important;
+          border: 1px solid #e9e0ce !important;
+          border-radius: 16px !important;
+          background: #f4f0e7 !important;
+          box-shadow: none !important;
+        }
+        .combo-redesign .combo-total-label {
+          color: #777064 !important;
+          font-size: 9px !important;
+          letter-spacing: .14em !important;
+          font-weight: 700 !important;
+        }
+        .combo-redesign .combo-gallery-total .modal-price {
+          display: flex !important;
+          align-items: baseline !important;
+          gap: 12px !important;
+          margin-top: 3px !important;
+        }
+        .combo-redesign .combo-gallery-total .modal-price span {
+          color: #a19b8e !important;
+          font-size: 13px !important;
+          font-weight: 450 !important;
+        }
+        .combo-redesign .combo-gallery-total .modal-price strong {
+          color: #292a23 !important;
+          font-size: 28px !important;
+          line-height: 1.1 !important;
+          letter-spacing: -.045em !important;
+          font-weight: 700 !important;
+        }
+        .combo-redesign .combo-gallery-total .modal-saving {
+          margin: 4px 0 0 !important;
+          color: #7d744f !important;
+          font-size: 10px !important;
+          font-weight: 600 !important;
+        }
+        .combo-redesign .combo-gallery-count {
+          padding: 8px 11px !important;
+          border: 1px solid #dfd5c1 !important;
+          border-radius: 999px !important;
+          background: #fbfaf7 !important;
+          color: #605b4f !important;
+          font-size: 9px !important;
+          letter-spacing: .09em !important;
+          font-weight: 700 !important;
+        }
+        .combo-redesign .combo-price-disclaimer {
+          margin: 7px 2px 13px !important;
+          color: #858278 !important;
+          font-size: 10px !important;
+          line-height: 1.4 !important;
+        }
+        .combo-redesign .combo-gallery-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+          gap: 12px !important;
+          margin-top: 0 !important;
+        }
+        .combo-redesign .combo-gallery-card {
+          border: 1px solid var(--lux-line) !important;
+          border-radius: 14px !important;
+          background: #fff !important;
+          box-shadow: 0 3px 12px rgba(35,33,25,.025) !important;
+          transition: border-color .2s ease, transform .2s ease !important;
+        }
+        .combo-redesign .combo-gallery-card:hover {
+          transform: translateY(-2px) !important;
+          border-color: #c8b58f !important;
+          box-shadow: 0 8px 20px rgba(35,33,25,.07) !important;
+        }
+        .combo-redesign .combo-gallery-image {
+          height: clamp(135px, 17vw, 195px) !important;
+          background: #f0eee9 !important;
+        }
+        .combo-redesign .combo-gallery-image img { object-fit: cover !important; }
+        .combo-redesign .combo-gallery-image span {
+          top: 9px !important;
+          left: 9px !important;
+          padding: 5px 7px !important;
+          border-radius: 5px !important;
+          background: rgba(37,38,32,.88) !important;
+          color: #fff !important;
+          font-size: 9px !important;
+          font-weight: 600 !important;
+          box-shadow: none !important;
+        }
+        .combo-redesign .combo-gallery-card-copy {
+          gap: 4px !important;
+          padding: 11px 12px 13px !important;
+        }
+        .combo-redesign .combo-gallery-card-copy strong {
+          color: #2b2b25 !important;
+          font-size: 13px !important;
+          font-weight: 650 !important;
+          letter-spacing: -.015em !important;
+        }
+        .combo-redesign .combo-gallery-card-copy > span {
+          color: #969287 !important;
+          font-size: 10px !important;
+        }
+        .combo-redesign .combo-gallery-card-copy b {
+          margin-top: 3px !important;
+          color: #9b783e !important;
+          font-size: 11px !important;
+          font-weight: 650 !important;
+        }
+        .combo-redesign .modal-close {
+          z-index: 20 !important;
+          width: 38px !important;
+          height: 38px !important;
+          border: 1px solid #e8e4dc !important;
+          border-radius: 50% !important;
+          background: rgba(255,255,255,.94) !important;
+          color: #36372f !important;
+          box-shadow: 0 3px 12px rgba(0,0,0,.04) !important;
+        }
+        .combo-redesign .combo-gallery-footer-whatsapp { margin-top: 18px !important; }
+        .combo-redesign .combo-whatsapp-enquiry {
+          min-height: 47px !important;
+          border-radius: 999px !important;
+          background: #262720 !important;
+          border-color: #262720 !important;
+          color: #fff !important;
+          box-shadow: none !important;
+          font-size: 12px !important;
+        }
+        .combo-redesign .combo-whatsapp-mark {
+          background: #e2c28d !important;
+          color: #262720 !important;
+        }
+        @media (max-width: 700px) {
+          .combo-redesign.combo-customizer-modal {
+            width: calc(100vw - 20px) !important;
+            max-width: none !important;
+            max-height: calc(100dvh - 20px) !important;
+            padding: 22px 13px 16px !important;
+            border-radius: 20px !important;
+          }
+          .combo-redesign .combo-gallery-heading {
+            padding: 5px 0 0 !important;
+            margin-bottom: 14px !important;
+          }
+          .combo-redesign .combo-gallery-heading h3 {
+            max-width: calc(100% - 5px) !important;
+            padding-right: 30px !important;
+            font-size: clamp(25px, 7vw, 32px) !important;
+          }
+          .combo-redesign .combo-gallery-heading p {
+            max-width: 85% !important;
+            font-size: 11px !important;
+          }
+          .combo-redesign .combo-gallery-actions {
+            position: static !important;
+            margin-top: 13px !important;
+          }
+          .combo-redesign .combo-top-customize {
+            min-height: 38px !important;
+            padding: 0 15px !important;
+          }
+          .combo-redesign .combo-gallery-total {
+            min-height: 0 !important;
+            margin-top: 0 !important;
+            padding: 12px !important;
+            gap: 8px !important;
+            border-radius: 13px !important;
+          }
+          .combo-redesign .combo-gallery-total .modal-price strong { font-size: 24px !important; }
+          .combo-redesign .combo-gallery-count {
+            padding: 7px 8px !important;
+            font-size: 8px !important;
+            white-space: nowrap !important;
+          }
+          .combo-redesign .combo-price-disclaimer {
+            margin: 7px 1px 11px !important;
+            font-size: 9px !important;
+          }
+          .combo-redesign .combo-gallery-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 9px !important;
+          }
+          .combo-redesign .combo-gallery-image { height: clamp(115px, 36vw, 165px) !important; }
+          .combo-redesign .combo-gallery-card-copy { padding: 10px !important; }
+          .combo-redesign .combo-gallery-card-copy strong { font-size: 12px !important; }
+          .combo-redesign .combo-gallery-card-copy > span { font-size: 9px !important; }
+          .combo-redesign .combo-gallery-card-copy b { font-size: 10px !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .combo-redesign .combo-gallery-view,
+          .combo-redesign .combo-gallery-card { animation: none !important; transition: none !important; }
+        }
+
+        /* Premium ivory + champagne styling for the Customize view */
+        .combo-redesign .combo-redesign-heading:not(.combo-gallery-heading) {
+          padding: 2px 42px 15px 2px !important;
+          margin: 0 0 16px !important;
+          border-bottom: 1px solid #eee8dd !important;
+        }
+        .combo-redesign .combo-redesign-heading:not(.combo-gallery-heading) h3 {
+          margin: 0 0 7px !important;
+          color: #252821 !important;
+          font-family: Inter, "Segoe UI", Arial, sans-serif !important;
+          font-size: clamp(25px, 3.1vw, 36px) !important;
+          line-height: 1.08 !important;
+          font-weight: 750 !important;
+          letter-spacing: -.055em !important;
+        }
+        .combo-redesign .combo-redesign-heading:not(.combo-gallery-heading) h3 span {
+          color: #ad8545 !important;
+        }
+        .combo-redesign .combo-redesign-heading:not(.combo-gallery-heading) p {
+          margin: 0 !important;
+          color: #77766f !important;
+          font-size: 12px !important;
+          line-height: 1.55 !important;
+        }
+        .combo-redesign .combo-total-panel:not(.combo-gallery-total) {
+          margin: 0 0 10px !important;
+          padding: 15px 17px !important;
+          border: 1px solid #e9dfc9 !important;
+          border-radius: 16px !important;
+          background: linear-gradient(135deg, #fbf8f0 0%, #f5efe1 100%) !important;
+          box-shadow: none !important;
+        }
+        .combo-redesign .combo-total-label {
+          color: #82765e !important;
+          font-size: 9px !important;
+          letter-spacing: .15em !important;
+          font-weight: 800 !important;
+        }
+        .combo-redesign .modal-price { gap: 9px !important; align-items: baseline !important; }
+        .combo-redesign .modal-price > span {
+          color: #aaa397 !important;
+          font-size: 13px !important;
+          text-decoration-thickness: 1px !important;
+        }
+        .combo-redesign .modal-price strong {
+          color: #252821 !important;
+          font-size: clamp(24px, 3vw, 30px) !important;
+          letter-spacing: -.045em !important;
+          font-weight: 800 !important;
+        }
+        .combo-redesign .modal-saving {
+          margin: 5px 0 0 !important;
+          color: #98713a !important;
+          font-size: 11px !important;
+          font-weight: 750 !important;
+        }
+        .combo-redesign .combo-price-change {
+          display: inline-flex !important;
+          margin-top: 9px !important;
+          padding: 6px 10px !important;
+          border: 1px solid #e8dfce !important;
+          border-radius: 999px !important;
+          background: rgba(255,255,255,.72) !important;
+          color: #6f6a5e !important;
+          font-size: 10px !important;
+          font-weight: 650 !important;
+        }
+        .combo-redesign .combo-price-disclaimer {
+          margin: 8px 2px 14px !important;
+          color: #858078 !important;
+          font-size: 10px !important;
+          line-height: 1.5 !important;
+        }
+        .combo-redesign .combo-redesign-list {
+          display: grid !important;
+          gap: 9px !important;
+        }
+        .combo-redesign .combo-line {
+          border: 1px solid #e9e4da !important;
+          border-radius: 16px !important;
+          background: #fffefa !important;
+          box-shadow: 0 2px 9px rgba(42, 37, 27, .025) !important;
+          transition: border-color .2s ease, box-shadow .2s ease !important;
+        }
+        .combo-redesign .combo-line:hover,
+        .combo-redesign .combo-line.is-expanded {
+          border-color: #c7ad7c !important;
+          box-shadow: 0 6px 18px rgba(64, 51, 28, .07) !important;
+        }
+        .combo-redesign .combo-line-main {
+          gap: 12px !important;
+          padding: 10px !important;
+        }
+        .combo-redesign .combo-line-image {
+          width: 68px !important;
+          height: 66px !important;
+          flex-basis: 68px !important;
+          border-radius: 12px !important;
+          background: #f1eee7 !important;
+        }
+        .combo-redesign .combo-line-image span {
+          top: 5px !important;
+          left: 5px !important;
+          padding: 4px 5px !important;
+          border: 1px solid rgba(255,255,255,.65) !important;
+          border-radius: 6px !important;
+          background: #30362e !important;
+          color: #f5dfad !important;
+          font-size: 9px !important;
+        }
+        .combo-redesign .combo-line-copy { gap: 3px !important; }
+        .combo-redesign .combo-line-copy strong {
+          color: #292c26 !important;
+          font-size: 13px !important;
+          font-weight: 750 !important;
+          letter-spacing: -.015em !important;
+        }
+        .combo-redesign .combo-line-copy span {
+          color: #8b877f !important;
+          font-size: 10px !important;
+        }
+        .combo-redesign .combo-line-copy b {
+          color: #9b753b !important;
+          font-size: 11px !important;
+          font-weight: 750 !important;
+        }
+        .combo-redesign .combo-line-actions { gap: 6px !important; }
+        .combo-redesign .combo-change-btn {
+          min-height: 36px !important;
+          padding: 8px 12px !important;
+          border: 1px solid #c4a56b !important;
+          border-radius: 999px !important;
+          background: #f5eddd !important;
+          color: #55452c !important;
+          font-size: 10px !important;
+          font-weight: 750 !important;
+          box-shadow: none !important;
+        }
+        .combo-redesign .combo-change-btn:hover,
+        .combo-redesign .combo-change-btn.active {
+          border-color: #353b31 !important;
+          background: #353b31 !important;
+          color: #fffdf7 !important;
+        }
+        .combo-redesign .combo-remove-item-btn {
+          min-height: 36px !important;
+          padding: 8px 11px !important;
+          border: 1px solid #e5d9d2 !important;
+          border-radius: 999px !important;
+          background: transparent !important;
+          color: #8b6d60 !important;
+          font-size: 10px !important;
+          font-weight: 650 !important;
+        }
+        .combo-redesign .combo-remove-item-btn:hover {
+          border-color: #cba99b !important;
+          background: #f8efeb !important;
+          color: #7b4030 !important;
+        }
+        .combo-redesign .combo-options-panel {
+          padding: 13px !important;
+          border-top: 1px solid #eee8dd !important;
+          background: #fcfaf5 !important;
+        }
+        .combo-redesign .combo-options-heading { gap: 8px !important; margin-bottom: 11px !important; }
+        .combo-redesign .combo-options-heading strong {
+          color: #33372f !important;
+          font-size: 12px !important;
+          font-weight: 750 !important;
+        }
+        .combo-redesign .combo-options-heading span { color: #8b8579 !important; font-size: 10px !important; }
+        .combo-redesign .combo-option-strip { gap: 9px !important; }
+        .combo-redesign .combo-option-card {
+          border: 1px solid #e8e1d4 !important;
+          border-radius: 13px !important;
+          background: #fffefa !important;
+          box-shadow: none !important;
+        }
+        .combo-redesign .combo-option-card:hover { border-color: #c7ad7c !important; }
+        .combo-redesign .combo-option-card.selected {
+          border-color: #9d855b !important;
+          background: #f5f0e5 !important;
+          box-shadow: 0 0 0 1px rgba(157,133,91,.12) !important;
+        }
+        .combo-redesign .combo-option-name { color: #33372f !important; font-size: 11px !important; }
+        .combo-redesign .combo-option-card b { color: #98713a !important; font-size: 11px !important; }
+        .combo-redesign .combo-option-card small { color: #817a6d !important; font-size: 9px !important; }
+        .combo-redesign .combo-unavailable-note,
+        .combo-redesign .combo-no-options {
+          border-radius: 12px !important;
+          background: #f5f0e5 !important;
+          color: #777064 !important;
+          font-size: 11px !important;
+        }
+        .combo-redesign .combo-redesign-footer {
+          gap: 9px !important;
+          margin-top: 16px !important;
+          padding-top: 13px !important;
+          border-top: 1px solid #e9e3d8 !important;
+        }
+        .combo-redesign .combo-redesign-footer > span {
+          color: #8a857b !important;
+          font-size: 10px !important;
+        }
+        .combo-redesign .combo-back-btn {
+          min-height: 39px !important;
+          padding: 9px 13px !important;
+          border: 1px solid #e2dbce !important;
+          border-radius: 999px !important;
+          background: #fffefa !important;
+          color: #4c5047 !important;
+          font-size: 10px !important;
+          font-weight: 700 !important;
+        }
+        .combo-redesign .combo-modal-button {
+          min-height: 39px !important;
+          padding: 9px 15px !important;
+          border: 1px solid #30372f !important;
+          border-radius: 999px !important;
+          background: #30372f !important;
+          color: #fffdf7 !important;
+          box-shadow: none !important;
+          font-size: 11px !important;
+          font-weight: 750 !important;
+        }
+        .combo-redesign .modal-close {
+          border: 1px solid #e9e2d7 !important;
+          background: rgba(255,254,250,.96) !important;
+          color: #383b33 !important;
+          box-shadow: 0 3px 12px rgba(44,38,27,.06) !important;
+        }
+        @media (max-width: 600px) {
+          .combo-redesign .combo-redesign-heading:not(.combo-gallery-heading) { padding: 0 38px 13px 0 !important; margin-bottom: 12px !important; }
+          .combo-redesign .combo-redesign-heading:not(.combo-gallery-heading) h3 { font-size: 29px !important; }
+          .combo-redesign .combo-total-panel:not(.combo-gallery-total) { padding: 13px !important; border-radius: 14px !important; }
+          .combo-redesign .combo-line-main { display: grid !important; grid-template-columns: 58px minmax(0,1fr) auto !important; gap: 9px !important; padding: 9px !important; }
+          .combo-redesign .combo-line-image { width: 58px !important; height: 60px !important; }
+          .combo-redesign .combo-line-copy strong { font-size: 12px !important; }
+          .combo-redesign .combo-line-copy span { font-size: 10px !important; }
+          .combo-redesign .combo-line-copy b { font-size: 10px !important; }
+          .combo-redesign .combo-line-actions { display: flex !important; flex-direction: column !important; gap: 5px !important; }
+          .combo-redesign .combo-change-btn,
+          .combo-redesign .combo-remove-item-btn { min-height: 31px !important; padding: 6px 10px !important; font-size: 10px !important; }
+          .combo-redesign .combo-redesign-footer { display: grid !important; grid-template-columns: 1fr 1fr !important; }
+          .combo-redesign .combo-redesign-footer > span { display: none !important; }
+          .combo-redesign .combo-back-btn,
+          .combo-redesign .combo-modal-button { width: 100% !important; justify-content: center !important; }
+        }
+        /* Combo customiser interaction improvements */
+        .combo-redesign .combo-line-main { cursor: pointer !important; }
+        .combo-redesign .combo-line-main:focus-visible { outline: 2px solid #c4a56b; outline-offset: -3px; border-radius: 14px; }
+        .combo-redesign .combo-line-actions { margin-left: auto !important; }
+        .combo-redesign .combo-remove-item-btn { min-height: 44px !important; min-width: 76px !important; padding: 10px 16px !important; font-size: 12px !important; font-weight: 750 !important; cursor: pointer !important; }
+        @media (max-width: 600px) { .combo-redesign .combo-remove-item-btn { min-height: 40px !important; min-width: 70px !important; padding: 9px 12px !important; font-size: 11px !important; } }
+        @media (prefers-reduced-motion: reduce) {
+          .combo-redesign .combo-line,
+          .combo-redesign .combo-line-image img { transition: none !important; }
+        }
+
+        /* Combo cards: hide per-product prices and give product imagery more room. */
+        .combo-redesign .combo-gallery-image { height: clamp(190px, 23vw, 285px) !important; }
+        .combo-redesign .combo-gallery-card-copy { min-height: 66px; justify-content: center; }
+        .combo-redesign .combo-line-image { width: 92px !important; height: 82px !important; flex-basis: 92px !important; }
+        .combo-redesign .combo-option-card img { height: 135px !important; object-fit: contain !important; padding: 4px; }
+        .combo-redesign .combo-option-card { display: flex; flex-direction: column; }
+        .combo-redesign .combo-option-name { flex: 1; }
+        @media (max-width: 700px) {
+          .combo-redesign .combo-gallery-image { height: 180px !important; }
+          .combo-redesign .combo-line-image { width: 78px !important; height: 74px !important; flex-basis: 78px !important; }
+          .combo-redesign .combo-option-card img { height: 125px !important; }
+        }
+        @media (max-width: 380px) {
+          .combo-redesign .combo-gallery-image { height: 155px !important; }
+          .combo-redesign .combo-option-card img { height: 108px !important; }
+        }
+      `}</style>
     </>
   );
 }
