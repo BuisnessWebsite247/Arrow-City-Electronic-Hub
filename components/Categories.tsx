@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 
 type Category = {
   id: string;
@@ -1287,6 +1288,8 @@ export default function Categories() {
   const [activeComboItemIndex, setActiveComboItemIndex] = useState<number | null>(null);
   const [selectedComboProducts, setSelectedComboProducts] = useState<Record<number, string>>({});
   const [removedComboItems, setRemovedComboItems] = useState<number[]>([]);
+  const [comboLightbox, setComboLightbox] = useState<{ images: string[]; index: number; title: string } | null>(null);
+  const comboTouchStartX = useMemo(() => ({ value: 0 }), []);
 
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
@@ -1388,19 +1391,88 @@ export default function Categories() {
     );
   };
 
+  // Keep the browser/phone Back button aligned with the current in-page view.
+  // Priority: image viewer -> combo customizer -> combo gallery -> product -> category.
+  useEffect(() => {
+    const handleAppBack = () => {
+      if (comboLightbox) {
+        setComboLightbox(null);
+        return;
+      }
+      if (showCombo && comboView === "customize") {
+        setComboView("gallery");
+        setActiveComboItemIndex(null);
+        return;
+      }
+      if (showCombo) {
+        setShowCombo(false);
+        setComboView("gallery");
+        return;
+      }
+      if (selectedProductId) {
+        setSelectedProductId(null);
+        setActiveDetailImage(0);
+        return;
+      }
+      if (selectedCategory) {
+        setSelectedCategory(null);
+        setSelectedProductId(null);
+        setActiveDetailImage(0);
+      }
+    };
+
+    window.addEventListener("popstate", handleAppBack);
+    return () => window.removeEventListener("popstate", handleAppBack);
+  });
+
+  const openComboGallery = () => {
+    window.history.pushState({ arrowCityView: "combo-gallery" }, "", window.location.href);
+    setComboView("gallery");
+    setShowCombo(true);
+  };
+
+  const openComboCustomize = () => {
+    window.history.pushState({ arrowCityView: "combo-customize" }, "", window.location.href);
+    setComboView("customize");
+    setActiveComboItemIndex(null);
+  };
+
+  const goBackFromComboCustomize = () => {
+    if (comboView === "customize") {
+      window.history.back();
+      return;
+    }
+    setShowCombo(false);
+  };
+
   const openCategory = (categoryId: string) => {
+    window.history.pushState({ arrowCityView: "category", categoryId }, "", window.location.href);
     setSelectedCategory(categoryId);
     setSelectedProductId(null);
     setActiveDetailImage(0);
   };
 
   const openProductDetails = (product: Product) => {
+    window.history.pushState({ arrowCityView: "product", productId: product.id }, "", window.location.href);
     setSelectedProductId(product.id);
     setActiveDetailImage(0);
   };
 
   const goBackToCategories = () => {
+    if (selectedCategory || selectedProductId) {
+      window.history.back();
+      return;
+    }
     setSelectedCategory(null);
+    setSelectedProductId(null);
+    setActiveDetailImage(0);
+  };
+
+  const goBackToSelectedCategory = () => {
+    if (selectedProductId) {
+      window.history.back();
+      return;
+    }
     setSelectedProductId(null);
     setActiveDetailImage(0);
   };
@@ -1466,7 +1538,7 @@ export default function Categories() {
                 <strong>₹81,000</strong>
               </div>
               <div className="combo-blue-yellow-actions">
-                <button type="button" className="combo-blue-yellow-button combo-blue-yellow-primary" onClick={() => { setComboView("gallery"); setShowCombo(true); }}>
+                <button type="button" className="combo-blue-yellow-button combo-blue-yellow-primary" onClick={openComboGallery}>
                   View Products <span aria-hidden="true">→</span>
                 </button>
               </div>
@@ -1592,10 +1664,7 @@ export default function Categories() {
                   <button
                     type="button"
                     className="back-to-categories product-detail-back"
-                    onClick={() => {
-                      setSelectedProductId(null);
-                      setActiveDetailImage(0);
-                    }}
+                    onClick={goBackToSelectedCategory}
                   >
                     ← Back to {selectedCategoryData?.name}
                   </button>
@@ -1801,9 +1870,9 @@ export default function Categories() {
         ].join(" ");
 
         return (
-          <div className="categories-modal-backdrop combo-backdrop" onClick={() => setShowCombo(false)}>
+          <div className="categories-modal-backdrop combo-backdrop" onClick={() => { setShowCombo(false); setComboView("gallery"); }}>
             <div className="combo-modal combo-customizer-modal combo-redesign" onClick={(event) => event.stopPropagation()}>
-              <button type="button" className="modal-close" aria-label="Close combo customizer" onClick={() => setShowCombo(false)}>×</button>
+              <button type="button" className="modal-close" aria-label="Close combo customizer" onClick={() => { setShowCombo(false); setComboView("gallery"); }}>×</button>
               {comboView === "gallery" ? (
                 <div className="combo-gallery-view">
                   <div className="combo-redesign-heading combo-gallery-heading">
@@ -1811,7 +1880,7 @@ export default function Categories() {
                     <h3>Home <span>Collection</span></h3>
                     <p>21 essentials, one considered package.</p>
                     <div className="combo-gallery-actions">
-                      <button type="button" className="combo-top-customize" onClick={() => { setComboView("customize"); setActiveComboItemIndex(null); }}><span className="combo-top-customize-icon" aria-hidden="true">✦</span> Customize <span className="combo-top-customize-arrow" aria-hidden="true">↗</span></button>
+                      <button type="button" className="combo-top-customize" onClick={openComboCustomize}><span className="combo-top-customize-icon" aria-hidden="true">✦</span> Customize <span className="combo-top-customize-arrow" aria-hidden="true">↗</span></button>
                     </div>
                   </div>
                   <div className="combo-total-panel combo-gallery-total">
@@ -1820,19 +1889,33 @@ export default function Categories() {
                   </div>
                   <p className="combo-price-disclaimer">*Final price and availability confirmed by showroom.</p>
                   <div className="combo-gallery-grid">
-                    {comboItems.map((item, index) => {
-                      if (removedComboItems.includes(index)) return null;
+                    {[...comboItems.map((item, index) => ({ item, index }))]
+                      .sort((a, b) => Number(removedComboItems.includes(a.index)) - Number(removedComboItems.includes(b.index)) || a.index - b.index)
+                      .map(({ item, index }, displayIndex) => {
+                      const isRemoved = removedComboItems.includes(index);
                       const isBed = index === 0;
-                      const selected = isBed ? selectedBed : products.find((product) => product.id === selectedComboProducts[index]);
+                      // Use the selected catalogue product when customised; otherwise use the
+                      // matching default catalogue product so the viewer gets every available angle.
+                      const defaultProductIdByComboIndex: Record<number, string> = {
+                        0: "bed-9", 1: "fridge-1", 2: "tv-1", 3: "sofa-1", 4: "washing-1",
+                        5: "cooler-1", 6: "almira-1", 7: "table-1", 8: "wardrobe-1",
+                        9: "gas-stove-1", 11: "home-appliance-1", 12: "mattress-1", 14: "kitchen-appliance-1",
+                        15: "home-appliance-1"
+                      };
+                      const chosenProduct = isBed
+                        ? selectedBed
+                        : products.find((product) => product.id === selectedComboProducts[index]);
+                      const selected = chosenProduct ?? products.find((product) => product.id === defaultProductIdByComboIndex[index]);
                       const image = isBed
                         ? (selected?.id === "bed-9"
                             ? "/images/products/beds/bed-09-3.jpeg"
                             : (selected?.images?.[2] ?? selected?.images?.[0] ?? item.image))
                         : (selected?.images?.[0] ?? item.image);
-                      const name = isBed && !isBedCustomized ? "Double Bed" : (selected?.name ?? item.name);
-                      return <article className="combo-gallery-card" key={item.name} style={{ animationDelay: `${Math.min(index, 10) * 25}ms` }}>
-                        <div className="combo-gallery-image"><img src={image} alt={name} loading="lazy"/><span>{String(index + 1).padStart(2, "0")}</span></div>
-                        <div className="combo-gallery-card-copy"><strong>{name}</strong><span>{item.name}</span></div>
+                      const name = isBed && !isBedCustomized ? "Double Bed" : (chosenProduct?.name ?? item.name);
+                      const galleryImages = (selected?.images?.filter(Boolean).length ? selected.images.filter(Boolean) : [image]);
+                      return <article className={`combo-gallery-card ${isRemoved ? "combo-item-removed" : ""}`} key={item.name} style={{ animationDelay: `${Math.min(displayIndex, 10) * 25}ms` }}>
+                        <button type="button" className="combo-gallery-image combo-gallery-image-button" aria-label={`View ${name} images full screen`} onClick={() => setComboLightbox({ images: galleryImages, index: 0, title: name })}><img src={image} alt={name} loading="lazy"/><span>{String(displayIndex + 1).padStart(2, "0")}</span><i aria-hidden="true">⤢</i></button>
+                        <div className="combo-gallery-card-copy"><strong>{name}</strong><span>{isRemoved ? "Removed from package" : item.name}</span></div>
                       </article>;
                     })}
                   </div>
@@ -1868,34 +1951,40 @@ export default function Categories() {
               <p className="combo-price-disclaimer">*The total reflects the bed adjustment and confirmed item deductions. Any item without a confirmed included price must be verified by the showroom.</p>
 
               <div className="combo-redesign-list">
-                {comboItems.map((item, index) => {
-                  if (removedComboItems.includes(index)) return null;
+                {[...comboItems.map((item, index) => ({ item, index }))]
+                  .sort((a, b) => Number(removedComboItems.includes(a.index)) - Number(removedComboItems.includes(b.index)) || a.index - b.index)
+                  .map(({ item, index }, displayIndex) => {
+                  const isRemoved = removedComboItems.includes(index);
                   const isOpen = activeComboItemIndex === index;
                   const options = optionsFor(index);
                   const isBed = index === 0;
                   return (
-                    <article className={`combo-line ${isOpen ? "is-expanded" : ""}`} key={item.name}>
+                    <article className={`combo-line ${isOpen ? "is-expanded" : ""} ${isRemoved ? "combo-item-removed" : ""}`} key={item.name}>
                       <div
                         className="combo-line-main"
                         role="button"
                         tabIndex={0}
                         aria-expanded={isOpen}
                         aria-label={`${isOpen ? "Close" : "Customise"} ${item.name} options`}
-                        onClick={() => setActiveComboItemIndex(isOpen ? null : index)}
+                        onClick={() => { if (!isRemoved) setActiveComboItemIndex(isOpen ? null : index); }}
                         onKeyDown={(event) => {
                           if (event.key === "Enter" || event.key === " ") {
                             event.preventDefault();
-                            setActiveComboItemIndex(isOpen ? null : index);
+                            if (!isRemoved) setActiveComboItemIndex(isOpen ? null : index);
                           }
                         }}
                       >
-                        <div className="combo-line-image"><img src={selectedImageFor(index)} alt={selectedNameFor(index)} /><span>{String(index + 1).padStart(2, "0")}</span></div>
+                        <div className="combo-line-image"><img src={selectedImageFor(index)} alt={selectedNameFor(index)} /><span>{String(displayIndex + 1).padStart(2, "0")}</span></div>
                         <div className="combo-line-copy"><strong>{selectedNameFor(index)}</strong><span>{item.name}</span></div>
                         <div className="combo-line-actions">
-                          <button type="button" className="combo-remove-item-btn" onClick={(event) => { event.stopPropagation(); setRemovedComboItems((prev) => [...prev, index]); setActiveComboItemIndex(null); }} aria-label={`Remove ${item.name} from combo`}>Remove</button>
+                          {isRemoved ? (
+                            <button type="button" className="combo-add-item-btn" onClick={(event) => { event.stopPropagation(); setRemovedComboItems((prev) => prev.filter((removedIndex) => removedIndex !== index)); }} aria-label={`Add ${item.name} back to combo`}>Add</button>
+                          ) : (
+                            <button type="button" className="combo-remove-item-btn" onClick={(event) => { event.stopPropagation(); setRemovedComboItems((prev) => prev.includes(index) ? prev : [...prev, index]); setActiveComboItemIndex(null); }} aria-label={`Remove ${item.name} from combo`}>Remove</button>
+                          )}
                         </div>
                       </div>
-                      {isOpen && (
+                      {!isRemoved && isOpen && (
                         <div className="combo-options-panel">
                           {nonCustomizableItems.has(index) ? (
                             <p className="combo-unavailable-note"><strong>Customization options aren’t available for this item yet.</strong><span>You can keep it in your package or remove it using the Remove button.</span></p>
@@ -1921,9 +2010,18 @@ export default function Categories() {
                   );
                 })}
               </div>
-              <div className="combo-redesign-footer"><button type="button" className="combo-back-btn" onClick={() => setComboView("gallery")}>← Back to 21 items</button><span>Review your choices, then save your combo.</span><button type="button" className="combo-modal-button" onClick={() => { setComboView("gallery"); setActiveComboItemIndex(null); }}>Save combo <span>✓</span></button></div>
+              <div className="combo-redesign-footer"><button type="button" className="combo-back-btn" onClick={goBackFromComboCustomize}>← Back to 21 items</button><span>Review your choices, then save your combo.</span><button type="button" className="combo-modal-button" onClick={() => { setComboView("gallery"); setActiveComboItemIndex(null); }}>Save combo <span>✓</span></button></div>
                 </>
               )}
+              {comboLightbox && typeof document !== "undefined" && createPortal((
+                <div className="combo-lightbox" role="dialog" aria-modal="true" aria-label={`${comboLightbox.title} product images`} onClick={() => setComboLightbox(null)} onTouchStart={(event) => { comboTouchStartX.value = event.touches[0]?.clientX ?? 0; }} onTouchEnd={(event) => { const endX = event.changedTouches[0]?.clientX ?? comboTouchStartX.value; const delta = endX - comboTouchStartX.value; if (Math.abs(delta) > 45 && comboLightbox.images.length > 1) setComboLightbox((current) => current ? { ...current, index: (current.index + (delta < 0 ? 1 : -1) + current.images.length) % current.images.length } : current); }} onKeyDown={(event) => { if (event.key === "Escape") setComboLightbox(null); if (event.key === "ArrowRight" && comboLightbox.images.length > 1) setComboLightbox((current) => current ? { ...current, index: (current.index + 1) % current.images.length } : current); if (event.key === "ArrowLeft" && comboLightbox.images.length > 1) setComboLightbox((current) => current ? { ...current, index: (current.index - 1 + current.images.length) % current.images.length } : current); }}>
+                  <button type="button" className="combo-lightbox-close" aria-label="Close image viewer" onClick={() => setComboLightbox(null)}>×</button>
+                  {comboLightbox.images.length > 1 && <button type="button" className="combo-lightbox-nav combo-lightbox-prev" aria-label="Previous image" onClick={(event) => { event.stopPropagation(); setComboLightbox((current) => current ? { ...current, index: (current.index - 1 + current.images.length) % current.images.length } : current); }}>‹</button>}
+                  <img className="combo-lightbox-photo" src={comboLightbox.images[comboLightbox.index]} alt={comboLightbox.title} onClick={(event) => event.stopPropagation()} />
+                  {comboLightbox.images.length > 1 && <button type="button" className="combo-lightbox-nav combo-lightbox-next" aria-label="Next image" onClick={(event) => { event.stopPropagation(); setComboLightbox((current) => current ? { ...current, index: (current.index + 1) % current.images.length } : current); }}>›</button>}
+                  <div className="combo-lightbox-caption" onClick={(event) => event.stopPropagation()}><strong>{comboLightbox.title}</strong><span>{String(comboLightbox.index + 1).padStart(2, "0")} / {String(comboLightbox.images.length).padStart(2, "0")}</span></div>
+                </div>
+              ), document.body)}
             </div>
           </div>
         );
@@ -4172,6 +4270,7 @@ export default function Categories() {
         @media(max-width:700px) { .combo-gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:9px; } .combo-gallery-image { height:150px; } .combo-gallery-card-copy { padding:10px; } .combo-gallery-card-copy strong { font-size:12px; } .combo-gallery-card-copy b { font-size:12px; } .combo-gallery-total { padding:12px;align-items:flex-start; } .combo-gallery-count { font-size:9px;padding:8px; } .combo-gallery-footer { align-items:stretch;flex-direction:column;gap:10px; } .combo-gallery-footer .combo-modal-button { width:100%; } .combo-gallery-heading { padding-right:28px; } }
         @media(max-width:380px) { .combo-gallery-grid { grid-template-columns:1fr 1fr; } .combo-gallery-image { height:125px; } }
 
+
         .combo-redesign { width:min(920px,100%); padding:clamp(18px,3vw,30px); border-radius:24px; background:#fffdfa; color:#13264b; }
         .combo-redesign-heading { padding-right:42px; }
         .combo-redesign-heading h3 { margin:12px 0 6px; font-size:clamp(28px,4vw,40px); line-height:1.08; letter-spacing:-1.2px; }
@@ -5217,6 +5316,81 @@ export default function Categories() {
           .combo-redesign .combo-gallery-image { height: 155px !important; }
           .combo-redesign .combo-option-card img { height: 108px !important; }
         }
+        /* Fix combo thumbnails and removed-item restore controls */
+        .combo-redesign .combo-line-image,
+        .combo-redesign .combo-gallery-image { display:flex; align-items:center; justify-content:center; background:#f4f0e7 !important; }
+        .combo-redesign .combo-line-image img,
+        .combo-redesign .combo-gallery-image img { width:100%; height:100%; object-fit:contain !important; object-position:center; padding:5px; box-sizing:border-box; }
+        .combo-redesign .combo-line-copy { min-width:0; flex:1 1 auto; overflow-wrap:anywhere; }
+        .combo-redesign .combo-line-main { gap:12px; }
+        .combo-redesign .combo-line-actions { flex:0 0 auto; }
+        .combo-redesign .combo-add-item-btn { border:1px solid #244b38; color:#fff; background:#244b38; border-radius:999px; padding:10px 18px; min-height:42px; font-weight:750; cursor:pointer; }
+        .combo-redesign .combo-remove-item-btn { white-space:nowrap; }
+        .combo-redesign .combo-item-removed { opacity:.82; border-style:dashed !important; }
+        .combo-redesign .combo-gallery-card-copy button { margin-top:9px; }
+        .combo-redesign .combo-gallery-card-copy { min-width:0; }
+        @media(max-width:480px) {
+          .combo-redesign .combo-line-image { width:78px !important; min-width:78px !important; height:78px !important; }
+          .combo-redesign .combo-line-main { gap:9px; }
+          .combo-redesign .combo-line-copy strong { font-size:13px; line-height:1.25; }
+          .combo-redesign .combo-line-copy span { font-size:11px; }
+          .combo-redesign .combo-line-actions .combo-remove-item-btn,
+          .combo-redesign .combo-line-actions .combo-add-item-btn { padding:8px 12px; min-height:38px; font-size:12px; }
+        }
+        .combo-redesign .combo-gallery-card { overflow:hidden !important; border-radius:18px !important; }
+        .combo-redesign .combo-gallery-image { position:relative; display:flex; width:100%; border:0; padding:0; border-radius:14px; overflow:hidden; cursor:zoom-in; }
+        .combo-redesign .combo-gallery-image-button { appearance:none; text-align:initial; }
+        .combo-redesign .combo-gallery-image-button > i { position:absolute; right:10px; bottom:10px; width:30px; height:30px; display:grid; place-items:center; border-radius:50%; color:#fff; background:rgba(20,24,20,.72); font-style:normal; font-size:18px; opacity:0; transition:opacity .2s ease; }
+        .combo-redesign .combo-gallery-image-button:hover > i, .combo-redesign .combo-gallery-image-button:focus-visible > i { opacity:1; }
+        .combo-redesign .combo-gallery-card-copy { display:flex; flex-direction:column; align-items:flex-start; gap:5px; padding:12px !important; min-height:70px; }
+        .combo-redesign .combo-gallery-card-copy strong { overflow-wrap:anywhere; white-space:normal; line-height:1.3; }
+        .combo-redesign .combo-line-main { display:grid !important; grid-template-columns:78px minmax(0,1fr) auto; align-items:center; }
+        .combo-redesign .combo-line-copy { min-width:0; width:100%; overflow:hidden; }
+        .combo-redesign .combo-line-copy strong, .combo-redesign .combo-line-copy span { display:block; white-space:normal !important; overflow-wrap:anywhere; word-break:normal; line-height:1.3; }
+        .combo-redesign .combo-line-image { border-radius:13px !important; overflow:hidden; }
+        .combo-lightbox { position:fixed; inset:0; z-index:10000; display:flex; align-items:center; justify-content:center; padding:64px 58px 86px; background:rgba(9,12,12,.96); backdrop-filter:blur(18px); animation:comboLightboxIn .2s ease-out; touch-action:pan-y; }
+        .combo-lightbox-photo { max-width:min(92vw,1200px); max-height:calc(100dvh - 160px); width:auto; height:auto; object-fit:contain; border-radius:18px; box-shadow:0 24px 90px #0008; user-select:none; }
+        .combo-lightbox-close { position:absolute; top:20px; right:22px; width:46px; height:46px; border:1px solid #ffffff44; border-radius:50%; background:#ffffff18; color:#fff; font-size:30px; cursor:pointer; }
+        .combo-lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); width:48px; height:58px; border:1px solid #ffffff35; border-radius:999px; background:#ffffff18; color:#fff; font-size:42px; line-height:1; cursor:pointer; }
+        .combo-lightbox-prev { left:18px; } .combo-lightbox-next { right:18px; }
+        .combo-lightbox-caption { position:absolute; bottom:22px; left:0; right:0; display:flex; justify-content:center; align-items:center; gap:18px; color:#fff; font-size:14px; }
+        .combo-lightbox-caption span { color:#d9c18b; font-variant-numeric:tabular-nums; }
+        @keyframes comboLightboxIn { from {opacity:0; transform:scale(.99)} to {opacity:1; transform:scale(1)} }
+        @media(max-width:600px) { .combo-lightbox { padding:60px 42px 82px; } .combo-lightbox-photo { max-width:100%; max-height:calc(100dvh - 170px); border-radius:12px; } .combo-lightbox-nav { width:36px; height:46px; font-size:32px; } .combo-lightbox-prev { left:5px; } .combo-lightbox-next { right:5px; } .combo-lightbox-close { top:12px; right:12px; } .combo-redesign .combo-line-main { grid-template-columns:68px minmax(0,1fr) auto; gap:9px !important; } .combo-redesign .combo-line-image { width:68px !important; min-width:68px !important; height:68px !important; } .combo-redesign .combo-line-actions .combo-remove-item-btn, .combo-redesign .combo-line-actions .combo-add-item-btn { padding:8px 10px; } }
+
+        /* Desktop-first layout repair: give names real space and keep actions in their own column. */
+        .combo-redesign .combo-line-main {
+          display: grid !important;
+          grid-template-columns: 88px minmax(160px, 1fr) auto !important;
+          gap: 16px !important;
+          align-items: center !important;
+          padding: 14px 16px !important;
+          min-height: 104px;
+        }
+        .combo-redesign .combo-line-image { width: 88px !important; min-width: 88px !important; height: 84px !important; flex-basis: 88px !important; }
+        .combo-redesign .combo-line-copy { min-width: 0 !important; width: auto !important; overflow: visible !important; }
+        .combo-redesign .combo-line-copy strong { display:block !important; font-size:15px !important; line-height:1.35 !important; color:#20251f !important; overflow-wrap:anywhere !important; }
+        .combo-redesign .combo-line-copy span { display:block !important; font-size:12px !important; line-height:1.4 !important; color:#777d75 !important; margin-top:3px; }
+        .combo-redesign .combo-line-actions { display:flex !important; align-items:center !important; justify-content:flex-end !important; gap:8px !important; }
+        .combo-lightbox { position:fixed !important; inset:0 !important; width:100vw !important; height:100dvh !important; box-sizing:border-box !important; z-index:2147483000 !important; padding:72px 76px 84px !important; overflow:hidden !important; }
+        .combo-lightbox-photo { display:block !important; max-width:calc(100vw - 180px) !important; max-height:calc(100dvh - 180px) !important; width:auto !important; height:auto !important; margin:auto !important; object-fit:contain !important; }
+        @media (min-width: 701px) {
+          .combo-redesign .combo-line-copy strong { font-size:16px !important; }
+          .combo-redesign .combo-line-copy span { font-size:13px !important; }
+          .combo-redesign .combo-line-image { width:96px !important; min-width:96px !important; height:88px !important; }
+          .combo-redesign .combo-line-main { grid-template-columns:96px minmax(220px, 1fr) auto !important; }
+        }
+        @media(max-width:600px) {
+          .combo-redesign .combo-line-main { grid-template-columns:68px minmax(0,1fr) auto !important; gap:9px !important; padding:9px !important; }
+          .combo-redesign .combo-line-image { width:68px !important; min-width:68px !important; height:68px !important; }
+          .combo-redesign .combo-line-copy strong { font-size:13px !important; }
+          .combo-redesign .combo-line-copy span { font-size:11px !important; }
+          .combo-redesign .combo-line-actions .combo-remove-item-btn, .combo-redesign .combo-line-actions .combo-add-item-btn { padding:8px 10px !important; }
+          .combo-lightbox { padding:64px 42px 76px !important; }
+          .combo-lightbox-photo { max-width:calc(100vw - 84px) !important; max-height:calc(100dvh - 150px) !important; }
+        }
+
+
       `}</style>
     </>
   );
