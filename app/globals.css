@@ -3375,3 +3375,51 @@ select {
     display: none;
   }
 }
+
+
+/* =========================================================
+   MOBILE SPACING FIX — KEEP DESKTOP UNCHANGED
+   ========================================================= */
+@media (max-width: 600px) {
+  /* Tighten the slideshow-to-text gap by about 50%. */
+  .hero-slideshow-section .hero-container {
+    gap: 18px !important;
+  }
+
+  .hero-slideshow-section .hero-image-wrapper {
+    margin-bottom: 17px !important;
+  }
+
+  /* Reduce excess vertical padding where sections meet. */
+  .about-section,
+  .gallery-section,
+  .reviews-section,
+  .contact-section {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+
+  /* Bring section headings and their content closer together. */
+  .section-heading {
+    margin-bottom: 24px !important;
+  }
+
+  .section-heading p {
+    margin-top: 12px;
+    line-height: 1.55;
+  }
+
+  .about-container,
+  .contact-container {
+    gap: 30px !important;
+  }
+
+  .review-rating-box {
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .gallery-actions {
+    margin-top: 24px !important;
+  }
+}

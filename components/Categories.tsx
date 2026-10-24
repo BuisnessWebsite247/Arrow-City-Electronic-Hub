@@ -133,7 +133,7 @@ const products: Product[] = [
     images: [
       "/images/products/beds/bed-01-1.jpeg",
       "/images/products/beds/bed-01-2.jpeg",
-      "/images/products/beds/-01-3.jpeg",
+      "/images/products/beds/bed-01-3.jpeg",
     ],
   },
   {
@@ -1244,15 +1244,15 @@ const products: Product[] = [
 
 const comboItems = [
   { name: "Double Bed", image: "/images/products/beds/bed-09-3.jpeg" },
-  { name: "Fridge", image: "/images/combo/combo-02.jpeg" },
+  { name: "Fridge", image: "/images/products/refrigerators/fridge-10-2.jpeg" },
   { name: "Smart TV", image: "/images/combo/combo-03.jpeg" },
-  { name: "Sofa Set", image: "/images/combo/combo-04.jpeg" },
-  { name: "Washing Machine", image: "/images/combo/combo-05.jpeg" },
-  { name: "Cooler", image: "/images/combo/combo-06.jpeg" },
-  { name: "Almira", image: "/images/combo/combo-07.jpeg" },
-  { name: "Table", image: "/images/combo/combo-08.jpeg" },
-  { name: "Dressing", image: "/images/combo/combo-09.jpeg" },
-  { name: "Gas Stove", image: "/images/combo/combo-10.jpeg" },
+  { name: "Sofa Set", image: "/images/products/sofas/sofa-05-3.jpeg" },
+  { name: "Washing Machine", image: "/images/products/washing-machines/washing-machine-02-1.jpeg" },
+  { name: "Cooler", image: "/images/products/coolers/cooler-05-1.jpeg" },
+  { name: "Almira", image: "/images/products/almiras/almira-05-1.jpeg" },
+  { name: "Table", image: "/images/products/tables/table-02-1.jpeg" },
+  { name: "Dressing", image: "/images/products/wardrobes/wardrobe-02-1.jpeg" },
+  { name: "Gas Stove", image: "/images/products/kitchen-appliances/gas-stove-02-1.jpeg" },
   { name: "Kitchen Bartan Set (51 Piece)", image: "/images/combo/combo-11.jpeg" },
   { name: "Serving Machine", image: "/images/combo/combo-12.jpeg" },
   { name: "Mattress", image: "/images/combo/combo-13.jpeg" },
@@ -1834,14 +1834,27 @@ export default function Categories() {
           const chosen = products.find((product) => product.id === selectedComboProducts[index]);
           return chosen?.name ?? comboItems[index].name;
         };
+        // Exact catalogue products and image angles selected by the showroom.
+        // Image indices are zero-based: third image = 2, first image = 0.
+        const defaultProductIdByComboIndex: Record<number, string> = {
+          0: "bed-9", 1: "fridge-10", 2: "tv-1", 3: "sofa-5", 4: "washing-2",
+          5: "cooler-5", 6: "almira-5", 7: "table-2", 8: "wardrobe-2",
+          9: "gas-stove-2", 11: "home-appliance-1", 12: "mattress-1", 14: "kitchen-appliance-1",
+          15: "home-appliance-1"
+        };
+        const defaultImageIndexByComboIndex: Record<number, number> = {
+          0: 2, 1: 1, 2: 0, 3: 2, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0
+        };
+        const defaultProductFor = (index: number) => products.find((product) => product.id === defaultProductIdByComboIndex[index]);
         const selectedImageFor = (index: number) => {
-          // Use the exact Bed 09 image requested as the default combo bed.
           if (index === 0) {
             if (selectedBed?.id === "bed-9") return "/images/products/beds/bed-09-3.jpeg";
             return selectedBed?.images?.[2] ?? selectedBed?.images?.[0] ?? comboItems[0].image;
           }
           const chosen = products.find((product) => product.id === selectedComboProducts[index]);
-          return chosen?.images?.[0] ?? comboItems[index].image;
+          const product = chosen ?? defaultProductFor(index);
+          const imageIndex = defaultImageIndexByComboIndex[index] ?? 0;
+          return product?.images?.[imageIndex] ?? product?.images?.[0] ?? comboItems[index].image;
         };
         // Keep combo alternatives specific to the item being customised.
         // This filter is used only by the combo customiser; the Shop With Us catalogue is unchanged.
@@ -1896,25 +1909,20 @@ export default function Categories() {
                       const isBed = index === 0;
                       // Use the selected catalogue product when customised; otherwise use the
                       // matching default catalogue product so the viewer gets every available angle.
-                      const defaultProductIdByComboIndex: Record<number, string> = {
-                        0: "bed-9", 1: "fridge-1", 2: "tv-1", 3: "sofa-1", 4: "washing-1",
-                        5: "cooler-1", 6: "almira-1", 7: "table-1", 8: "wardrobe-1",
-                        9: "gas-stove-1", 11: "home-appliance-1", 12: "mattress-1", 14: "kitchen-appliance-1",
-                        15: "home-appliance-1"
-                      };
                       const chosenProduct = isBed
                         ? selectedBed
                         : products.find((product) => product.id === selectedComboProducts[index]);
-                      const selected = chosenProduct ?? products.find((product) => product.id === defaultProductIdByComboIndex[index]);
+                      const selected = chosenProduct ?? defaultProductFor(index);
+                      const defaultImageIndex = defaultImageIndexByComboIndex[index] ?? 0;
                       const image = isBed
                         ? (selected?.id === "bed-9"
                             ? "/images/products/beds/bed-09-3.jpeg"
                             : (selected?.images?.[2] ?? selected?.images?.[0] ?? item.image))
-                        : (selected?.images?.[0] ?? item.image);
+                        : (selected?.images?.[defaultImageIndex] ?? selected?.images?.[0] ?? item.image);
                       const name = isBed && !isBedCustomized ? "Double Bed" : (chosenProduct?.name ?? item.name);
                       const galleryImages = (selected?.images?.filter(Boolean).length ? selected.images.filter(Boolean) : [image]);
                       return <article className={`combo-gallery-card ${isRemoved ? "combo-item-removed" : ""}`} key={item.name} style={{ animationDelay: `${Math.min(displayIndex, 10) * 25}ms` }}>
-                        <button type="button" className="combo-gallery-image combo-gallery-image-button" aria-label={`View ${name} images full screen`} onClick={() => setComboLightbox({ images: galleryImages, index: 0, title: name })}><img src={image} alt={name} loading="lazy"/><span>{String(displayIndex + 1).padStart(2, "0")}</span><i aria-hidden="true">⤢</i></button>
+                        <button type="button" className="combo-gallery-image combo-gallery-image-button" aria-label={`View ${name} images full screen`} onClick={() => setComboLightbox({ images: galleryImages, index: isBed ? (selected?.id === "bed-9" ? 2 : Math.min(2, galleryImages.length - 1)) : Math.min(defaultImageIndexByComboIndex[index] ?? 0, galleryImages.length - 1), title: name })}><img src={image} alt={name} loading="lazy"/><span>{String(displayIndex + 1).padStart(2, "0")}</span><i aria-hidden="true">⤢</i></button>
                         <div className="combo-gallery-card-copy"><strong>{name}</strong><span>{isRemoved ? "Removed from package" : item.name}</span></div>
                       </article>;
                     })}
