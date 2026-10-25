@@ -3423,3 +3423,115 @@ select {
     margin-top: 24px !important;
   }
 }
+/* =========================================================
+   ARROW CITY — MOBILE HOMEPAGE POLISH
+   Desktop layout remains unchanged
+========================================================= */
+
+@media (max-width: 600px) {
+
+  /* Compact cart pill in mobile navbar */
+  .navbar .navbar-mobile-actions {
+    gap: 8px;
+  }
+
+  .navbar .navbar-cart-button-mobile {
+    min-width: 0;
+    min-height: 34px;
+    padding: 5px 8px;
+    gap: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+    line-height: 1;
+  }
+
+  .navbar .navbar-cart-button-mobile > span[aria-hidden="true"] {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .navbar .navbar-cart-button-mobile .navbar-cart-count {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    margin-left: 5px;
+    font-size: 10px;
+  }
+
+  .navbar .mobile-menu-button {
+    font-size: 25px;
+    padding: 3px;
+  }
+
+  .navbar .navbar-container {
+    padding-left: 14px;
+    padding-right: 12px;
+  }
+
+  /* Hide extra hero text only on mobile */
+  .hero-slideshow-section .hero-description,
+  .hero-slideshow-section .hero-location {
+    display: none !important;
+  }
+
+  /* Reduce the gap between slideshow and hero heading by ~50% */
+  .hero-slideshow-section {
+    min-height: auto;
+    padding: 92px 18px 30px;
+  }
+
+  .hero-slideshow-section .hero-container {
+    gap: 0;
+  }
+
+  .hero-slideshow-section .hero-image-wrapper {
+    margin-bottom: 17px;
+  }
+
+  .hero-slideshow-section .hero-content {
+    width: 100%;
+  }
+
+  .hero-slideshow-section .hero-badge {
+    margin-bottom: 14px;
+    font-size: 13px;
+  }
+
+  .hero-slideshow-section .hero-content h1 {
+    margin-top: 0;
+    font-size: clamp(35px, 9vw, 43px);
+    line-height: 1.08;
+    letter-spacing: -1.3px;
+  }
+
+  .hero-slideshow-section .hero-rating {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    gap: 8px;
+  }
+
+  /* Bring both call-to-action buttons closer and keep them visible */
+  .hero-slideshow-section .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-slideshow-section .hero-button {
+    width: 100%;
+    max-width: 340px;
+    min-height: 48px;
+    padding: 12px 18px;
+  }
+
+  /* Keep the slideshow responsive */
+  .hero-slideshow-section .hero-slideshow-card {
+    aspect-ratio: 4 / 3;
+  }
+}
+

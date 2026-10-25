@@ -1902,9 +1902,8 @@ export default function Categories() {
                   </div>
                   <p className="combo-price-disclaimer">*Final price and availability confirmed by showroom.</p>
                   <div className="combo-gallery-grid">
-                    {[...comboItems.map((item, index) => ({ item, index }))]
-                      .sort((a, b) => Number(removedComboItems.includes(a.index)) - Number(removedComboItems.includes(b.index)) || a.index - b.index)
-                      .map(({ item, index }, displayIndex) => {
+                    {comboItems.map((item, index) => {
+                      const displayIndex = index;
                       const isRemoved = removedComboItems.includes(index);
                       const isBed = index === 0;
                       // Use the selected catalogue product when customised; otherwise use the
@@ -1942,26 +1941,23 @@ export default function Categories() {
                 </div>
               ) : (
                 <>
-              <div className="combo-redesign-heading">
-                <span className="section-badge">SPECIAL COMBO PACKAGE · 21 ITEMS</span>
-                <h3>Build your <span>Home Combo</span></h3>
-                <p>Choose alternatives you like. We’ll confirm availability and final pricing with you.</p>
+              <div className="combo-redesign-heading combo-compact-heading">
+                <h3>Customize <span>your combo</span></h3>
+                <p>Tap an item to change it.</p>
               </div>
 
-              <div className="combo-total-panel combo-sticky-total">
+              <div className="combo-total-panel combo-sticky-total combo-price-summary">
                 <div>
-                  <span className="combo-total-label">Starting package price</span>
-                  <div className="modal-price"><span>₹1,20,000</span><strong>{formatPrice(customizedComboPrice)}</strong></div>
-                  <p className="modal-saving">{comboSavings >= 0 ? `Save ${formatPrice(comboSavings)}*` : `${formatPrice(Math.abs(comboSavings))} above reference price`}</p>
+                  <span className="combo-total-label">COMBO TOTAL</span>
+                  <div className="modal-price"><strong>{formatPrice(customizedComboPrice)}</strong></div>
+                  <p className="modal-saving">{comboSavings >= 0 ? `Save ${formatPrice(comboSavings)}` : `${formatPrice(Math.abs(comboSavings))} above reference`}</p>
                 </div>
-                <span className="combo-price-change">{customizationExtraTotal === 0 ? "Base package" : `+${formatPrice(customizationExtraTotal)} customisation`}</span>
+                <span className="combo-price-change">{21 - removedComboItems.length} of 21 items</span>
               </div>
-              <p className="combo-price-disclaimer">*The total reflects the bed adjustment and confirmed item deductions. Any item without a confirmed included price must be verified by the showroom.</p>
 
               <div className="combo-redesign-list">
-                {[...comboItems.map((item, index) => ({ item, index }))]
-                  .sort((a, b) => Number(removedComboItems.includes(a.index)) - Number(removedComboItems.includes(b.index)) || a.index - b.index)
-                  .map(({ item, index }, displayIndex) => {
+                {comboItems.map((item, index) => {
+                  const displayIndex = index;
                   const isRemoved = removedComboItems.includes(index);
                   const isOpen = activeComboItemIndex === index;
                   const options = optionsFor(index);
@@ -5397,6 +5393,24 @@ export default function Categories() {
           .combo-lightbox { padding:64px 42px 76px !important; }
           .combo-lightbox-photo { max-width:calc(100vw - 84px) !important; max-height:calc(100dvh - 150px) !important; }
         }
+        /* Compact combo customizer: the price scrolls naturally with the list. */
+        .combo-redesign .combo-compact-heading { margin-bottom: 10px !important; }
+        .combo-redesign .combo-compact-heading h3 { margin: 0 0 4px !important; font-size: clamp(22px, 3vw, 30px) !important; }
+        .combo-redesign .combo-compact-heading p { margin: 0 !important; font-size: 12px !important; }
+        .combo-redesign .combo-price-summary { position: relative !important; top: auto !important; z-index: 1 !important; display:flex !important; align-items:center !important; justify-content:space-between !important; gap:12px !important; margin: 10px 0 14px !important; padding: 12px 15px !important; border-radius: 15px !important; box-shadow: 0 4px 14px rgba(18,54,111,.07) !important; }
+        .combo-redesign .combo-price-summary .modal-price { margin: 3px 0 !important; }
+        .combo-redesign .combo-price-summary .modal-price strong { font-size: 25px !important; }
+        .combo-redesign .combo-price-summary .modal-saving { margin: 2px 0 0 !important; font-size: 11px !important; }
+        .combo-redesign .combo-price-summary .combo-price-change { white-space:nowrap !important; font-size:11px !important; }
+        .combo-redesign .combo-redesign-list { gap: 10px !important; }
+        .combo-redesign .combo-line { animation: comboCardEnter .32s ease both; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, opacity .22s ease !important; }
+        .combo-redesign .combo-line:hover { transform: translateY(-2px); }
+        .combo-redesign .combo-line.combo-item-removed { opacity: .7 !important; background: #f7f5ef !important; border-style: dashed !important; }
+        .combo-redesign .combo-line.combo-item-removed .combo-line-copy strong { color:#777 !important; }
+        .combo-redesign .combo-add-item-btn { transition: transform .18s ease, background .18s ease !important; }
+        .combo-redesign .combo-add-item-btn:hover { transform: scale(1.04); }
+        @keyframes comboCardEnter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        @media (prefers-reduced-motion: reduce) { .combo-redesign .combo-line, .combo-redesign .combo-add-item-btn { animation:none !important; transition:none !important; } }
 
 
       `}</style>
