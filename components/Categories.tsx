@@ -1289,6 +1289,10 @@ export default function Categories() {
   const [selectedComboProducts, setSelectedComboProducts] = useState<Record<number, string>>({});
   const [removedComboItems, setRemovedComboItems] = useState<number[]>([]);
   const [comboLightbox, setComboLightbox] = useState<{ images: string[]; index: number; title: string } | null>(null);
+  const [comboProductPreview, setComboProductPreview] = useState<Product | null>(null);
+  const [comboPreviewImageIndex, setComboPreviewImageIndex] = useState(0);
+  const [comboPreviewItemIndex, setComboPreviewItemIndex] = useState<number | null>(null);
+  const [showComboPreviewUpgrades, setShowComboPreviewUpgrades] = useState(false);
   const comboTouchStartX = useMemo(() => ({ value: 0 }), []);
 
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
@@ -1407,6 +1411,11 @@ export default function Categories() {
     const handleAppBack = () => {
       if (comboLightbox) {
         setComboLightbox(null);
+        return;
+      }
+      if (comboProductPreview) {
+        setComboProductPreview(null);
+        setComboPreviewImageIndex(0);
         return;
       }
       if (showCombo && comboView === "customize") {
@@ -2047,10 +2056,13 @@ export default function Categories() {
         // Keep combo alternatives specific to the item being customised.
         // This filter is used only by the combo customiser; the Shop With Us catalogue is unchanged.
         const optionsFor = (index: number) => products.filter((product) => {
+          // Never offer the product already included in the base combo as an upgrade.
+          if (product.id === defaultProductIdByComboIndex[index]) return false;
           if (product.category !== categoryMap[index]) return false;
           const id = product.id.toLowerCase();
           const name = product.name.toLowerCase();
           switch (index) {
+            case 0: return id.startsWith("bed-") || name.startsWith("bed");
             case 5: return id.startsWith("cooler-") || name.startsWith("cooler");
             case 6: return id.startsWith("almira-") || name.startsWith("almira");
             case 8: return id.includes("dressing") || name.includes("dressing") || id.includes("wardrobe") || name.includes("wardrobe");
@@ -2073,16 +2085,75 @@ export default function Categories() {
         return (
           <div className="categories-modal-backdrop combo-backdrop" onClick={() => { setShowCombo(false); setComboView("gallery"); }}>
             <div className="combo-modal combo-customizer-modal combo-redesign" onClick={(event) => event.stopPropagation()}>
-              <button type="button" className="modal-close" aria-label="Close combo customizer" onClick={() => { setShowCombo(false); setComboView("gallery"); }}>×</button>
+              {!comboProductPreview && <button type="button" className="modal-close" aria-label="Close combo customizer" onClick={() => { setShowCombo(false); setComboView("gallery"); }}>×</button>}
               {comboView === "gallery" ? (
                 <div className="combo-gallery-view">
+                  {comboProductPreview ? (
+                    <section className="combo-inline-product-detail" aria-label={`${comboProductPreview.name} details`}>
+                      <button type="button" className="combo-product-preview-close combo-inline-close" aria-label="Back to Home Collection" title="Back to Home Collection" onClick={() => { setComboProductPreview(null); setComboPreviewImageIndex(0); setComboPreviewItemIndex(null); setShowComboPreviewUpgrades(false); }}>×</button>
+                      <div className="combo-inline-product-layout">
+                        <div className="combo-product-preview-gallery">
+                          <div className="combo-product-preview-main-image">
+                            {comboProductPreview.images?.[comboPreviewImageIndex] ? <img src={comboProductPreview.images[comboPreviewImageIndex]} alt={`${comboProductPreview.name} view ${comboPreviewImageIndex + 1}`} /> : <div className="combo-product-preview-no-image">Image coming soon</div>}
+                          </div>
+                          {(comboProductPreview.images?.length ?? 0) > 1 && <div className="combo-product-preview-thumbnails">{comboProductPreview.images?.map((src, imageIndex) => <button key={`${src}-${imageIndex}`} type="button" className={comboPreviewImageIndex === imageIndex ? "active" : ""} onClick={() => setComboPreviewImageIndex(imageIndex)} aria-label={`Show image ${imageIndex + 1}`}><img src={src} alt={`${comboProductPreview.name} thumbnail ${imageIndex + 1}`} /></button>)}</div>}
+                        </div>
+                        <div className="combo-product-preview-info">
+                          <span className="combo-product-preview-category">{categories.find((category) => category.id === comboProductPreview.category)?.name ?? "Home Collection"}</span>
+                          <h3>{comboProductPreview.name}</h3>
+                          <p>Explore product photos from different angles. Please confirm availability, exact specifications and warranty with Arrow City Electronic Hub.</p>
+                          <div className="combo-product-preview-facts"><div><span>Category</span><strong>{categories.find((category) => category.id === comboProductPreview.category)?.name ?? "Home Collection"}</strong></div><div><span>Availability</span><strong>Confirm with showroom</strong></div></div>
+                          {comboPreviewItemIndex !== null && (() => {
+                            const itemIndex = comboPreviewItemIndex;
+                            const baseProduct = products.find((product) => product.id === defaultProductIdByComboIndex[itemIndex]);
+                            const isBedItem = itemIndex === 0;
+                            const isRemoved = removedComboItems.includes(itemIndex);
+                            const upgradeOptions = optionsFor(itemIndex);
+                            const currentProductId = isBedItem ? selectedComboBedId : selectedComboProducts[itemIndex];
+                            return <div className="combo-preview-actions">
+                              <button type="button" className="combo-preview-action combo-preview-upgrade" onClick={() => setShowComboPreviewUpgrades((open) => !open)} aria-expanded={showComboPreviewUpgrades}>{`Upgrade ${comboProductPreview.name}`} <span>{showComboPreviewUpgrades ? "−" : "+"}</span></button>
+                              <button type="button" className="combo-preview-action combo-preview-remove" onClick={() => { setRemovedComboItems((prev) => prev.includes(itemIndex) ? prev.filter((i) => i !== itemIndex) : [...prev, itemIndex]); setShowComboPreviewUpgrades(false); }}>{isRemoved ? `Add ${comboProductPreview.name} back` : `Remove ${comboProductPreview.name}`}</button>
+                              {showComboPreviewUpgrades && <div className="combo-preview-upgrade-options">
+                                {upgradeOptions.length ? upgradeOptions.map((option) => <button type="button" key={option.id} className={`combo-preview-upgrade-option ${currentProductId === option.id ? "selected" : ""}`} onClick={() => {
+                                  if (isBedItem) setSelectedComboBedId(option.id);
+                                  else setSelectedComboProducts((prev) => ({ ...prev, [itemIndex]: option.id }));
+                                  setComboProductPreview(option);
+                                  setComboPreviewImageIndex(0);
+                                  setShowComboPreviewUpgrades(false);
+                                  setRemovedComboItems((prev) => prev.filter((i) => i !== itemIndex));
+                                }}><img src={option.images?.[0] ?? comboItems[itemIndex].image} alt={option.name} /><span>{option.name}</span><small>{currentProductId === option.id ? "Selected ✓" : "Choose upgrade"}</small></button>) : <p>No upgrade options available for this product yet.</p>}
+                                {baseProduct && currentProductId !== baseProduct.id && <button type="button" className="combo-preview-reset-base" onClick={() => { if (isBedItem) setSelectedComboBedId(defaultProductIdByComboIndex[0] ?? "bed-9"); else setSelectedComboProducts((prev) => { const next = { ...prev }; delete next[itemIndex]; return next; }); setComboProductPreview(baseProduct); setComboPreviewImageIndex(defaultImageIndexByComboIndex[itemIndex] ?? 0); setShowComboPreviewUpgrades(false); }}>Restore base {comboItems[itemIndex].name}</button>}
+                              </div>}
+                            </div>;
+                          })()}
+                          {(() => {
+                            const isSofa = comboProductPreview.category === "sofas" || comboProductPreview.id.startsWith("sofa-");
+                            const sofaDetails: Record<string, { style: string; highlight: string; pairing: string; mood: string; description: string; care: string }> = {
+                              "sofa-1": { style: "Relaxed contemporary", highlight: "Comfortable-looking, versatile styling", pairing: "Coordinate with a simple rug, cushions and a coffee table that complements the sofa's appearance.", mood: "Warm and welcoming", description: "A welcoming sofa design that helps create an inviting place to unwind, spend time with family or host guests.", care: "Follow the care guidance for the specific upholstery and finish." },
+                              "sofa-2": { style: "Clean modern", highlight: "Clean lines and easy styling", pairing: "Try neutral cushions and a simple side table for a balanced living-room look.", mood: "Fresh and uncluttered", description: "A neat, modern-looking sofa that can bring a composed finish to the living room without overwhelming the rest of the décor.", care: "Confirm upholstery material and cleaning instructions with the showroom." },
+                              "sofa-3": { style: "Statement living-room style", highlight: "Strong visual presence", pairing: "Keep nearby décor coordinated so the sofa remains the focus of the room.", mood: "Confident and polished", description: "A distinctive sofa option for customers who want the seating area to become a visual centrepiece of the room.", care: "Care requirements depend on the actual upholstery and construction." },
+                              "sofa-4": { style: "Everyday versatile", highlight: "Adaptable appearance", pairing: "Pair with a practical coffee table and complementary curtains or cushions.", mood: "Easy and balanced", description: "A versatile sofa look that can fit naturally into a range of living-room layouts and everyday home settings.", care: "Ask the showroom about suitable cleaning methods for this model." },
+                              "sofa-5": { style: "Elegant lounge look", highlight: "Refined visual appeal", pairing: "Use warm lighting and a restrained colour palette to create a cohesive lounge area.", mood: "Calm and sophisticated", description: "An elegant sofa design that gives the living space a more considered, coordinated appearance for both quiet evenings and visitors.", care: "Please confirm fabric, finish and care instructions for the specific product." },
+                              "sofa-6": { style: "Classic comfort style", highlight: "Timeless, home-friendly look", pairing: "Add cushions in complementary colours and a rug to tie the seating area together.", mood: "Cosy and familiar", description: "A classic-looking sofa that can make the living room feel familiar, comfortable and easy to personalise with décor.", care: "Follow product-specific care advice provided by the showroom." }
+                            };
+                            const sofa = sofaDetails[comboProductPreview.id] ?? { style: "Relaxed contemporary", highlight: "Comfortable-looking, versatile styling", pairing: "Coordinate with a simple rug, cushions and a coffee table that complements the sofa's appearance.", mood: "Warm and welcoming", description: "A welcoming sofa design that helps create an inviting place to unwind, spend time with family or host guests.", care: "Follow the care guidance for the specific upholstery and finish." };
+                            return <section className="product-specifications combo-preview-product-information" aria-label="Product information">
+                              <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5>{isSofa ? "About this sofa" : `About this ${String(categories.find((category) => category.id === comboProductPreview.category)?.name ?? "product").toLowerCase().replace(/s$/, "")}`}</h5><p>A quick guide to the look and how it can complement your home.</p></div>
+                              <div className="product-specifications-highlights"><div><span>Style</span><strong>{isSofa ? sofa.style : "Product-specific design"}</strong><small>Design character</small></div><div><span>Highlight</span><strong>{isSofa ? sofa.highlight : "Confirm with showroom"}</strong><small>Visual appeal</small></div><div><span>Look &amp; feel</span><strong>{isSofa ? sofa.mood : "Home styling"}</strong><small>Overall impression</small></div></div>
+                              <div className="product-specification-group"><h6>Overview</h6><dl><div className="product-specification-row"><dt>Design</dt><dd>{isSofa ? sofa.style : "Confirm product design with showroom"}</dd></div><div className="product-specification-row"><dt>About</dt><dd>{isSofa ? sofa.description : `Explore ${comboProductPreview.name} for your home. Please confirm exact specifications and availability with Arrow City Electronic Hub.`}</dd></div></dl></div>
+                              {expandedFridgeSpecs === comboProductPreview.id && <><div className="product-specification-group"><h6>More details</h6><dl><div className="product-specification-row"><dt>Design style</dt><dd>{isSofa ? sofa.style : "Confirm with showroom"}</dd></div><div className="product-specification-row"><dt>Key highlight</dt><dd>{isSofa ? sofa.highlight : "Confirm from product label"}</dd></div><div className="product-specification-row"><dt>Styling suggestion</dt><dd>{isSofa ? sofa.pairing : "Choose placement and accessories to complement the product and room."}</dd></div><div className="product-specification-row"><dt>Overall look</dt><dd>{isSofa ? sofa.mood : "Confirm with showroom"}</dd></div><div className="product-specification-row"><dt>Care note</dt><dd>{isSofa ? sofa.care : "Follow care guidance for the specific product material and finish."}</dd></div></dl></div><p className="product-specifications-note"><strong>Please note:</strong> Material, dimensions, finish, construction and other technical features should be confirmed with the showroom for the specific product.</p></>}
+                              <button type="button" className="product-specifications-toggle combo-preview-more-toggle" aria-expanded={expandedFridgeSpecs === comboProductPreview.id} onClick={() => setExpandedFridgeSpecs(expandedFridgeSpecs === comboProductPreview.id ? null : comboProductPreview.id)}>{expandedFridgeSpecs === comboProductPreview.id ? "View less information" : "View more information"}<span aria-hidden="true">{expandedFridgeSpecs === comboProductPreview.id ? "−" : "+"}</span></button>
+                            </section>;
+                          })()}
+                        </div>
+                      </div>
+                    </section>
+                  ) : <>
                   <div className="combo-redesign-heading combo-gallery-heading">
                     
                     <h3>Home <span>Collection</span></h3>
                     <p>21 essentials, one considered package.</p>
-                    <div className="combo-gallery-actions">
-                      <button type="button" className="combo-top-customize" onClick={openComboCustomize}><span className="combo-top-customize-icon" aria-hidden="true">✦</span> Customize <span className="combo-top-customize-arrow" aria-hidden="true">↗</span></button>
-                    </div>
+
                   </div>
                   <div className="combo-total-panel combo-gallery-total">
                     <div><span className="combo-total-label">PACKAGE PRICE</span><div className="modal-price"><span>₹1,20,000</span><strong>{formatPrice(customizedComboPrice)}</strong></div><p className="modal-saving">{comboSavings >= 0 ? `Save ${formatPrice(comboSavings)}*` : `${formatPrice(Math.abs(comboSavings))} above reference price`}</p></div>
@@ -2108,9 +2179,17 @@ export default function Categories() {
                         : (selected?.images?.[defaultImageIndex] ?? selected?.images?.[0] ?? item.image);
                       const name = isBed && !isBedCustomized ? "Double Bed" : (chosenProduct?.name ?? item.name);
                       const galleryImages = (selected?.images?.filter(Boolean).length ? selected.images.filter(Boolean) : [image]);
-                      return <article className={`combo-gallery-card ${isRemoved ? "combo-item-removed" : ""}`} key={item.name} style={{ animationDelay: `${Math.min(displayIndex, 10) * 25}ms` }}>
-                        <button type="button" className="combo-gallery-image combo-gallery-image-button" aria-label={`View ${name} images full screen`} onClick={() => setComboLightbox({ images: galleryImages, index: isBed ? (selected?.id === "bed-9" ? 2 : Math.min(2, galleryImages.length - 1)) : Math.min(defaultImageIndexByComboIndex[index] ?? 0, galleryImages.length - 1), title: name })}><img src={image} alt={name} loading="lazy"/><span>{String(displayIndex + 1).padStart(2, "0")}</span><i aria-hidden="true">⤢</i></button>
-                        <div className="combo-gallery-card-copy"><strong>{name}</strong><span>{isRemoved ? "Removed from package" : item.name}</span></div>
+                      const openComboPreview = () => {
+                        const productToPreview = selected ?? defaultProductFor(index);
+                        if (!productToPreview) return;
+                        setComboPreviewImageIndex(isBed ? (productToPreview.id === "bed-9" ? 2 : Math.min(2, galleryImages.length - 1)) : Math.min(defaultImageIndex, galleryImages.length - 1));
+                        setComboPreviewItemIndex(index);
+                        setShowComboPreviewUpgrades(false);
+                        setComboProductPreview(productToPreview);
+                      };
+                      return <article className={`combo-gallery-card ${isRemoved ? "combo-item-removed" : ""}`} key={item.name} style={{ animationDelay: `${Math.min(displayIndex, 10) * 25}ms` }} onClick={openComboPreview} role="button" tabIndex={0} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openComboPreview(); } }} aria-label={`View details for ${name}`}>
+                        <button type="button" className="combo-gallery-image combo-gallery-image-button" aria-label={`View ${name} details`} onClick={(event) => { event.stopPropagation(); openComboPreview(); }}><img src={image} alt={name} loading="lazy"/><span>{String(displayIndex + 1).padStart(2, "0")}</span><i aria-hidden="true">↗</i></button>
+                        <div className="combo-gallery-card-copy"><strong>{name}</strong><span>{isRemoved ? "Removed from package" : item.name}</span><small className="combo-gallery-detail-hint">View product details →</small></div>
                       </article>;
                     })}
                   </div>
@@ -2126,6 +2205,7 @@ export default function Categories() {
                       <span className="combo-whatsapp-arrow" aria-hidden="true">→</span>
                     </a>
                   </div>
+                  </>}
                 </div>
               ) : (
                 <>
@@ -2185,7 +2265,20 @@ export default function Categories() {
                           {options.length ? <div className="combo-option-strip">
                             {options.map((option) => {
                               const isSelected = isBed ? selectedComboBedId === option.id : selectedComboProducts[index] === option.id;
-                              return <button type="button" key={option.id} className={`combo-option-card ${isSelected ? "selected" : ""}`} onClick={() => { if (isBed) setSelectedComboBedId(option.id); else setSelectedComboProducts((prev) => ({ ...prev, [index]: option.id })); }}>
+                              return <button type="button" key={option.id} className={`combo-option-card ${isSelected ? "selected" : ""}`} onClick={() => {
+                                  if (isBed) {
+                                    setSelectedComboBedId((current) => current === option.id ? (defaultProductIdByComboIndex[0] ?? "bed-9") : option.id);
+                                  } else {
+                                    setSelectedComboProducts((prev) => {
+                                      if (prev[index] === option.id) {
+                                        const next = { ...prev };
+                                        delete next[index];
+                                        return next;
+                                      }
+                                      return { ...prev, [index]: option.id };
+                                    });
+                                  }
+                                }}>
                                 <img src={isBed && option.id === "bed-9" ? "/images/products/beds/bed-09-3.jpeg" : (option.images?.[0] ?? item.image)} alt={option.name} loading="lazy" />
                                 <span className="combo-option-name">{option.name}</span>
                                 {option.price > 0 && (
@@ -5601,8 +5694,57 @@ export default function Categories() {
         @keyframes comboCardEnter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
         @media (prefers-reduced-motion: reduce) { .combo-redesign .combo-line, .combo-redesign .combo-add-item-btn { animation:none !important; transition:none !important; } }
 
-
-      `}</style>
+        .combo-gallery-card { cursor:pointer; }
+        .combo-gallery-card:focus-visible { outline:3px solid #fca311; outline-offset:3px; }
+        .combo-gallery-detail-hint { display:block; margin-top:8px; color:#9b793f; font-size:11px; font-weight:700; }
+        .combo-inline-product-detail { position:relative; padding:22px; border:1px solid #e9e1d1; border-radius:22px; background:#fffdfa; color:#24241f; min-height:100%; }
+        
+        .combo-inline-close { position:absolute; z-index:3; top:16px; right:16px; width:38px; height:38px; border:1px solid #e5e0d6; border-radius:50%; background:#fff; color:#283344; font-size:25px; cursor:pointer; box-shadow:0 4px 14px #0001; }
+        .combo-inline-product-layout { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr); gap:30px; align-items:start; }
+        .combo-product-preview-gallery { min-width:0; }
+        .combo-product-preview-main-image { display:flex; align-items:center; justify-content:center; min-height:420px; height:min(68vh,680px); overflow:hidden; border-radius:18px; background:#f2f5fa; }
+        .combo-product-preview-main-image img { width:100%; height:100%; object-fit:contain; }
+        .combo-product-preview-no-image { color:#777; }
+        .combo-product-preview-thumbnails { display:flex; gap:8px; margin-top:10px; overflow-x:auto; }
+        .combo-product-preview-thumbnails button { flex:0 0 78px; height:68px; padding:4px; border:2px solid #dce5f4; border-radius:10px; background:#f5f7fb; cursor:pointer; }
+        .combo-product-preview-thumbnails button.active { border-color:#2d63ed; box-shadow:0 0 0 2px #2d63ed20; }
+        .combo-product-preview-thumbnails img { width:100%; height:100%; object-fit:contain; }
+        .combo-product-preview-info { min-width:0; align-self:start; padding:18px 4px; }
+        .combo-preview-product-information { margin-top:22px; padding-top:18px; border-top:1px solid #e0e7f1; }
+        .combo-preview-product-information .product-specifications-heading h5 { font-size:22px; }
+        .combo-preview-product-information .product-specification-group { margin-top:16px; }
+        .combo-product-preview-category { display:inline-block; padding:6px 10px; border-radius:8px; background:#edf2ff; color:#214a9b; font-size:12px; font-weight:800; }
+        .combo-product-preview-info h3 { margin:16px 0 10px; color:#172f5f; font-size:clamp(24px,3vw,34px); line-height:1.15; }
+        .combo-product-preview-info p { margin:0 0 20px; color:#65748d; font-size:14px; line-height:1.65; }
+        .combo-product-preview-price { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 0; border-top:1px solid #e0e7f1; border-bottom:1px solid #e0e7f1; color:#64748b; font-size:13px; }
+        .combo-product-preview-price strong { color:#153c88; font-size:24px; font-weight:900; }
+        .combo-product-preview-facts { display:grid; gap:9px; margin:16px 0 20px; }
+        .combo-product-preview-facts div { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; padding:10px 12px; border-radius:10px; background:#f5f8fd; font-size:12px; }
+        .combo-product-preview-facts span { color:#77849a; }
+        .combo-product-preview-facts strong { color:#283b5e; text-align:right; }
+        .combo-product-preview-add, .combo-product-preview-back { width:100%; min-height:46px; border-radius:12px; cursor:pointer; font-weight:800; }
+        .combo-product-preview-add { display:flex; align-items:center; justify-content:space-between; padding:0 15px; border:0; background:#fca311; color:#172f5f; }
+        .combo-product-preview-add span { font-size:22px; }
+        .combo-product-preview-back { margin-top:9px; border:1px solid #d7e1f0; background:#fff; color:#254b8b; }
+        .combo-product-preview-add-top { margin: 16px 0 4px; }
+        .combo-preview-actions { display:grid; gap:10px; margin:18px 0 6px; }
+        .combo-preview-action { display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; min-height:46px; padding:12px 14px; border-radius:12px; font-weight:800; cursor:pointer; }
+        .combo-preview-upgrade { background:#fca311; color:#172f5f; border:0; }
+        .combo-preview-upgrade span { font-size:20px; }
+        .combo-preview-remove { background:#fff; color:#8b3434; border:1px solid #e7caca; }
+        .combo-preview-upgrade-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:4px; }
+        .combo-preview-upgrade-option { min-width:0; display:flex; flex-direction:column; gap:7px; text-align:left; padding:8px; border:1px solid #e0e7f1; border-radius:12px; background:#fff; cursor:pointer; }
+        .combo-preview-upgrade-option.selected { border-color:#fca311; box-shadow:0 0 0 2px #fca31133; }
+        .combo-preview-upgrade-option img { width:100%; height:100px; object-fit:contain; background:#f5f7fb; border-radius:8px; }
+        .combo-preview-upgrade-option span { font-size:12px; font-weight:800; color:#243b60; }
+        .combo-preview-upgrade-option small { color:#9b793f; font-size:10px; }
+        .combo-preview-reset-base { grid-column:1/-1; padding:10px; border:1px dashed #c9b58d; border-radius:10px; background:#fffaf0; color:#725629; font-weight:750; cursor:pointer; }
+        .combo-preview-more-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding:12px 14px; border:1px solid #dce5f4; border-radius:11px; background:#f5f8fd; color:#24477f; font-weight:800; cursor:pointer; }
+        .combo-preview-product-information .product-specification-group { margin-top:14px; }
+        @media(max-width:650px) { .combo-product-preview-add-top { position:sticky; bottom:8px; z-index:4; box-shadow:0 6px 20px #0002; } }
+        @media(max-width:650px) { .combo-inline-product-detail { padding:14px; border-radius:18px; } .combo-inline-product-layout { display:flex; flex-direction:column; gap:12px; } .combo-inline-product-layout .combo-product-preview-gallery, .combo-inline-product-layout .combo-product-preview-info { width:100%; } .combo-product-preview-main-image { height:42vh; min-height:260px; max-height:430px; } .combo-product-preview-info { padding:12px 2px 4px; } .combo-product-preview-info h3 { margin-top:12px; font-size:26px; padding-right:38px; } .combo-product-preview-info p { margin-bottom:14px; font-size:13px; } .combo-product-preview-price strong { font-size:22px; } .combo-product-preview-facts { margin:12px 0 14px; gap:7px; } .combo-product-preview-facts div { padding:8px 10px; } .combo-product-preview-thumbnails button { flex-basis:68px; height:58px; } }
+      `}
+</style>
     </>
   );
 }
