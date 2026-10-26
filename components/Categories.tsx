@@ -477,7 +477,7 @@ const products: Product[] = [
   // Each refrigerator has one main image and three additional views.
   {
     id: "fridge-1",
-    name: "Refrigerator 01",
+    name: "Samsung Refrigerator",
     category: "refrigerators",
     price: 24999,
     images: [
@@ -489,7 +489,7 @@ const products: Product[] = [
   },
   {
     id: "fridge-2",
-    name: "Refrigerator 02",
+    name: "Godrej Refrigerator",
     category: "refrigerators",
     price: 25499,
     images: [
@@ -501,7 +501,7 @@ const products: Product[] = [
   },
   {
     id: "fridge-3",
-    name: "Refrigerator 03",
+    name: "Liebherr Refrigerator",
     category: "refrigerators",
     price: 31999,
     images: [
@@ -513,7 +513,7 @@ const products: Product[] = [
   },
   {
     id: "fridge-4",
-    name: "Refrigerator 04",
+    name: "Godrej Refrigerator 02",
     category: "refrigerators",
     price: 24499,
     images: [
@@ -537,7 +537,7 @@ const products: Product[] = [
   },
   {
     id: "fridge-6",
-    name: "Refrigerator 06",
+    name: "Kelvinator Refrigerator",
     category: "refrigerators",
     price: 17499,
     images: [
@@ -549,7 +549,7 @@ const products: Product[] = [
   },
   {
     id: "fridge-7",
-    name: "Refrigerator 07",
+    name: "Kelvinator Refrigerator 02",
     category: "refrigerators",
     price: 17299,
     images: [
@@ -564,7 +564,7 @@ const products: Product[] = [
   // Each washing machine has one main image and two additional views.
   {
     id: "washing-1",
-    name: "Washing Machine 01",
+    name: "Samsung Washing Machine",
     category: "washing-machines",
     price: 11999,
     images: [
@@ -575,7 +575,7 @@ const products: Product[] = [
   },
   {
     id: "washing-2",
-    name: "Washing Machine 02",
+    name: "Godrej Washing Machine",
     category: "washing-machines",
     price: 15799,
     images: [
@@ -586,7 +586,7 @@ const products: Product[] = [
   },
   {
     id: "washing-3",
-    name: "Washing Machine 03",
+    name: "Godrej Washing Machine 02",
     category: "washing-machines",
     price: 14799,
     images: [
@@ -597,7 +597,7 @@ const products: Product[] = [
   },
   {
     id: "washing-4",
-    name: "Washing Machine 04",
+    name: "TECHCON Washing Machine",
     category: "washing-machines",
     price: 14499,
     images: [
@@ -608,7 +608,7 @@ const products: Product[] = [
   },
   {
     id: "washing-5",
-    name: "Washing Machine 05",
+    name: "TECHCON Washing Machine 02",
     category: "washing-machines",
     price: 15499,
     images: [
@@ -619,7 +619,7 @@ const products: Product[] = [
   },
   {
     id: "washing-6",
-    name: "Washing Machine 06",
+    name: "TECHCON Washing Machine 03",
     category: "washing-machines",
     price: 14999,
     images: [
@@ -630,7 +630,7 @@ const products: Product[] = [
   },
   {
     id: "washing-7",
-    name: "Washing Machine 07",
+    name: "TECHCON Washing Machine 04",
     category: "washing-machines",
     price: 11999,
     images: [
@@ -641,7 +641,7 @@ const products: Product[] = [
   },
   {
     id: "washing-8",
-    name: "Washing Machine 08",
+    name: "Vestar Washing Machine",
     category: "washing-machines",
     price: 15499,
     images: [
@@ -663,7 +663,7 @@ const products: Product[] = [
   },
   {
     id: "washing-10",
-    name: "Washing Machine 10",
+    name: "Samsung Washing Machine 02",
     category: "washing-machines",
     price: 20999,
     images: [
@@ -677,7 +677,7 @@ const products: Product[] = [
   // Each cooler has one main image and two additional views.
   {
     id: "cooler-1",
-    name: "Cooler 01",
+    name: "Aster Cooler",
     category: "coolers-ac",
     price: 4499,
     images: [
@@ -688,7 +688,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-2",
-    name: "Cooler 02",
+    name: "Pahal Cooler",
     category: "coolers-ac",
     price: 5499,
     images: [
@@ -699,7 +699,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-3",
-    name: "Cooler 03",
+    name: "Supreme Gold Cooler",
     category: "coolers-ac",
     price: 5499,
     images: [
@@ -710,7 +710,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-4",
-    name: "Cooler 04",
+    name: "Iris Cooler",
     category: "coolers-ac",
     price: 4499,
     images: [
@@ -721,7 +721,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-5",
-    name: "Cooler 05",
+    name: "1 Double Cooler",
     category: "coolers-ac",
     price: 6999,
     images: [
@@ -732,7 +732,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-6",
-    name: "Cooler 06",
+    name: "Commercial Cooler",
     category: "coolers-ac",
     price: 6499,
     images: [
@@ -743,7 +743,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-7",
-    name: "Cooler 07",
+    name: "Desert Cooler",
     category: "coolers-ac",
     price: 6999,
     images: [
@@ -754,7 +754,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-8",
-    name: "Cooler 08",
+    name: "Desert Cooler 2",
     category: "coolers-ac",
     price: 8999,
     images: [
@@ -921,7 +921,7 @@ const products: Product[] = [
   // NEW COOLERS — 3 products, 1 main image + 1 additional image each.
   {
     id: "cooler-9",
-    name: "Cooler 09",
+    name: "Victory Cooler",
     category: "coolers-ac",
     price: 11999,
     images: [
@@ -931,7 +931,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-10",
-    name: "Cooler 10",
+    name: "Edge Snowchill Cooler",
     category: "coolers-ac",
     price: 13499,
     images: [
@@ -941,7 +941,7 @@ const products: Product[] = [
   },
   {
     id: "cooler-11",
-    name: "Cooler 11",
+    name: "Godrej Cooler",
     category: "coolers-ac",
     price: 12499,
     images: [
@@ -953,7 +953,7 @@ const products: Product[] = [
   // NEW HEATERS — added to Heaters & Geysers.
   {
     id: "heater-1",
-    name: "Heater 01",
+    name: "Usha Room Heater",
     category: "heaters-geysers",
     price: 1499,
     images: [
@@ -964,7 +964,7 @@ const products: Product[] = [
   },
   {
     id: "heater-2",
-    name: "Heater 02",
+    name: "Lazer Room Heater",
     category: "heaters-geysers",
     price: 1349,
     images: [
@@ -976,7 +976,7 @@ const products: Product[] = [
   // GEYSERS — files are in public/images/products/heaters/.
   {
     id: "geyser-1",
-    name: "Geyser 01",
+    name: "Singer 15L Water Geyser (Electric)",
     category: "heaters-geysers",
     price: 8199,
     images: [
@@ -987,7 +987,7 @@ const products: Product[] = [
   },
   {
     id: "geyser-2",
-    name: "Geyser 02",
+    name: "Hyjet 6L Water Geyser (Gas)",
     category: "heaters-geysers",
     price: 4499,
     images: [
@@ -998,7 +998,7 @@ const products: Product[] = [
   },
   {
     id: "geyser-3",
-    name: "Geyser 03",
+    name: "Hindware 6L Water Geyser (Gas)",
     category: "heaters-geysers",
     price: 4499,
     images: [
@@ -1009,7 +1009,7 @@ const products: Product[] = [
   },
   {
     id: "geyser-4",
-    name: "Geyser 04",
+    name: "Singer 25L Water Geyser (Electric)",
     category: "heaters-geysers",
     price: 8199,
     images: [
@@ -1020,7 +1020,7 @@ const products: Product[] = [
   },
   {
     id: "geyser-5",
-    name: "Geyser 05",
+    name: "Maharaja 3L Water Geyser (Electric)",
     category: "heaters-geysers",
     price: 3199,
     images: [
@@ -1294,6 +1294,7 @@ export default function Categories() {
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
   const [activeDetailImage, setActiveDetailImage] = useState(0);
+  const [expandedFridgeSpecs, setExpandedFridgeSpecs] = useState<string | null>(null);
 
   const selectedCategoryData = categories.find(
     (category) => category.id === selectedCategory
@@ -1308,6 +1309,15 @@ export default function Categories() {
   }, [selectedCategory]);
 
   const selectedProduct = products.find((product) => product.id === selectedProductId);
+
+  // Automatically bring every opened product's detail panel into view.
+  useEffect(() => {
+    if (!selectedProductId) return;
+    const frame = window.requestAnimationFrame(() => {
+      document.querySelector(".product-detail-view")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [selectedProductId]);
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
@@ -1717,6 +1727,161 @@ export default function Categories() {
                       >
                         <span>Add to Cart</span><span className="add-cart-plus">+</span>
                       </button>
+                      {(() => {
+                        const bedDetails: Record<string, { style: string; description: string; highlight: string; pairing: string; mood: string }> = {
+                          "bed-1": { style: "Elegant & timeless", description: "A graceful bed design that gives the bedroom a welcoming, well-finished look. Its versatile appearance works with a range of décor styles.", highlight: "A balanced, classic look", pairing: "Coordinate with simple bedside tables and soft neutral bedding.", mood: "Calm and inviting" },
+                          "bed-2": { style: "Bold & premium", description: "A statement-making design for customers who want their bed to stand out as a key feature of the bedroom.", highlight: "Distinctive visual presence", pairing: "Pair with coordinated furniture and uncluttered décor to let the design stand out.", mood: "Rich and refined" },
+                          "bed-3": { style: "Modern & minimal", description: "A contemporary option for a neat, streamlined bedroom look, suited to interiors that favour simplicity and clean styling.", highlight: "Contemporary styling", pairing: "Works well with clean colour palettes and modern accessories.", mood: "Fresh and uncluttered" },
+                          "bed-4": { style: "Simple & versatile", description: "A practical-looking design that can fit naturally into different bedroom themes without overpowering the space.", highlight: "Easy to style", pairing: "Try patterned bedding for character or solid colours for a quieter look.", mood: "Relaxed and adaptable" },
+                          "bed-5": { style: "Classic & graceful", description: "A timeless-looking centrepiece for a bedroom, bringing a sense of character and a thoughtfully styled finish to the space.", highlight: "Timeless character", pairing: "Complements classic décor, warm lighting and coordinated furnishings.", mood: "Warm and elegant" },
+                          "bed-6": { style: "Contemporary comfort", description: "A welcoming design for customers looking to create a bedroom that feels composed, comfortable and visually coordinated.", highlight: "Welcoming appearance", pairing: "Style with layered bedding and a matching bedside unit.", mood: "Soft and balanced" },
+                          "bed-7": { style: "Premium statement", description: "Designed to draw attention in the room, this bed offers a distinctive look for a more polished bedroom arrangement.", highlight: "Eye-catching design", pairing: "Keep surrounding décor coordinated for a showroom-inspired finish.", mood: "Confident and polished" },
+                          "bed-8": { style: "Clean & compact-looking", description: "A neat-looking option for customers who prefer a straightforward bedroom style that is easy to coordinate with existing décor.", highlight: "Simple visual style", pairing: "Use light bedding and minimal accessories for an airy appearance.", mood: "Light and uncomplicated" },
+                          "bed-9": { style: "Understated elegance", description: "An understated design that brings a composed, tidy look to the bedroom and leaves room for personal styling through bedding and décor.", highlight: "Subtle, versatile appeal", pairing: "Pairs naturally with coordinated linens and restrained décor accents.", mood: "Quiet and sophisticated" },
+                        };
+                        const tvDetails: Record<string, { title: string; summary: string; highlights: string[]; rows: string[][] }> = {
+                          "tv-1": { title: "Panasonic 32-inch HD Smart LED TV", summary: "A compact smart TV option for bedrooms and smaller living spaces, with picture processing and everyday entertainment features.", highlights: ["HD picture processing", "20W audio output", "Slim bezel-less design"], rows: [["Brand", "Panasonic"], ["Model", "TH-32PS550DX"], ["Screen size", "32 inch"], ["Picture", "HD resolution with Vivid Digital Pro processing"], ["Audio", "20W sound output, Dolby Digital and Audio Booster Plus"], ["Connectivity", "Multiple HDMI and USB ports"]] },
+                          "tv-2": { title: "Samsung 43-inch Smart TV", summary: "Samsung 43-inch smart TV options range from everyday displays to 4K and QLED models. Confirm the exact model shown in the showroom for precise features.", highlights: ["43-inch screen class", "Smart TV options", "Model-specific display and sound"], rows: [["Brand", "Samsung"], ["Screen size", "43 inch"], ["Available model information", "Crystal 4K UHD (UA43U8600FULXL) or Vision AI QLED (QA43QEF1AULXL) as provided"], ["Crystal 4K features", "Crystal Processor 4K and Tizen OS"], ["QLED features", "Quantum Dot colour and 100% colour volume"], ["Connectivity", "Multiple HDMI and USB ports; confirm exact model"]] },
+                          "tv-3": { title: "T-Series 50-inch Smart LED TV", summary: "A large-screen entertainment option for family viewing, with 4K UHD variants and smart-platform features depending on the exact model.", highlights: ["50-inch screen class", "4K UHD variants", "Built-in 20W audio on listed variants"], rows: [["Brand", "T-Series"], ["Screen size", "50 inch"], ["Resolution", "4K UHD (3840 × 2160) on listed variants"], ["HDR", "HDR10 support on listed variants"], ["Audio", "20W built-in speakers on listed variants"], ["Connectivity", "HDMI, USB and Bluetooth availability depends on model"]] },
+                          "tv-4": { title: "Samsung 32-inch HD Ready Smart TV", summary: "A practical size for bedrooms and compact rooms, with smart streaming and everyday viewing features on supported models.", highlights: ["32-inch screen class", "HD Ready options", "Smart streaming"], rows: [["Brand", "Samsung"], ["Screen size", "32 inch"], ["Resolution", "HD Ready (1366 × 768) on listed models"], ["Refresh rate", "60Hz on listed models"], ["Audio", "20W output with Dolby Digital Plus and Adaptive Sound on listed models"], ["Smart platform", "Tizen OS on listed models"]] },
+                          "tv-5": { title: "Panasonic 42-inch TV", summary: "A mid-size television option. Features differ substantially between Panasonic OLED and LED models, so confirm the exact model before purchase.", highlights: ["42-inch screen class", "Model-dependent display technology", "Entertainment and gaming options vary"], rows: [["Brand", "Panasonic"], ["Screen size", "42 inch as listed"], ["Model examples supplied", "Z90 / Z90B OLED"], ["Display", "4K OLED on the listed Z90 / Z90B example"], ["Gaming", "Up to 144Hz and HDMI 2.1 on the listed premium example"], ["Important", "Confirm exact model and specifications with the showroom"]] },
+                          "tv-6": { title: "Samsung 50-inch Smart TV", summary: "A large-screen Samsung TV range with Crystal UHD and higher-end QLED options, depending on the exact model.", highlights: ["50-inch screen class", "4K smart TV options", "Model-dependent picture enhancements"], rows: [["Brand", "Samsung"], ["Screen size", "50 inch"], ["Model examples supplied", "UA50DUE70BKLXL, UA50U8500HULXL, QA50QN70HAULXL"], ["Picture", "Crystal 4K or Neo QLED features depend on model"], ["Smart features", "Tizen and Vision AI features vary by model"], ["Important", "Confirm exact model before relying on model-specific specifications"]] },
+                        };
+                        if (selectedProduct.category === "coolers-ac") {
+                          const isCooler = selectedProduct.id.startsWith("cooler-");
+                          const coolerBrands: Record<string, string> = { "cooler-1": "Aster", "cooler-2": "Pahal", "cooler-3": "Supreme Gold", "cooler-4": "Iris", "cooler-5": "1 Double", "cooler-6": "Commercial", "cooler-7": "Desert", "cooler-8": "Desert", "cooler-9": "Victory", "cooler-10": "Edge Snowchill", "cooler-11": "Godrej" };
+                          const brand = coolerBrands[selectedProduct.id] || "Confirm from product image/label";
+                          const kind = isCooler ? "Air cooler" : "Air conditioner";
+                          const rows = [["Product type", kind], ["Brand", brand], ["Product name", selectedProduct.name], ["Model number", "Confirm from product label"], ["Cooling capacity", "Not provided in the available product data"], [isCooler ? "Water tank capacity" : "Energy rating", "Confirm from product label"], [isCooler ? "Fan speed" : "Inverter type", "Confirm from product label"], ["Power consumption", "Confirm from product label"], ["Warranty", "Confirm with showroom"]];
+                          const isExpanded = expandedFridgeSpecs === selectedProduct.id;
+                          return (
+                            <section className="product-specifications" aria-label={`${selectedProduct.name} details`}>
+                              <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5>{isCooler ? "Cooler Details" : "Air Conditioner Details"}</h5><p>{isCooler ? `${brand === "Pahal" ? "Pahal cooler for home cooling." : "Air cooler for home cooling."} Exact model and technical specifications should be confirmed from the product label.` : "Air conditioner for home cooling. Confirm the exact brand and model from the product image or unit label before publishing model-specific specifications."}</p></div>
+                              <div className="product-specifications-highlights">{[["Product type", kind], ["Brand", brand], ["Specifications", "Model-specific"]].map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong><small>Product overview</small></div>)}</div>
+                              <div className="product-specification-group"><h6>General</h6><dl>{rows.slice(0, 3).map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+                              {isExpanded && <div className="product-specification-group"><h6>More details</h6><dl>{rows.slice(3).map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>}
+                              <button type="button" className="product-specifications-toggle" aria-expanded={isExpanded} onClick={() => setExpandedFridgeSpecs(isExpanded ? null : selectedProduct.id)}>{isExpanded ? "Show less" : "View more details"}<span aria-hidden="true">{isExpanded ? "−" : "+"}</span></button>
+                            </section>
+                          );
+                        }
+                        if (selectedProduct.category === "smart-tv") {
+                          const tv = tvDetails[selectedProduct.id];
+                          if (tv) {
+                            const isExpanded = expandedFridgeSpecs === selectedProduct.id;
+                            return <section className="product-specifications" aria-labelledby="product-specifications-title">
+                              <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5 id="product-specifications-title">{tv.title}</h5><p>{tv.summary}</p></div>
+                              <div className="product-specifications-highlights">{tv.highlights.map((highlight) => <div key={highlight}><span>Feature</span><strong>{highlight}</strong><small>Model-dependent where noted</small></div>)}</div>
+                              <div className="product-specification-group"><h6>General</h6><dl>{tv.rows.slice(0, 3).map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+                              {isExpanded && <div className="product-specification-extra"><div className="product-specification-group"><h6>Display, audio & connectivity</h6><dl>{tv.rows.slice(3).map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div><p className="product-specifications-note"><strong>Please note:</strong> The provided source lists multiple models for some screen sizes. Confirm the exact model and its features with the showroom. No online prices are included here.</p></div>}
+                              <button type="button" className="product-specifications-toggle" aria-expanded={isExpanded} onClick={() => setExpandedFridgeSpecs(isExpanded ? null : selectedProduct.id)}>{isExpanded ? "Show less" : "View more details"}<span aria-hidden="true">{isExpanded ? "−" : "+"}</span></button>
+                            </section>;
+                          }
+                        }
+                        if (selectedProduct.category === "beds") {
+                          const bed = bedDetails[selectedProduct.id] || { style: "Versatile bedroom style", description: "A thoughtfully styled bed that can help create a welcoming bedroom and coordinate with a variety of interior looks.", highlight: "Versatile appearance", pairing: "Choose bedding and bedside furniture that complement its look.", mood: "Welcoming and balanced" };
+                          const isExpanded = expandedFridgeSpecs === selectedProduct.id;
+                          const bedRows = [["Design style", bed.style], ["Visual highlight", bed.highlight], ["Styling suggestion", bed.pairing], ["Bedroom feel", bed.mood], ["Care note", "Follow the care instructions supplied with the product; confirm material and care details with the showroom."]];
+                          return <section className="product-specifications" aria-labelledby="product-specifications-title">
+                            <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5 id="product-specifications-title">About this bed</h5><p>A closer look at its style and how to coordinate it with your bedroom.</p></div>
+                            <div className="product-specifications-highlights"><div><span>Design</span><strong>{bed.style}</strong><small>Style description</small></div><div><span>Highlight</span><strong>{bed.highlight}</strong><small>Visual appeal</small></div><div><span>Look & feel</span><strong>{bed.mood}</strong><small>Bedroom styling</small></div></div>
+                            <div className="product-specification-group"><h6>Overview</h6><dl><div className="product-specification-row"><dt>Style</dt><dd>{bed.style}</dd></div><div className="product-specification-row"><dt>About</dt><dd>{bed.description}</dd></div></dl></div>
+                            {isExpanded && <div className="product-specification-extra"><div className="product-specification-group"><h6>Styling details</h6><dl>{bedRows.map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div><p className="product-specifications-note"><strong>Please note:</strong> Material, dimensions, storage, mattress compatibility and other technical features should be confirmed with the showroom for the specific bed.</p></div>}
+                            <button type="button" className="product-specifications-toggle" aria-expanded={isExpanded} onClick={() => setExpandedFridgeSpecs(isExpanded ? null : selectedProduct.id)}>{isExpanded ? "Show less" : "View more details"}<span aria-hidden="true">{isExpanded ? "−" : "+"}</span></button>
+                          </section>;
+                        }
+                        const furnitureDetails: Record<string, { style: string; description: string; highlight: string; pairing: string; mood: string; care: string }> = {
+                          "sofa-1": { style: "Relaxed contemporary", description: "A welcoming sofa design that helps create an inviting place to unwind, spend time with family or host guests.", highlight: "Comfortable-looking, versatile styling", pairing: "Coordinate with a simple rug, cushions and a coffee table that complements the sofa's appearance.", mood: "Warm and welcoming", care: "Follow the care guidance for the specific upholstery and finish." },
+                          "sofa-2": { style: "Clean modern", description: "A neat, modern-looking sofa that can bring a composed finish to the living room without overwhelming the rest of the décor.", highlight: "Clean lines and easy styling", pairing: "Try neutral cushions and a simple side table for a balanced living-room look.", mood: "Fresh and uncluttered", care: "Confirm upholstery material and cleaning instructions with the showroom." },
+                          "sofa-3": { style: "Statement living-room style", description: "A distinctive sofa option for customers who want the seating area to become a visual centrepiece of the room.", highlight: "Strong visual presence", pairing: "Keep nearby décor coordinated so the sofa remains the focus of the room.", mood: "Confident and polished", care: "Care requirements depend on the actual upholstery and construction." },
+                          "sofa-4": { style: "Everyday versatile", description: "A versatile sofa look that can fit naturally into a range of living-room layouts and everyday home settings.", highlight: "Adaptable appearance", pairing: "Pair with a practical coffee table and complementary curtains or cushions.", mood: "Easy and balanced", care: "Ask the showroom about suitable cleaning methods for this model." },
+                          "sofa-5": { style: "Elegant lounge look", description: "An elegant sofa design that gives the living space a more considered, coordinated appearance for both quiet evenings and visitors.", highlight: "Refined visual appeal", pairing: "Use warm lighting and a restrained colour palette to create a cohesive lounge area.", mood: "Calm and sophisticated", care: "Please confirm fabric, finish and care instructions for the specific product." },
+                          "sofa-6": { style: "Classic comfort style", description: "A classic-looking sofa that can make the living room feel familiar, comfortable and easy to personalise with décor.", highlight: "Timeless, home-friendly look", pairing: "Add cushions in complementary colours and a rug to tie the seating area together.", mood: "Cosy and familiar", care: "Follow product-specific care advice provided by the showroom." },
+                          "almira-1": { style: "Elegant storage", description: "A stylish almira design that can help keep everyday belongings organised while adding a finished look to the room.", highlight: "Storage with visual appeal", pairing: "Position alongside coordinated bedroom furniture and keep the surrounding area uncluttered.", mood: "Neat and composed", care: "Confirm material, internal layout and care instructions with the showroom." },
+                          "almira-2": { style: "Modern statement", description: "A distinctive almira look for customers who want practical storage to complement the overall bedroom décor.", highlight: "Distinctive room presence", pairing: "Coordinate its appearance with the bed, bedside units and room colours.", mood: "Polished and coordinated", care: "Storage configuration and finish should be confirmed for this specific item." },
+                          "almira-3": { style: "Premium bedroom styling", description: "A visually striking storage option that can give a bedroom a more coordinated and thoughtfully furnished appearance.", highlight: "Premium-looking design", pairing: "Pair with simple bedding and matching accents to keep the room visually balanced.", mood: "Refined and organised", care: "Ask the showroom to confirm material and recommended cleaning method." },
+                          "almira-4": { style: "Simple and versatile", description: "A versatile almira design suited to a range of bedroom styles, helping bring everyday storage into the room's overall look.", highlight: "Easy to coordinate", pairing: "Choose bedding and accessories that complement its visible colour and finish.", mood: "Practical and balanced", care: "Confirm dimensions and storage layout before purchase." },
+                          "almira-5": { style: "Compact-looking elegance", description: "A neat-looking storage choice for customers who prefer a straightforward, easy-to-coordinate bedroom arrangement.", highlight: "Understated appearance", pairing: "Keep nearby décor light and coordinated for a tidy overall effect.", mood: "Light and uncluttered", care: "Please check exact dimensions and finish with the showroom." },
+                          "almira-6": { style: "Contemporary storage", description: "A contemporary almira style that brings a clean, organised feel to the bedroom while complementing modern furnishings.", highlight: "Modern visual style", pairing: "Coordinate with contemporary bed frames and simple room accessories.", mood: "Fresh and orderly", care: "Internal fittings and material details vary by product and should be confirmed." },
+                          "wardrobe-1": { style: "Classic wardrobe look", description: "A practical-looking wardrobe design that helps bring a tidy, organised appearance to the bedroom and fits easily into everyday home styling.", highlight: "Organised, timeless look", pairing: "Coordinate with the bed and other storage furniture for a unified bedroom.", mood: "Neat and familiar", care: "Confirm internal compartments, material and dimensions with the showroom." },
+                          "wardrobe-2": { style: "Modern wardrobe style", description: "A modern-looking wardrobe that can complement a contemporary bedroom and help keep clothing and essentials neatly arranged.", highlight: "Clean and contemporary", pairing: "Pair with simple furniture and matching room colours for a cohesive finish.", mood: "Orderly and modern", care: "Check the specific storage layout and care requirements before purchase." },
+                          "wardrobe-3": { style: "Statement storage", description: "A wardrobe design with a more noticeable presence, suited to customers who want storage to feel like part of the room's décor.", highlight: "Distinctive visual character", pairing: "Keep surrounding furnishings coordinated to balance the wardrobe's appearance.", mood: "Structured and polished", care: "Please confirm dimensions, internal layout and finish with the showroom." },
+                          "table-1": { style: "Versatile home table", description: "A versatile table design that can serve as a useful surface in the home while complementing the surrounding furniture.", highlight: "Everyday versatility", pairing: "Style with only a few accessories so the table remains practical and uncluttered.", mood: "Simple and functional", care: "Confirm material, dimensions and suitable cleaning method for this item." },
+                          "table-2": { style: "Minimal and modern", description: "A clean-looking table for customers who prefer simple furniture that can blend into different room arrangements.", highlight: "Minimal visual style", pairing: "Works with coordinated seating and understated décor accents.", mood: "Light and neat", care: "Product-specific material and care details should be confirmed with the showroom." },
+                          "table-3": { style: "Decorative focal point", description: "A table design that can add character to a room while providing a convenient surface for everyday use or display.", highlight: "Decorative yet versatile", pairing: "Pair with complementary furniture and avoid overcrowding the surface.", mood: "Balanced and welcoming", care: "Ask the showroom to confirm the material and maintenance guidance." },
+                        };
+                        if (["sofas", "almira-wardrobes", "tables"].includes(selectedProduct.category)) {
+                          const item = furnitureDetails[selectedProduct.id];
+                          if (item) {
+                            const isExpanded = expandedFridgeSpecs === selectedProduct.id;
+                            const categoryHeading = selectedProduct.category === "sofas" ? "About this sofa" : selectedProduct.category === "tables" ? "About this table" : selectedProduct.id.startsWith("wardrobe-") ? "About this wardrobe" : "About this almira";
+                            const rows = [["Design style", item.style], ["Key highlight", item.highlight], ["Styling suggestion", item.pairing], ["Overall look", item.mood], ["Care note", item.care]];
+                            return <section className="product-specifications" aria-labelledby="product-specifications-title">
+                              <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5 id="product-specifications-title">{categoryHeading}</h5><p>A quick guide to the look and how it can complement your home.</p></div>
+                              <div className="product-specifications-highlights"><div><span>Style</span><strong>{item.style}</strong><small>Design character</small></div><div><span>Highlight</span><strong>{item.highlight}</strong><small>Visual appeal</small></div><div><span>Look & feel</span><strong>{item.mood}</strong><small>Home styling</small></div></div>
+                              <div className="product-specification-group"><h6>Overview</h6><dl><div className="product-specification-row"><dt>Design</dt><dd>{item.style}</dd></div><div className="product-specification-row"><dt>About</dt><dd>{item.description}</dd></div></dl></div>
+                              {isExpanded && <div className="product-specification-extra"><div className="product-specification-group"><h6>More details</h6><dl>{rows.map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div><p className="product-specifications-note"><strong>Please note:</strong> Material, dimensions, finish, construction and other technical features should be confirmed with the showroom for the specific product.</p></div>}
+                              <button type="button" className="product-specifications-toggle" aria-expanded={isExpanded} onClick={() => setExpandedFridgeSpecs(isExpanded ? null : selectedProduct.id)}>{isExpanded ? "Show less" : "View more details"}<span aria-hidden="true">{isExpanded ? "−" : "+"}</span></button>
+                            </section>;
+                          }
+                        }
+                        const heaterGeyserDetails: Record<string, { kind: string; summary: string; highlight: string; use: string; rows: string[][] }> = {
+                          "heater-1": { kind: "Room heater", summary: "Usha room heater for adding warmth to your indoor space during colder days.", highlight: "Seasonal indoor warmth", use: "Place and operate according to the manufacturer's safety and clearance instructions.", rows: [["Brand", "Usha"], ["Product type", "Room heater"], ["Best suited for", "Indoor seasonal heating"], ["Safety note", "Keep clear of curtains, bedding and other flammable materials; follow the product manual." ]] },
+                          "heater-2": { kind: "Room heater", summary: "Lazer room heater, a seasonal home-heating option for cooler weather.", highlight: "Everyday winter comfort", use: "Use on a stable surface and follow the manufacturer's ventilation and safety guidance.", rows: [["Brand", "Lazer"], ["Product type", "Room heater"], ["Best suited for", "Indoor seasonal heating"], ["Safety note", "Do not cover the heater; maintain the clearances stated in the manual." ]] },
+                          "geyser-1": { kind: "Electric water geyser", summary: "Singer electric water geyser with a stated 15-litre capacity for everyday hot-water needs.", highlight: "15 L capacity", use: "Confirm installation, pressure compatibility and electrical safety requirements with a qualified installer.", rows: [["Brand", "Singer"], ["Type", "Electric water geyser"], ["Capacity", "15 L"], ["Power", "2000 W"], ["Installation", "Qualified installation recommended; verify the product label and manual." ]] },
+                          "geyser-2": { kind: "Gas water geyser", summary: "Hyjet gas water geyser with a stated 6-litre capacity.", highlight: "6 L capacity", use: "Gas appliances require correct ventilation and professional installation; follow the manufacturer's instructions.", rows: [["Brand", "Hyjet"], ["Type", "Gas water geyser"], ["Capacity", "6 L"], ["Installation and ventilation", "Use a qualified installer and follow all ventilation and gas-safety requirements." ]] },
+                          "geyser-3": { kind: "Gas water geyser", summary: "Hindware gas water geyser with a stated 6-litre capacity for hot-water use.", highlight: "6 L capacity", use: "Ensure professional installation and suitable ventilation as directed by the manufacturer.", rows: [["Brand", "Hindware"], ["Type", "Gas water geyser"], ["Capacity", "6 L"], ["Installation and ventilation", "Use a qualified installer and follow all ventilation and gas-safety requirements." ]] },
+                          "geyser-4": { kind: "Electric water geyser", summary: "Singer electric water geyser with a stated 25-litre capacity and 3000 W power rating.", highlight: "25 L · 3000 W", use: "Confirm the electrical circuit, installation location and pressure requirements with a qualified installer.", rows: [["Brand", "Singer"], ["Type", "Electric water geyser"], ["Capacity", "25 L"], ["Power", "3000 W"], ["Installation", "Qualified installation recommended; verify the product label and manual." ]] },
+                          "geyser-5": { kind: "Electric water geyser", summary: "Maharaja electric water geyser with a stated 3-litre capacity and 2500 W power rating.", highlight: "3 L · 2500 W", use: "Check the intended use, electrical requirements and installation instructions before purchase.", rows: [["Brand", "Maharaja"], ["Type", "Electric water geyser"], ["Capacity", "3 L"], ["Power", "2500 W"], ["Installation", "Qualified installation recommended; verify the product label and manual." ]] },
+                        };
+                        if (selectedProduct.category === "heaters-geysers") {
+                          const item = heaterGeyserDetails[selectedProduct.id];
+                          if (item) {
+                            const isExpanded = expandedFridgeSpecs === selectedProduct.id;
+                            return <section className="product-specifications" aria-labelledby="product-specifications-title">
+                              <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5 id="product-specifications-title">{item.kind}</h5><p>{item.summary}</p></div>
+                              <div className="product-specifications-highlights"><div><span>Product type</span><strong>{item.kind}</strong><small>Category</small></div><div><span>Key detail</span><strong>{item.highlight}</strong><small>As provided</small></div><div><span>Usage</span><strong>{selectedProduct.id.startsWith("heater-") ? "Seasonal warmth" : "Hot water"}</strong><small>Home use</small></div></div>
+                              <div className="product-specification-group"><h6>General</h6><dl>{item.rows.slice(0, 3).map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+                              {isExpanded && <div className="product-specification-extra"><div className="product-specification-group"><h6>Additional details</h6><dl>{item.rows.slice(3).map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}<div className="product-specification-row"><dt>Usage guidance</dt><dd>{item.use}</dd></div></dl></div><p className="product-specifications-note"><strong>Please note:</strong> Only the brand, type, capacity and power details supplied for this product are listed as specifications. Confirm other features, price, warranty and installation requirements with the showroom and product manual.</p></div>}
+                              <button type="button" className="product-specifications-toggle" aria-expanded={isExpanded} onClick={() => setExpandedFridgeSpecs(isExpanded ? null : selectedProduct.id)}>{isExpanded ? "Show less" : "View more details"}<span aria-hidden="true">{isExpanded ? "−" : "+"}</span></button>
+                            </section>;
+                          }
+                        }
+                        const fridgeSpecs: Record<string, { brand: string; model: string; type: string; fridgeType: string; defrost: string; compressor: string; capacity: string; doors: string; stars: string; colour: string; brandColour?: string; dimensions?: string[][]; details?: string[][]; box?: string; isWashing?: boolean }> = {
+                          "fridge-1": { brand: "Samsung", model: "RT28C3052S8/HL", type: "Double Door", fridgeType: "Top Mount", defrost: "Frost Free", compressor: "Digital Inverter Compressor", capacity: "236 L", doors: "2", stars: "2 Star", colour: "Grey", brandColour: "Elegant Inox", dimensions: [["Net Height", "1545 mm (154.5 cm)"], ["Net Depth", "637 mm (63.7 cm)"], ["Net Width", "555 mm (55.5 cm)"], ["Weight", "46 kg"], ["BEE Rating Year", "2023"]], box: "1 Refrigerator, User Manual, Warranty Card" },
+                          "fridge-2": { brand: "Godrej", model: "RD 207C TDF FU BL", type: "Single Door", fridgeType: "Top Mount", defrost: "Direct Cool", compressor: "Reciprocating", capacity: "180 L (net total 186 L)", doors: "1", stars: "3 Star", colour: "Blue", brandColour: "Fusiblue", dimensions: [["Net Height", "1310 mm (131.0 cm)"], ["Net Width", "575 mm (57.5 cm)"], ["Net Depth", "645 mm (64.5 cm)"], ["Weight", "36.2 kg"], ["BEE Rating Year", "2023"]], details: [["Toughened Glass", "Yes"], ["Built-in Stabilizer", "No"], ["Number of Freezer Shelves", "2"]], box: "1 Refrigerator, User Manual, Warranty Card" },
+                          "fridge-3": { brand: "Liebherr", model: "TCbl 2640-22", type: "Double Door", fridgeType: "Top Mount", defrost: "Frost Free", compressor: "NextGen 8 Step Inverter Compressor", capacity: "240 L", doors: "2", stars: "2 Star", colour: "Blue Landscape", dimensions: [["Net Height", "1495 mm (149.5 cm)"], ["Net Depth", "686 mm (68.6 cm)"], ["Net Width", "600 mm (60.0 cm)"], ["Weight", "55 kg"], ["Power Consumption", "270 W"], ["BEE Rating Year", "2023"], ["Stabilizer Required", "No"]], details: [["Built-in Stabilizer", "Yes"], ["Toughened Glass", "Yes"], ["Door Lock", "Yes"], ["Door Alarm", "Yes"], ["Removable Gasket", "Yes"], ["Flexible Rack", "Yes"], ["Refrigerator Interior Light", "Yes"], ["Egg Tray", "Yes"], ["Number of Crispers", "1"], ["Refrigerator Drawers", "2"], ["Bottle Racks", "1"], ["Body Material", "Steel"], ["Shelf Material", "Toughened Glass"], ["Handle Type", "Recess Handle"], ["Interior Finish", "Matte"], ["Water & Ice Dispenser", "No"], ["Deodorizer", "No"], ["Clock", "No"], ["Freezer Interior Light", "No"], ["Ice Cube Tray", "Twist Ice Maker"]], box: "1 Refrigerator, Quick Reference Guide, Key" },
+                          "fridge-4": { brand: "Godrej", model: "RT EONALPHA 270B", type: "Double Door", fridgeType: "Top Freezer Refrigerator", defrost: "Frost Free", compressor: "Inverter Compressor", capacity: "238 L", doors: "2", stars: "2 Star", colour: "Blue", brandColour: "Aria Blue", dimensions: [["Net Height", "1533 mm (153.3 cm)"], ["Net Depth", "597 mm (59.7 cm)"], ["Net Width", "689 mm (68.9 cm)"], ["Weight", "47 kg"], ["Power Consumption", "265 kWh"], ["Power Requirement", "AC 230V, 50Hz"], ["BEE Rating Year", "2023"], ["Stabilizer Required", "No"]], details: [["Launch Year", "2023"], ["Net Total Capacity", "238 L"], ["Child Lock", "Yes"], ["Cooling Refrigerant", "R600a"], ["Insulation", "Thickest PUF insulation"], ["Technology", "Cool Balance, Inverter technology"], ["Gross Freezer Capacity", "50 L"], ["Freezer Shelves", "1"], ["Freezer Drawers", "1"], ["Freezer Door Bins", "1"], ["Freezer Interior Light", "No"], ["Freezer Tray", "Icemaker Tray / Twist Ice Maker"], ["Removable Gasket", "Yes"], ["Door Lock", "Yes"], ["Removable Rack", "Yes"], ["Flexible Rack", "No"], ["Refrigerator Shelves", "2"], ["Refrigerator Door Bins", "3"], ["Interior Light", "Yes"], ["Egg Tray", "Yes"], ["Crispers", "1"], ["Refrigerator Drawers", "2"], ["Bottle Racks", "2"], ["Body Material", "Stainless Steel"], ["Shelf Material", "Toughened Glass"], ["Handle Type", "Recessed Handle"], ["Design", "Floral"], ["Display Type", "Knob"], ["Door Finish", "Glossy"], ["Interior Finish", "Textured"]], box: "1 Refrigerator, Warranty Card, User Manual" },
+                          "fridge-5": { brand: "Not specified in screenshot", model: "Not specified in screenshot", type: "Double Door", fridgeType: "Not specified", defrost: "Frost Free", compressor: "Inverter Linear Compressor", capacity: "242 L (net total 234 L)", doors: "2", stars: "3 Star", colour: "Not specified", dimensions: [["Net Height", "1475 mm"], ["Net Depth", "669 mm"], ["Net Width", "585 mm"], ["Weight", "51 kg"], ["Power Consumption", "198 W"], ["Power Requirement", "AC 100–310 V"]], details: [["Launch Year", "2020"], ["Water Dispenser", "No"], ["Coolpad", "No"], ["Toughened Glass", "Yes"], ["Convertible Refrigerator", "Yes"], ["Refrigerator Shelves", "3"], ["Door Lock", "Yes"]], box: "Not specified in screenshot" },
+                          "fridge-6": { brand: "Kelvinator", model: "KRD-I210ECPHGS", type: "Single Door", fridgeType: "Top Mount", defrost: "Direct Cool", compressor: "Normal", capacity: "201 L", doors: "1", stars: "3 Star", colour: "Grey", brandColour: "INOX", dimensions: [["Net Height", "1298 mm (129.8 cm)"], ["Net Depth", "635 mm (63.5 cm)"], ["Net Width", "582 mm (58.2 cm)"], ["Weight", "41.7 kg"]], details: [["Toughened Glass", "Yes"], ["Built-in Stabilizer", "Yes"]], box: "1 Refrigerator, User Manual, Warranty Card" },
+                          "fridge-7": { brand: "Kelvinator", model: "KRD-I210ECPHGS", type: "Single Door", fridgeType: "Top Mount", defrost: "Direct Cool", compressor: "Normal", capacity: "201 L", doors: "1", stars: "3 Star", colour: "Grey", brandColour: "INOX", dimensions: [["Net Height", "1298 mm (129.8 cm)"], ["Net Depth", "635 mm (63.5 cm)"], ["Net Width", "582 mm (58.2 cm)"], ["Weight", "41.7 kg"]], details: [["Toughened Glass", "Yes"], ["Built-in Stabilizer", "Yes"]], box: "1 Refrigerator, User Manual, Warranty Card" },
+                          "washing-1": { brand: "Samsung", model: "WT80C4000RR/TL", type: "Semi Automatic Top Load", fridgeType: "Pulsator", defrost: "4 wash programs", compressor: "1300 RPM spin speed", capacity: "7 kg", doors: "Top Loading", stars: "5 Star", colour: "Black Caviar", dimensions: [["Width", "83 cm"], ["Height", "103 cm"], ["Depth", "48.5 cm"], ["Weight", "24.5 kg"], ["Power Requirement", "AC 230 V, 50 Hz"]], details: [["Dryer Capacity", "7 kg"], ["Wash Programs", "Delicates, Normal, Heavy & Gentle, Soak"], ["Quick Wash", "Yes"], ["Spin Only", "Yes"], ["Spin & Rinse", "Yes"], ["Pre-wash Soak", "Yes"], ["Outer Body", "Plastic"], ["Tub Material", "Plastic"], ["Wheel Support", "Yes"], ["Rat Mesh", "Yes"], ["Child Lock", "Yes"], ["Lint Filter", "Yes"], ["Digital Display", "No"], ["Power Consumption", "0.107 KWh/kg/cycle"]], box: "1 Washing Machine, Warranty Card, User Manual", isWashing: true },
+                          "washing-2": { brand: "Godrej", model: "WSEDGE 75 5.0 CPLS WNRD", type: "Semi Automatic Top Load", fridgeType: "Impeller", defrost: "3 wash programs", compressor: "1440 RPM spin speed", capacity: "9 kg", doors: "Top Loading", stars: "5 Star", colour: "Maroon, White", dimensions: [["Width", "49 cm"], ["Height", "50 cm"], ["Depth", "43 cm"], ["Weight", "15 kg"]], details: [["Wash Cycle Duration", "45 min"], ["Quick Wash", "Yes"], ["Spin Only", "Yes"], ["Outer Body", "ABS body"], ["Tub Material", "ABS"], ["Door Lock", "Yes"], ["Tub Self-clean", "Yes"], ["Power Consumption", "0.0107 KWh/kg/cycle"]], box: "1 Washing Machine, User Manual and Warranty Card", isWashing: true },
+                          "washing-3": { brand: "Godrej", model: "WSEDGE 75 5.0 CPLS WNRD", type: "Semi Automatic Top Load", fridgeType: "Impeller", defrost: "3 wash programs", compressor: "1440 RPM spin speed", capacity: "8 kg", doors: "Top Loading", stars: "5 Star", colour: "Maroon, White", dimensions: [["Width", "49 cm"], ["Height", "50 cm"], ["Depth", "43 cm"], ["Weight", "15 kg"]], details: [["Wash Cycle Duration", "45 min"], ["Quick Wash", "Yes"], ["Spin Only", "Yes"], ["Outer Body", "ABS body"], ["Tub Material", "ABS"], ["Door Lock", "Yes"], ["Tub Self-clean", "Yes"], ["Power Consumption", "0.0107 KWh/kg/cycle"]], box: "1 Washing Machine, User Manual and Warranty Card", isWashing: true },
+                          "washing-4": { brand: "TECHCON", model: "Not provided", type: "Semi Automatic Top Load", fridgeType: "Top Load", defrost: "High efficiency", compressor: "Integrated dryer", capacity: "10 kg", doors: "Top Loading", stars: "5 Star (as supplied)", colour: "White & Grey", dimensions: [["Depth", "48 cm"], ["Width", "81 cm"], ["Height", "98 cm"]], details: [["Special Feature", "High Efficiency"], ["Toughened Glass Lid", "Yes"], ["Soft-close Lid", "Yes"]], box: "Not provided", isWashing: true },
+                          "washing-5": { brand: "TECHCON", model: "Not provided", type: "Semi Automatic Top Load", fridgeType: "Top Load", defrost: "High efficiency", compressor: "Integrated dryer", capacity: "10 kg", doors: "Top Loading", stars: "5 Star (as supplied)", colour: "White & Grey", dimensions: [["Depth", "48 cm"], ["Width", "81 cm"], ["Height", "98 cm"]], details: [["Special Feature", "High Efficiency"], ["Toughened Glass Lid", "Yes"], ["Soft-close Lid", "Yes"]], box: "Not provided", isWashing: true },
+                          "washing-6": { brand: "TECHCON", model: "Not provided", type: "Semi Automatic Top Load", fridgeType: "Top Load", defrost: "High efficiency", compressor: "Integrated dryer", capacity: "9 kg", doors: "Top Loading", stars: "5 Star (as supplied)", colour: "White & Grey", dimensions: [["Depth", "48 cm"], ["Width", "81 cm"], ["Height", "98 cm"]], details: [["Special Feature", "High Efficiency"], ["Toughened Glass Lid", "Yes"], ["Soft-close Lid", "Yes"]], box: "Not provided", isWashing: true },
+                          "washing-7": { brand: "TECHCON", model: "Not provided", type: "Semi Automatic Top Load", fridgeType: "Top Load", defrost: "High efficiency", compressor: "Integrated dryer", capacity: "8 kg", doors: "Top Loading", stars: "5 Star (as supplied)", colour: "White & Grey", dimensions: [["Depth", "48 cm"], ["Width", "81 cm"], ["Height", "98 cm"]], details: [["Special Feature", "High Efficiency"], ["Toughened Glass Lid", "Yes"], ["Soft-close Lid", "Yes"]], box: "Not provided", isWashing: true },
+                          "washing-8": { brand: "Vestar", model: "Not provided", type: "Fully Automatic Top Load", fridgeType: "Top Load", defrost: "Normal cycle", compressor: "720 RPM maximum rotational speed", capacity: "6.5 kg (table) / 6 kg (description; needs confirmation)", doors: "Top Loading", stars: "5 Star (description says so)", colour: "Med Grey", dimensions: [["Depth", "57.5 cm"], ["Width", "54.3 cm"], ["Height", "91.2 cm"], ["Voltage", "220 V"]], details: [["Controls Type", "Push Button"], ["Cycle Options", "Normal"], ["Warranty", "4 years comprehensive, 10 years motor and spare parts (as supplied)"], ["Note", "Supplied description mentions IFB features despite Vestar brand; verify before publishing"]], box: "Not provided", isWashing: true },
+                          "washing-10": { brand: "Samsung", model: "Model not provided", type: "Fully Automatic Top Load", fridgeType: "Ecobubble / Dual Storm", defrost: "11 wash programs", compressor: "DIT motor", capacity: "8 kg", doors: "Top Loading", stars: "Not provided", colour: "Not provided", dimensions: [["Depth", "56.8 cm"], ["Width", "54 cm"], ["Height", "98.8 cm"]], details: [["Hygiene Steam", "Yes"], ["Soft Closing Door", "Yes"], ["Drum Type", "Diamond"], ["Rat Mesh Protection", "Yes"], ["Rust Proof Body", "Yes"], ["Wash Programs", "11 listed programs"], ["Water Consumption", "Refer to BEE label"]], box: "Not provided", isWashing: true },
+                          "washing-11": { brand: "Godrej", model: "Model not provided", type: "Fully Automatic Top Load", fridgeType: "Quadra Steel Pulsator / Acu-wash drum", defrost: "10 wash programs", compressor: "650 RPM spin speed", capacity: "8 kg", doors: "Top Loading", stars: "5 Star", colour: "Not provided", dimensions: [["Depth", "55 cm"], ["Width", "54 cm"], ["Height", "102 cm"]], details: [["Power Wash Technology", "Yes"], ["Drain Hose", "Included"], ["Intake Hose", "Included"], ["Safety Cover", "Included"], ["Warranty", "5 years comprehensive (as supplied; conditions apply)"], ["Wash Programs", "10 listed programs"]], box: "1 Washing Machine, Drain Hose, Intake Hose, Safety Cover, User Manual", isWashing: true },
+                          "fridge-8": { brand: "LG", model: "GLD1816WOWR", type: "Single Door", fridgeType: "Top Freezer Refrigerator", defrost: "Direct Cool", compressor: "Reciprocating", capacity: "180 L", doors: "1", stars: "1 Star", colour: "Maroon", brandColour: "Wine Rose", dimensions: [["Net Height", "1142 mm (114.2 cm)"], ["Net Depth", "633 mm (63.3 cm)"], ["Net Width", "534 mm (53.4 cm)"], ["Weight", "36 kg"], ["BEE Rating Year", "2023"]], details: [["Launch Year", "2023"], ["Net Total Capacity", "180 L"], ["Child Lock", "Yes"], ["Built-in Stabilizer", "Yes"], ["Toughened Glass", "Yes"], ["Door Lock", "Yes"], ["Removable Gasket", "Yes"], ["Removable Rack", "Yes"], ["Flexible Rack", "No"]], box: "1 Refrigerator, Warranty Card, User Manual" },
+                          "fridge-9": { brand: "Samsung", model: "RR20H2712HV/NL", type: "Single Door", fridgeType: "Top Mount", defrost: "Direct Cool", compressor: "Digital Inverter Compressor", capacity: "183 L", doors: "1", stars: "2 Star", colour: "Blue", brandColour: "Himalayan Poppy Blue", dimensions: [["Net Height", "1180 mm (118.0 cm)"], ["Net Depth", "620 mm (62.0 cm)"], ["Net Width", "532 mm (53.2 cm)"], ["Weight", "28 kg"], ["Power Consumption", "168 kWh"], ["Power Requirement", "100–300 V"], ["BEE Rating Year", "2026"], ["Stabilizer Required", "No"]], details: [["Launch Year", "2025"], ["Cooling Refrigerant", "R-600a"], ["Built-in Stabilizer", "Yes"], ["Toughened Glass", "Yes"], ["Door Lock", "Yes"], ["Removable Gasket", "Yes"], ["Removable Rack", "Yes"], ["Flexible Rack", "Yes"], ["Water Dispenser", "No"]], box: "1 Refrigerator, User Manual, Warranty Card, Egg Tray" },
+                          "fridge-10": { brand: "Godrej", model: "52141501SD03859 / RD EMARVEL 207BN TDF FS ST", type: "Single Door", fridgeType: "Top Freezer Refrigerator", defrost: "Direct Cool", compressor: "Compressor", capacity: "184 L", doors: "1", stars: "2 Star", colour: "Silver", brandColour: "Fossil Steel", dimensions: [["Net Height", "1310 mm (131.0 cm)"], ["Net Depth", "640 mm (64.0 cm)"], ["Net Width", "575 mm (57.5 cm)"], ["Weight", "36.2 kg"], ["BEE Rating Year", "2026"]], details: [["Built-in Stabilizer", "Yes"], ["Toughened Glass", "Yes"], ["Stabilizer Free Operation", "Yes"], ["Auto Inverter Connect", "Yes"]], box: "1 Refrigerator, Egg Tray, Ice Tray, Instruction Manual, Key" },
+                          "fridge-11": { brand: "Godrej", model: "52141501SD03859", type: "Single Door", fridgeType: "Top Mount", defrost: "Direct Cool", compressor: "Fixed Speed Compressor", capacity: "180 L", doors: "1", stars: "1 Star", colour: "Red", brandColour: "Wine Red", dimensions: [["Net Height", "1180 mm (118.0 cm)"], ["Net Depth", "62.2 cm"], ["Net Width", "576 mm (57.6 cm)"], ["Weight", "30.4 kg"], ["BEE Rating Year", "2023"]], details: [["Coolpad", "No"], ["Toughened Glass", "No"], ["Built-in Stabilizer", "Yes"], ["Launch Year", "2023"]], box: "1 Refrigerator, User Manual, Warranty Card" },
+                        };
+                        const spec = fridgeSpecs[selectedProduct.id];
+                        if (!spec) return null;
+                        const generalRows = [["Brand", spec.brand], ["Model Name", spec.model], ["Type", spec.type], [spec.isWashing ? "Washing Method / Load Type" : "Refrigerator Type", spec.fridgeType], [spec.isWashing ? "Wash Programs" : "Defrosting Type", spec.defrost], [spec.isWashing ? "Spin / Drive Details" : "Compressor Type", spec.compressor], [spec.isWashing ? "Washing Capacity" : "Capacity", spec.capacity], [spec.isWashing ? "Load Type" : "Number of Doors", spec.doors], ["Star Rating", spec.stars], ["Colour", spec.colour], ...(spec.brandColour ? [["Brand Colour", spec.brandColour]] : [])];
+                        const extraRows = [...(spec.details || []), ...(spec.dimensions || []), ...(spec.box ? [["In the Box", spec.box]] : [])];
+                        const isExpanded = expandedFridgeSpecs === selectedProduct.id;
+                        return <section className="product-specifications" aria-labelledby="product-specifications-title">
+                          <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5 id="product-specifications-title">Specifications</h5><p>Key product details at a glance.</p></div>
+                          <div className="product-specifications-highlights"><div><span>Capacity</span><strong>{spec.capacity}</strong><small>{spec.type}</small></div><div><span>{spec.isWashing ? "Wash type" : "Cooling"}</span><strong>{spec.defrost}</strong><small>{spec.compressor}</small></div><div><span>BEE Rating</span><strong>{spec.stars}</strong><small>As listed by manufacturer</small></div></div>
+                          <div className="product-specification-group"><h6>General</h6><dl>{generalRows.map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+                          {isExpanded && <div className="product-specification-extra"><div className="product-specification-group"><h6>Additional details</h6><dl>{extraRows.map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>{!spec.isWashing && <p className="product-specifications-note"><strong>Important note:</strong> Under the Bureau of Energy Efficiency energy-labelling plan, refrigerator star ratings effective from 1 January 2023 may be one star lower than ratings applicable from 1 January 2020 to 31 December 2022.</p>}</div>}
+                          <button type="button" className="product-specifications-toggle" aria-expanded={isExpanded} onClick={() => setExpandedFridgeSpecs(isExpanded ? null : selectedProduct.id)}>{isExpanded ? "Show less" : "View more details"}<span aria-hidden="true">{isExpanded ? "−" : "+"}</span></button>
+                        </section>;
+                      })()}
                     </div>
                   </div>
                 </div>
@@ -1768,6 +1933,29 @@ export default function Categories() {
       {/* =========================
           COMBO MODAL
       ========================== */}
+
+      <style jsx>{`
+        .product-specifications { margin-top: 24px; padding-top: 22px; border-top: 1px solid #e1e8f3; color: #14284b; }
+        .product-specifications-heading h5 { margin: 5px 0 6px; font-size: 23px; letter-spacing: -0.025em; }
+        .product-specifications-heading p { margin: 0; color: #64748b; font-size: 13px; line-height: 1.6; }
+        .product-specifications-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin: 18px 0; }
+        .product-specifications-highlights > div { display: flex; flex-direction: column; gap: 5px; padding: 13px 11px; border: 1px solid #e0e9f8; border-radius: 12px; background: linear-gradient(145deg, #f8fbff, #eef4ff); }
+        .product-specifications-highlights span, .product-specifications-highlights small { color: #64748b; font-size: 11px; }
+        .product-specifications-highlights strong { font-size: 15px; line-height: 1.35; }
+        .product-specification-group { margin-top: 12px; border: 1px solid #e5ebf4; border-radius: 12px; overflow: hidden; }
+        .product-specification-group h6 { margin: 0; padding: 12px 14px; background: #f6f8fc; font-size: 13px; font-weight: 700; }
+        .product-specification-group dl { margin: 0; padding: 0 14px; }
+        .product-specification-row { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 12px; padding: 11px 0; border-top: 1px solid #edf1f7; font-size: 12px; line-height: 1.5; }
+        .product-specification-row dt { color: #64748b; }
+        .product-specification-row dd { margin: 0; color: #14284b; font-weight: 600; overflow-wrap: anywhere; }
+        .product-specifications-note { margin: 14px 0 0; padding: 12px 14px; border-radius: 10px; background: #fff9e9; color: #76571a; font-size: 11px; line-height: 1.65; }
+        .product-specifications-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; padding: 13px 15px; border: 1px solid #d6e3f7; border-radius: 11px; background: linear-gradient(135deg, #f7faff, #edf4ff); color: #174a9b; font-size: 13px; font-weight: 700; cursor: pointer; transition: background .2s ease, transform .2s ease, border-color .2s ease; }
+        .product-specifications-toggle:hover { background: #e6efff; border-color: #a9c6ff; transform: translateY(-1px); }
+        .product-specifications-toggle span { font-size: 19px; line-height: 1; }
+        .product-specification-extra { animation: specReveal .24s ease both; }
+        @keyframes specReveal { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 640px) { .product-specifications-highlights { grid-template-columns: 1fr; } .product-specifications-highlights > div { padding: 12px; } .product-specification-row { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 8px; } }
+      `}</style>
 
       {showCombo && (() => {
         const originalBed = products.find((product) => product.id === "bed-9");
@@ -2798,6 +2986,7 @@ export default function Categories() {
         }
 
         .product-detail-view {
+          scroll-margin-top: 90px;
           padding-top: 8px;
         }
 
