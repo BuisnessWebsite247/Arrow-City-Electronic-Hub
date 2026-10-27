@@ -127,7 +127,7 @@ const products: Product[] = [
   // Prices are set to 0 until you provide the actual showroom prices.
   {
     id: "bed-1",
-    name: "Bed 01",
+    name: "Royal Crest Bed",
     category: "beds",
     price: 15999,
     images: [
@@ -138,7 +138,7 @@ const products: Product[] = [
   },
   {
     id: "bed-2",
-    name: "Bed 02",
+    name: "Velvet Luxe Bed",
     category: "beds",
     price: 22999,
     images: [
@@ -149,7 +149,7 @@ const products: Product[] = [
   },
   {
     id: "bed-3",
-    name: "Bed 03",
+    name: "Aurum Comfort Bed",
     category: "beds",
     price: 20999,
     images: [
@@ -160,7 +160,7 @@ const products: Product[] = [
   },
   {
     id: "bed-4",
-    name: "Bed 04",
+    name: "Regal Haven Bed",
     category: "beds",
     price: 15999,
     images: [
@@ -171,7 +171,7 @@ const products: Product[] = [
   },
   {
     id: "bed-5",
-    name: "Bed 05",
+    name: "Urban Grace Bed",
     category: "beds",
     price: 19999,
     images: [
@@ -182,7 +182,7 @@ const products: Product[] = [
   },
   {
     id: "bed-6",
-    name: "Bed 06",
+    name: "Elite Nest Bed",
     category: "beds",
     price: 16999,
     images: [
@@ -193,7 +193,7 @@ const products: Product[] = [
   },
   {
     id: "bed-7",
-    name: "Bed 07",
+    name: "Grand Aura Bed",
     category: "beds",
     price: 19999,
     images: [
@@ -204,7 +204,7 @@ const products: Product[] = [
   },
   {
     id: "bed-8",
-    name: "Bed 08",
+    name: "Imperial Rest Bed",
     category: "beds",
     price: 14999,
     images: [
@@ -215,7 +215,7 @@ const products: Product[] = [
   },
   {
     id: "bed-9",
-    name: "Bed 09",
+    name: "Signature Dream Bed",
     category: "beds",
     price: 12999,
     images: [
@@ -228,7 +228,7 @@ const products: Product[] = [
   // Each sofa has one main image and three additional product views.
   {
     id: "sofa-1",
-    name: "Sofa 01",
+    name: "Velvet Haven Sofa",
     category: "sofas",
     price: 9999,
     images: [
@@ -240,7 +240,7 @@ const products: Product[] = [
   },
   {
     id: "sofa-2",
-    name: "Sofa 02",
+    name: "Urban Luxe Sofa",
     category: "sofas",
     price: 9999,
     images: [
@@ -252,7 +252,7 @@ const products: Product[] = [
   },
   {
     id: "sofa-3",
-    name: "Sofa 03",
+    name: "Regal Comfort Sofa",
     category: "sofas",
     price: 17999,
     images: [
@@ -264,7 +264,7 @@ const products: Product[] = [
   },
   {
     id: "sofa-4",
-    name: "Sofa 04",
+    name: "Cloud Nine Sofa",
     category: "sofas",
     price: 11999,
     images: [
@@ -276,7 +276,7 @@ const products: Product[] = [
   },
   {
     id: "sofa-5",
-    name: "Sofa 05",
+    name: "Royal Lounge Sofa",
     category: "sofas",
     price: 9999,
     images: [
@@ -288,7 +288,7 @@ const products: Product[] = [
   },
   {
     id: "sofa-6",
-    name: "Sofa 06",
+    name: "Grand Vista Sofa",
     category: "sofas",
     price: 20999,
     images: [
@@ -303,7 +303,7 @@ const products: Product[] = [
   // Each almira has one main image and two additional views.
   {
     id: "almira-1",
-    name: "Almira 01",
+    name: "Aurum almira",
     category: "almira-wardrobes",
     price: 11499,
     images: [
@@ -314,7 +314,7 @@ const products: Product[] = [
   },
   {
     id: "almira-2",
-    name: "Almira 02",
+    name: "Royal Edge Almira",
     category: "almira-wardrobes",
     price: 14999,
     images: [
@@ -325,7 +325,7 @@ const products: Product[] = [
   },
   {
     id: "almira-3",
-    name: "Almira 03",
+    name: "Velvet Crest Almira",
     category: "almira-wardrobes",
     price: 17999,
     images: [
@@ -336,7 +336,7 @@ const products: Product[] = [
   },
   {
     id: "almira-4",
-    name: "Almira 04",
+    name: "Urban Aura Almira",
     category: "almira-wardrobes",
     price: 11499,
     images: [
@@ -347,7 +347,7 @@ const products: Product[] = [
   },
   {
     id: "almira-5",
-    name: "Almira 05",
+    name: "Imperial Glow Almira",
     category: "almira-wardrobes",
     price: 7999,
     images: [
@@ -358,7 +358,7 @@ const products: Product[] = [
   },
   {
     id: "almira-6",
-    name: "Almira 06",
+    name: "Signature Luxe Almira",
     category: "almira-wardrobes",
     price: 12499,
     images: [
@@ -372,7 +372,7 @@ const products: Product[] = [
   // Each wardrobe has one main image and two additional views.
   {
     id: "wardrobe-1",
-    name: "Wardrobe 01",
+    name: "Classic Haven Wardrobe",
     category: "almira-wardrobes",
     price: 2999,
     images: [
@@ -383,7 +383,7 @@ const products: Product[] = [
   },
   {
     id: "wardrobe-2",
-    name: "Wardrobe 02",
+    name: "Royal Line Wardrobe",
     category: "almira-wardrobes",
     price: 2999,
     images: [
@@ -394,7 +394,7 @@ const products: Product[] = [
   },
   {
     id: "wardrobe-3",
-    name: "Wardrobe 03",
+    name: "Elite Aura Wardrobe",
     category: "almira-wardrobes",
     price: 4999,
     images: [
@@ -407,21 +407,21 @@ const products: Product[] = [
   // TABLES — place 3 JPEG images in public/images/products/tables/.
   {
     id: "table-1",
-    name: "Table 01",
+    name: "Aurum Accent Table",
     category: "tables",
     price: 4999,
     images: ["/images/products/tables/table-01-1.jpeg"],
   },
   {
     id: "table-2",
-    name: "Table 02",
+    name: "Urban Nest Table",
     category: "tables",
     price: 2999,
     images: ["/images/products/tables/table-02-1.jpeg"],
   },
   {
     id: "table-3",
-    name: "Table 03",
+    name: "Regal Edge Table",
     category: "tables",
     price: 4999,
     images: ["/images/products/tables/table-03-1.jpeg"],
@@ -861,7 +861,7 @@ const products: Product[] = [
   // Each oven has one main image and two additional views.
   {
     id: "oven-1",
-    name: "Oven 01",
+    name: "IFB 25SC4 Oven",
     category: "kitchen-appliances",
     price: 12499,
     images: [
@@ -872,7 +872,7 @@ const products: Product[] = [
   },
   {
     id: "oven-2",
-    name: "Oven 02",
+    name: "Godrej Oven",
     category: "kitchen-appliances",
     price: 12499,
     images: [
@@ -883,7 +883,7 @@ const products: Product[] = [
   },
   {
     id: "oven-3",
-    name: "Oven 03",
+    name: "IFB 25BC4 Oven",
     category: "kitchen-appliances",
     price: 12499,
     images: [
@@ -894,7 +894,7 @@ const products: Product[] = [
   },
   {
     id: "oven-4",
-    name: "Oven 04",
+    name: "IFB 20BC4 Oven",
     category: "kitchen-appliances",
     price: 10299,
     images: [
@@ -905,7 +905,7 @@ const products: Product[] = [
   },
   {
     id: "oven-5",
-    name: "Oven 05",
+    name: "Godrej Eon Oven",
     category: "kitchen-appliances",
     price: 10499,
     images: [
@@ -1033,7 +1033,7 @@ const products: Product[] = [
   // NEW GAS STOVES — added to Kitchen Appliances.
   {
     id: "gas-stove-1",
-    name: "Gas Stove 01",
+    name: "Singer Gas Stove",
     category: "kitchen-appliances",
     price: 0,
     images: [
@@ -1044,7 +1044,7 @@ const products: Product[] = [
   },
   {
     id: "gas-stove-2",
-    name: "Gas Stove 02",
+    name: "Surya Gas Stove",
     category: "kitchen-appliances",
     price: 0,
     images: [
@@ -1055,7 +1055,7 @@ const products: Product[] = [
   },
   {
     id: "gas-stove-3",
-    name: "Gas Stove 03",
+    name: "Intex Induction",
     category: "kitchen-appliances",
     price: 0,
     images: [
@@ -1114,7 +1114,7 @@ const products: Product[] = [
   // NEW KITCHEN APPLIANCES — 5 products, 3 images each.
   {
     id: "kitchen-appliance-1",
-    name: "Kitchen Appliance 01",
+    name: "Crompton Mixer Grinder",
     category: "kitchen-appliances",
     price: 0,
     images: [
@@ -1125,7 +1125,7 @@ const products: Product[] = [
   },
   {
     id: "kitchen-appliance-2",
-    name: "Kitchen Appliance 02",
+    name: "Maharaja Mixer Grinder",
     category: "kitchen-appliances",
     price: 0,
     images: [
@@ -1136,7 +1136,7 @@ const products: Product[] = [
   },
   {
     id: "kitchen-appliance-3",
-    name: "Kitchen Appliance 03",
+    name: "Usha Hand Blender",
     category: "kitchen-appliances",
     price: 0,
     images: [
@@ -1147,7 +1147,7 @@ const products: Product[] = [
   },
   {
     id: "kitchen-appliance-4",
-    name: "Kitchen Appliance 04",
+    name: "Maharaja Hand Blender",
     category: "kitchen-appliances",
     price: 0,
     images: [
@@ -1175,7 +1175,7 @@ const products: Product[] = [
   // HOME APPLIANCES — 6 products, 3 images each.
   {
     id: "home-appliance-1",
-    name: "Iron 01",
+    name: "Intex Iron",
     category: "home-appliances",
     price: 949,
     images: [
@@ -1186,7 +1186,7 @@ const products: Product[] = [
   },
   {
     id: "home-appliance-2",
-    name: "Iron 02",
+    name: "Next Iron",
     category: "home-appliances",
     price: 949,
     images: [
@@ -1197,7 +1197,7 @@ const products: Product[] = [
   },
   {
     id: "home-appliance-3",
-    name: "Iron 03",
+    name: "Maharaja Iron",
     category: "home-appliances",
     price: 949,
     images: [
@@ -1208,7 +1208,7 @@ const products: Product[] = [
   },
   {
     id: "home-appliance-4",
-    name: "Iron 04",
+    name: "Intex Iron 02",
     category: "home-appliances",
     price: 949,
     images: [
@@ -1219,7 +1219,7 @@ const products: Product[] = [
   },
   {
     id: "home-appliance-5",
-    name: "Iron 05",
+    name: "Crompton Iron",
     category: "home-appliances",
     price: 949,
     images: [
@@ -1230,7 +1230,7 @@ const products: Product[] = [
   },
   {
     id: "home-appliance-6",
-    name: "Iron 06",
+    name: "Intex Iron 03",
     category: "home-appliances",
     price: 849,
     images: [
@@ -1786,6 +1786,54 @@ export default function Categories() {
                             </section>;
                           }
                         }
+                        if (selectedProduct.category === "kitchen-appliances" || selectedProduct.category === "home-appliances") {
+                          const isOven = selectedProduct.id.startsWith("oven-");
+                          const isGas = selectedProduct.id.startsWith("gas-stove-");
+                          const isInduction = selectedProduct.id === "gas-stove-3";
+                          const isMixer = selectedProduct.id === "kitchen-appliance-1" || selectedProduct.id === "kitchen-appliance-2";
+                          const isBlender = selectedProduct.id === "kitchen-appliance-3" || selectedProduct.id === "kitchen-appliance-4";
+                          const isIron = selectedProduct.id.startsWith("home-appliance-");
+                          const productType = isOven ? "Oven" : isInduction ? "Induction cooktop" : isGas ? "Gas stove" : isMixer ? "Mixer grinder" : isBlender ? "Hand blender" : isIron ? "Electric iron" : "Kitchen appliance";
+                          const overview = isOven
+                            ? "A convenient kitchen appliance for heating, baking or cooking, depending on the selected model."
+                            : isInduction
+                              ? "A compact electric cooking appliance. Use compatible cookware and follow the product manual."
+                              : isGas
+                                ? "A practical stovetop for everyday cooking. Confirm burner count and fuel compatibility with the showroom."
+                                : isMixer
+                                  ? "A versatile mixer grinder for everyday kitchen preparation. Jar count and motor specifications vary by model."
+                                  : isBlender
+                                    ? "A handheld blender suited to common blending tasks. Confirm included attachments and operating guidance with the showroom."
+                                    : "A household iron for routine garment care. Confirm the exact features and safe-use instructions for this model.";
+                          const highlights = isOven
+                            ? [["Product type", "Oven"], ["Use", "Heating and cooking"], ["Controls", "Confirm from product model"]]
+                            : isInduction
+                              ? [["Product type", "Induction cooktop"], ["Use", "Electric cooking"], ["Cookware", "Induction-compatible cookware required"]]
+                              : isGas
+                                ? [["Product type", "Gas stove"], ["Use", "Everyday cooking"], ["Fuel connection", "Confirm with showroom"]]
+                                : isMixer
+                                  ? [["Product type", "Mixer grinder"], ["Use", "Grinding and mixing"], ["Attachments", "Confirm included jars"]]
+                                  : isBlender
+                                    ? [["Product type", "Hand blender"], ["Use", "Blending and mixing"], ["Attachments", "Confirm included accessories"]]
+                                    : [["Product type", "Electric iron"], ["Use", "Garment care"], ["Soleplate and controls", "Confirm from product label"]];
+                          const rows = [
+                            ["Brand", selectedProduct.name.split(" ")[0]],
+                            ["Model number", "Confirm from product label"],
+                            ["Key features", "Confirm for the exact model"],
+                            ["Power / capacity", "Confirm from product label"],
+                            ["Included accessories", "Confirm with showroom"],
+                            ["Care and safety", "Follow the product manual"],
+                            ["Warranty", "Confirm with showroom"],
+                          ];
+                          const isExpanded = expandedFridgeSpecs === selectedProduct.id;
+                          return <section className="product-specifications" aria-label={`${selectedProduct.name} information`}>
+                            <div className="product-specifications-heading"><span className="small-label">PRODUCT INFORMATION</span><h5>About this {productType.toLowerCase()}</h5><p>{overview}</p></div>
+                            <div className="product-specifications-highlights">{highlights.map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong><small>Product overview</small></div>)}</div>
+                            <div className="product-specification-group"><h6>Overview</h6><dl><div className="product-specification-row"><dt>Design</dt><dd>{productType} for everyday home use</dd></div><div className="product-specification-row"><dt>About</dt><dd>{overview} Exact technical details should be confirmed for this product.</dd></div></dl></div>
+                            {isExpanded && <div className="product-specification-group"><h6>More details</h6><dl>{rows.map(([label, value]) => <div className="product-specification-row" key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl><p className="product-specifications-note"><strong>Please note:</strong> Model-specific specifications, dimensions, power ratings, included accessories and warranty should be confirmed with the showroom.</p></div>}
+                            <button type="button" className="product-specifications-toggle" aria-expanded={isExpanded} onClick={() => setExpandedFridgeSpecs(isExpanded ? null : selectedProduct.id)}>{isExpanded ? "Show less" : "View more information"}<span aria-hidden="true">{isExpanded ? "−" : "+"}</span></button>
+                          </section>;
+                        }
                         if (selectedProduct.category === "beds") {
                           const bed = bedDetails[selectedProduct.id] || { style: "Versatile bedroom style", description: "A thoughtfully styled bed that can help create a welcoming bedroom and coordinate with a variety of interior looks.", highlight: "Versatile appearance", pairing: "Choose bedding and bedside furniture that complement its look.", mood: "Welcoming and balanced" };
                           const isExpanded = expandedFridgeSpecs === selectedProduct.id;
@@ -2121,7 +2169,7 @@ export default function Categories() {
                                   setComboPreviewImageIndex(0);
                                   setShowComboPreviewUpgrades(false);
                                   setRemovedComboItems((prev) => prev.filter((i) => i !== itemIndex));
-                                }}><img src={option.images?.[0] ?? comboItems[itemIndex].image} alt={option.name} /><span>{option.name}</span><small>{currentProductId === option.id ? "Selected ✓" : "Choose upgrade"}</small></button>) : <p>No upgrade options available for this product yet.</p>}
+                                }}><img src={option.images?.[0] ?? comboItems[itemIndex].image} alt={option.name} /><span>{option.name}</span><strong className="combo-preview-upgrade-price" style={{ display: "block", marginTop: 5, color: "#9b793f", fontSize: 12, fontWeight: 700 }}>+₹{Math.max(0, option.price - (baseItemPrices[itemIndex] ?? 0)).toLocaleString("en-IN")} extra</strong><small>{currentProductId === option.id ? "Selected ✓" : "Choose upgrade"}</small></button>) : <p>No upgrade options available for this product yet.</p>}
                                 {baseProduct && currentProductId !== baseProduct.id && <button type="button" className="combo-preview-reset-base" onClick={() => { if (isBedItem) setSelectedComboBedId(defaultProductIdByComboIndex[0] ?? "bed-9"); else setSelectedComboProducts((prev) => { const next = { ...prev }; delete next[itemIndex]; return next; }); setComboProductPreview(baseProduct); setComboPreviewImageIndex(defaultImageIndexByComboIndex[itemIndex] ?? 0); setShowComboPreviewUpgrades(false); }}>Restore base {comboItems[itemIndex].name}</button>}
                               </div>}
                             </div>;
